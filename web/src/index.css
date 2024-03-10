@@ -12,7 +12,7 @@ code {
     monospace;
 }
 .app {
-  width: 100%;
+  width: 80%;
   height: 100vh;
   position: relative;
   background: rgb(0,108,141);
