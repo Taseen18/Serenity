@@ -11,14 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.app {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background: rgb(0,108,141);
-  background: -moz-linear-gradient(90deg, rgba(0,108,141,1) 25%, rgba(3,203,255,1) 80%);
-  background: -webkit-linear-gradient(90deg, rgba(0,108,141,1) 25%, rgba(3,203,255,1) 80%);
-  background: linear-gradient(90deg, rgba(0,108,141,1) 25%, rgba(3,203,255,1) 80%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#006c8d",endColorstr="#03cbff",GradientType=1);
-  color: #fff;
-}

@@ -1,13 +1,29 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { supabase } from "../lib/helper/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import HALO from "vanta/dist/vanta.halo.min.js";
+
+import '../css/Login.css'
 
 const Login = ({setToken}) => {
     let navigate = useNavigate()
 
-    const [formData,setFormData] = useState({
-        email:'',password:''
-    })
+    const [formData,setFormData] = useState({email:'',password:''})
+    const vantaRef = useRef(null);
+    const [vantaEffect, setVantaEffect] =  useState(0);
+
+    useEffect(() => {
+        if (!vantaEffect) {
+            setVantaEffect(HALO({
+                el: vantaRef.current,
+                minHeight: 200,
+                minWidth: 200
+            }));
+        }
+        return () => {
+            if (vantaEffect) vantaEffect.destroy();
+        };
+    }, [vantaEffect]);
 
     console.log(formData)
 
@@ -38,26 +54,38 @@ const Login = ({setToken}) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    placeholder="Email"
-                    name="email"
-                    onChange={handleChange}
-                />
-                <input 
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    onChange={handleChange}
-                />       
-
-                <button type="submit">
-                    Submit
-                </button>         
-            </form>
-            Dont have an account?<a href="/signup">Sign up here</a>
-        </div>
+        <section ref={vantaRef} style={{ width: "100vw", height: "100vh" }}>
+            <h1>S E R E N I T Y</h1>
+            <br></br>
+            <div className="wrapper">
+                <div className="login-container">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div class="input-box">
+                            <input 
+                                placeholder="Email"
+                                name="email"
+                                onChange={handleChange}
+                                required
+                            />
+                            <input 
+                                placeholder="Password"
+                                name="password"
+                                type="password"
+                                onChange={handleChange}
+                                required
+                            />       
+                        </div>
+                        <br></br>
+                        <button type="submit" class="btn" name="submit">
+                            Login
+                        </button>         
+                    </form>
+                    <br></br>
+                    Dont have an account?<a href="/signup">Sign up here</a>
+                </div>
+            </div>
+        </section>
     )
 }
 
