@@ -61,7 +61,7 @@ const Login = ({setToken}) => {
                 <div className="login-container">
                     <h2>Login</h2>
                     <form onSubmit={handleSubmit}>
-                        <div class="input-box">
+                        <div className="input-box">
                             <input 
                                 placeholder="Email"
                                 name="email"
@@ -77,7 +77,7 @@ const Login = ({setToken}) => {
                             />       
                         </div>
                         <br></br>
-                        <button type="submit" class="btn" name="submit">
+                        <button type="submit" className="btn" name="submit">
                             Login
                         </button>         
                     </form>
