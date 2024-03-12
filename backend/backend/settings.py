@@ -131,6 +131,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+'''
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -148,9 +149,11 @@ LOGGING = {
         },
     },
 }
+'''
 
 SUPABASE_URL = 'https://yltkxqmckodbklfqdecl.supabase.co'
-SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlsdGt4cW1ja29kYmtsZnFkZWNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg3MDk1NTksImV4cCI6MjAyNDI4NTU1OX0.77MOOTyj3eMz6ltrPrdyfgbUFHZPaBy64Ewccf66vWg'
+#DELETE THE BELOW KEYS WHEN COMMITTING TO GIT
+SUPABASE_KEY = ''
 SUPABASE_SECRET_KEY = ''
 
 REST_FRAMEWORK = {

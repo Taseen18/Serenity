@@ -9,9 +9,5 @@ def get_supabase_client() -> Client:
 
 def fetch_user_tasks(user_uuid):
     client = get_supabase_client()  # Ensure you have this function set up to create a Supabase client
-    data, error = client.table('to_do_list_tasks').select('*').eq('user_id', user_uuid).execute()
-    
-    if error:
-        print(f"Error fetching tasks: {error}")
-        return []
+    data = client.table('to_do_list_tasks').select('title, description').eq('user_id', user_uuid).execute()
     return data
