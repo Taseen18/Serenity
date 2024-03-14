@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import { useNavigate } from 'react-router-dom'
+//import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
 
 function Homepage({ token }) {
@@ -39,19 +40,30 @@ function Homepage({ token }) {
 
   return (
     <div>
-      <button onClick={handleLogout}>Log out</button>
-      <button onClick={fetchTasks}>Fetch Tasks</button>
-      <div className='welcome-message'>
-        <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
-      </div>
-      <div className='to-do-list'>
-        {tasks.map((task, index) => (
-          <div key={index}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-          </div>
-        ))}
-      </div>
+        <div className="navbar">
+            <ul className="navbar-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Community</a></li>
+            </ul>
+            <div className="navbar-buttons">
+                <button className="navbar-button" onClick={handleLogout}>Log out</button>
+                <button className="navbar-button" onClick={fetchTasks}>Fetch Tasks</button>
+            </div>
+        </div>
+        <div className='welcome-message'>
+            <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
+        </div>
+        <div className='to-do-list'>
+            <div className='to-do-list-box'>
+                {tasks.map((task, index) => (
+                    <div key={index} className='task'>
+                        <h3>{task.title}</h3>
+                        <p>{task.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
     </div>
   );
 }

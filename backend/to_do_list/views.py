@@ -20,7 +20,6 @@ class TaskListCreate(APIView):
             else:
                 tasks = []
 
-            # Directly return the tasks without concerning about the count
             return JsonResponse({'tasks': tasks}, safe=False)
 
         except Exception as e:

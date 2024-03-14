@@ -8,14 +8,63 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     background-image: url('../assets/images/mountains-night-background.jpg');
-    background-size: 100vw;
     background-position: center;
     height: 100vh;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    background: transparent;
+    color: white;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links li {
+    display: inline;
+    padding: 0 15px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar-links a:hover {
+    color: #ff004f;
+}
+
+.navbar-buttons {
+    display: flex;
+}
+
+.navbar-button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #ff004f; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.navbar-button:hover {
+    background-color: #e60045; /* Slightly darker on hover for feedback */
+}
+
+
 .welcome-message {
     padding: 10px 10%;
-    margin-top: 7%;
+    margin-top: 5%;
     font-size: 30px;
 }
 
@@ -26,4 +75,38 @@ body {
 
 .welcome-message h1 span {
     color: #ff004f;
+}
+
+.to-do-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.to-do-list-box {
+    width: 30%; /* Adjust width as needed */
+    max-width: 600px; /* Set a max-width for larger screens */
+    margin: auto;
+    padding: 20px;
+    background-color: #f5f5f5; /* Light grey background */
+    border-radius: 10px; /* Rounded corners for the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+  
+.task {
+    background-color: white; /* White background for tasks */
+    padding: 15px;
+    margin-bottom: 10px; /* Space between tasks */
+    border-radius: 5px; /* Rounded corners for task items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for each task */
+}
+  
+.task h3 {
+    margin-top: 0;
+    color: black;
+}
+  
+.task p {
+    margin: 5px 0 0; /* Small top margin for the paragraph, remove bottom margin */
+    color: black;
 }
