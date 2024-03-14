@@ -52,6 +52,7 @@ function Homepage({ token }) {
             </div>
         </div>
         <div className='welcome-message'>
+        dsds
             <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
         </div>
         <div className='to-do-list'>
