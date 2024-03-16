@@ -26,7 +26,7 @@
     flex-direction: column;
 }
 
-.postButton {
+.Community .postButton {
     padding: 2vh 3.5vw;
     margin-left: 10px;
     background-color: #ff004f; /* Button background color */
@@ -37,13 +37,13 @@
     font-size: 1.7vw;
 }
 
-.postButton:hover {
+.Community .postButton:hover {
     background-color: #e60045; /* Slightly darker on hover for feedback */
 }
-.filter{
+.Community .filter{
     width:4vw;
 }
-.postsWrapper{
+.Community .postsWrapper{
     margin: auto;
     margin-top: 2vh;
     width: 80vw;

@@ -1,0 +1,53 @@
+
+.Holder .title{
+    font-size: 3vw;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 10vw;
+}
+
+.Holder .underline{
+    width:9vw;
+    margin-left: 12.4vw;
+    
+}
+.Holder .topSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 2vh;
+   
+}
+.Holder .titleSection{
+    display: flex;
+    flex-direction: column;
+    margin-right:5vw;
+}
+.topSection h3{
+    margin-top: 3vh;
+    opacity: 70%;
+    cursor: pointer;
+}
+.topSection h3:hover{
+    opacity: 100%;
+}
+
+.Holder .resourceWrapper{
+    margin: auto;
+    margin-top: 2vh;
+    width: 80vw;
+    height: 100vh;
+    border-radius: 140px;
+    background: rgba(143, 143, 143, 0.50);
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+.resourceWrapper p{
+    font-size: 1vw;
+    width:60vw;
+    margin: auto;
+    padding-top: 5vh;
+}

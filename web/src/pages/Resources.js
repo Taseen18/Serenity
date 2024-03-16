@@ -15,13 +15,15 @@ function Resources() {
 
       <h1 className="title">Resources</h1>
       <img className="underline" src={Line} />
+      <div className="info">Click on a lilypad</div>
       <div className="selection">
           
-        <img className="pad" src={diet} />
+        
+        <Link to="/exercise" className="linker"> <img className="pad" src={diet} /> </Link>
         <Link to="/exercise" className="linker"> <img id="middlepad"className="pad"src={exercise} /> </Link>
+        <Link to="/exercise" className="linker">  <img className="pad"src={mh} /> </Link>
         
-        
-        <img className="pad"src={mh} />
+       
       </div>
     </div>
   )

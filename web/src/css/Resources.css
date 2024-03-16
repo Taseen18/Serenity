@@ -4,6 +4,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    
 }
 .Resources .underline{
     width:15vw;
@@ -30,4 +31,9 @@
 #middlepad{
     margin-top: 10vh;
     width:33vw;
+}
+.Resources .info{
+    font-size: 1vw;
+    margin: auto;
+    margin-top:2vh;
 }

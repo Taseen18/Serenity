@@ -57,13 +57,13 @@ body{
     font-size: 2vw;
    
 }
-.Home .project_footer{
+.Home .dashFooter{
     text-decoration: none; 
     color:white;
 }
 .Home .footer:hover {
     transition: 0.3s;
-    background-color: rgb(133, 169, 194);
+    background-color: rgb(255, 0, 79, 0.5);
 }
 
 

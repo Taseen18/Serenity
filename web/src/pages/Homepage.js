@@ -57,7 +57,7 @@ function Homepage({ token }) {
 
       </div>
         <div className="footer">
-          <a href="#Dash2" className="project_footer">View Dashboard ↓ </a>
+          <a href="#Dash2" className="dashFooter">View Dashboard ↓ </a>
       </div>
       <div id="Dash2"className="Dash2">
         <div className="top">
