@@ -1,0 +1,107 @@
+.navbar{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+   
+    color: white;
+    flex-shrink: 0;
+    background: rgba(132, 132, 132, 0.1) ; /* Change transparency of navbar background if want */
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.navbar .leftSide{
+ 
+    margin-left: -9vw;
+    margin-bottom:2.4vh;
+
+}
+
+.navbar .navTitle{
+    color: #FFF;
+    text-decoration: none; 
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 4.2vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 6.72px;
+    margin-top: 1vh;
+}
+
+.navbar.middle{
+ 
+    height: 29px;
+    flex-shrink: 0;
+}
+
+.navbar .linker{
+    color: #FFF;
+    text-decoration: none; 
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 2vw;
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.4px;
+
+}
+.navbar .linker:hover{
+    color: #e60045;
+}
+
+.navbar .rightSide{
+   
+   margin-right: -9vw;
+   display: flex;
+   flex-direction: row; 
+   font-size: 0.8vw;
+   width:18vw;
+   justify-content: space-between;
+}
+.navbar .UserInfo{
+    color: #FFF;
+    
+    font-style: normal;
+    font-weight: 400;
+    line-height: 114.583%; /* 22.917px */
+    letter-spacing: 1.4px;
+
+}
+.navbar .UserInfo h2{
+    font-weight: 600;
+    margin-bottom: 2vh;
+}
+.navbar .UserInfo p{
+    
+    margin-top: 0.7vh;
+}
+.navbar .lower_section{
+    display: flex;
+    flex-direction: row;
+}
+.navbar img{
+    height:9vh;
+    width:9vh;
+
+}
+.navbar .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.navbar .navbar-button{
+    padding: 1vh 1vw;
+    font-size: 0.8vw;
+}
+@media only screen and (max-width: 1000px) {
+    .navbar img{
+        display: none;
+    
+    }
+
+}

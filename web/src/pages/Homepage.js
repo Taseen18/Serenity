@@ -2,6 +2,9 @@ import React, {useState, useEffect, useCallback} from "react";
 import { useNavigate } from 'react-router-dom'
 //import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
+import dashBottom from "../assets/images/dashBottom.svg"
+import Line from "../assets/images/Line.png"
+import Navbar from "../components/Navbar";
 
 function Homepage({ token }) {
   let navigate = useNavigate();
@@ -39,32 +42,64 @@ function Homepage({ token }) {
   }
 
   return (
-    <div>
-        <div className="navbar">
-            <ul className="navbar-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Community</a></li>
-            </ul>
-            <div className="navbar-buttons">
-                <button className="navbar-button" onClick={handleLogout}>Log out</button>
-                <button className="navbar-button" onClick={fetchTasks}>Fetch Tasks</button>
-            </div>
-        </div>
+    <div className = "Home">
+      <div className="Dash">
+      <Navbar/>
+
+        <button className="navbar-button" onClick={handleLogout}>Log out</button>
+        <button className="navbar-button" onClick={fetchTasks}>Fetch Tasks</button>
+        <h1 className="title">Serenity</h1>
         <div className='welcome-message'>
-        dsds
             <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
         </div>
-        <div className='to-do-list'>
-            <div className='to-do-list-box'>
-                {tasks.map((task, index) => (
-                    <div key={index} className='task'>
-                        <h3>{task.title}</h3>
-                        <p>{task.description}</p>
-                    </div>
-                ))}
-            </div>
+
+
+
+      </div>
+        <div className="footer">
+          <a href="#Dash2" className="project_footer">View Dashboard ↓ </a>
+      </div>
+      <div id="Dash2"className="Dash2">
+        <div className="top">
+          <h1 className="title">Dashboard</h1>
+          <img className="underline" src={Line} />
         </div>
+        <div className="dashInfo">
+          <div className="info">
+            <div id="trackingSection" className="Section">
+              <h1 className="sectionTitle">Tracking</h1>
+            </div>
+            <div id="CommunitySection" className="Section">
+              <h1 className="sectionTitle">Community</h1>
+            </div>
+            <div id="ToDoSection" className="Section">
+              <h1 className="sectionTitle">To Do</h1> 
+              <div className='to-do-list'>
+                <div className='to-do-list-box'>
+                    {tasks.map((task, index) => (
+                        <div key={index} className='task'>
+                            <h3>{task.title}</h3>
+                            <p>{task.description}</p>
+                        </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+            <div id="ChatSection" className="Section">
+              <h1 className="sectionTitle">Chat</h1>
+            </div>
+          </div>
+
+          
+       {/* <div className="bottom">
+          <img className="dashBottom" src={dashBottom} />
+        </div>*/}
+        </div>
+
+       
+      </div>
+
+    
     </div>
   );
 }
