@@ -44,6 +44,7 @@
     width:4vw;
 }
 .Community .postsWrapper{
+    
     margin: auto;
     margin-top: 2vh;
     width: 80vw;
@@ -51,4 +52,9 @@
     border-radius: 140px;
     background: rgba(143, 143, 143, 0.50);
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.Community .post{
+    margin-top: 2vh;
+    margin-left: 15vw;
+    width: 50vw;
 }

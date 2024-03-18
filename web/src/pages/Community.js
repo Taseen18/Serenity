@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import "../css/community.css"
 import filter from "../assets/images/filter icon.png"
 import Line from "../assets/images/Line.png"
+import post from "../assets/images/post.png"
 function Community() {
   return (
     <div className="Community">
@@ -18,7 +19,10 @@ function Community() {
       </div>
 
       <div className="postsWrapper">
-        
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
       </div>
     </div>
   )
