@@ -44,7 +44,7 @@
     width:4vw;
 }
 .Community .postsWrapper{
-    
+    overflow-y: auto; /* Enable vertical scrolling */
     margin: auto;
     margin-top: 2vh;
     width: 80vw;
@@ -53,6 +53,9 @@
     background: rgba(143, 143, 143, 0.50);
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.Community .postsWrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+  }
 .Community .post{
     margin-top: 2vh;
     margin-left: 15vw;

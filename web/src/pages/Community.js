@@ -19,6 +19,13 @@ function Community() {
       </div>
 
       <div className="postsWrapper">
+        {/* Make into components instead of img maybe or cld be like this as just prototype */}
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
+        <img className="post"src={post} />
         <img className="post"src={post} />
         <img className="post"src={post} />
         <img className="post"src={post} />
