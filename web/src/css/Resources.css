@@ -1,0 +1,39 @@
+.Resources{
+    color: white;
+    height:100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    
+}
+.Resources .underline{
+    width:15vw;
+    margin-left: 47vw;
+    margin-top: -1vh;
+}
+.Resources .title{
+    margin-top: 2vh;
+    font-size: 5vw;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.Resources .selection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    margin-right: 0;
+}
+.Resources .pad{
+    width:30vw;
+}
+#middlepad{
+    margin-top: 10vh;
+    width:33vw;
+}
+.Resources .info{
+    font-size: 1vw;
+    margin: auto;
+    margin-top:2vh;
+}

@@ -1,81 +1,71 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+body{
+    background-image: url('../assets/images/mountains-night-background.jpg');
+    background-position: top;
+    font-family: Arial, Helvetica, sans-serif;
+} /* heads up, even tho only the homepage.js is importing this css file, once it is loaded up it is used across
+    all other pages, so only have stuff here that u want on every page */
+.Home{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    display: grid;
+    height: 200vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    grid-template-areas:
+        "page1"
+        "scrolldown"
+        "page2";
+background-image: url('../assets/images/mountains-night-background.jpg');
+        background-position: top;
+
+        
+}
+.Dash{
+
+    height: 95vh;
+    grid-area: page1;
     background-image: url('../assets/images/mountains-night-background.jpg');
-    background-position: center;
-    height: 100vh;
+    background-position: top;
 }
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10%;
-    background: transparent;
-    color: white;
+.Dash .title{
+    margin-top: 7vh;
+    font-size: 10vw;
+    text-align: center;
+    font-weight: 400;
 }
-
-.navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.navbar-links li {
-    display: inline;
-    padding: 0 15px;
-}
-
-.navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.navbar-links a:hover {
-    color: #ff004f;
-}
-
-.navbar-buttons {
-    display: flex;
-}
-
-.navbar-button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    background-color: #ff004f; /* Button background color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-}
-
-.navbar-button:hover {
-    background-color: #e60045; /* Slightly darker on hover for feedback */
-}
-
-
 .welcome-message {
     padding: 10px 10%;
-    margin-top: 5%;
+    margin-top: 2vh;
     font-size: 30px;
 }
 
 .welcome-message h1 {
     font-size: 60px;
-    margin-top: 20px;
+    text-align: center;
 }
 
 .welcome-message h1 span {
     color: #ff004f;
 }
+
+.Home .footer {
+    grid-area: scrolldown;
+    width: 100%;
+    height:5vh;
+    color: #fff;
+    text-align: center;
+    font-size: 2vw;
+   
+}
+.Home .dashFooter{
+    text-decoration: none; 
+    color:white;
+}
+.Home .footer:hover {
+    transition: 0.3s;
+    background-color: rgb(255, 0, 79, 0.5);
+}
+
 
 .to-do-list {
     display: flex;
@@ -84,7 +74,7 @@ body {
 }
   
 .to-do-list-box {
-    width: 30%; /* Adjust width as needed */
+    width: 20vw; /* Adjust width as needed */
     max-width: 600px; /* Set a max-width for larger screens */
     margin: auto;
     padding: 20px;
@@ -110,3 +100,106 @@ body {
     margin: 5px 0 0; /* Small top margin for the paragraph, remove bottom margin */
     color: black;
 }
+
+.Dash2{
+    
+    background: linear-gradient(294deg, rgba(1, 68, 107, 0.8) 1.02%, rgba(24, 140, 140, 0.8) 97.27%);
+
+    grid-area: page2;
+    min-height: 200vh;
+    position: relative;
+    background-image: url('../assets/images/mountains-night-background.jpg');
+    background-position: bottom;
+
+
+}
+.Dash2.top{
+    height:12vh;
+}
+.Dash2 .title{
+
+    margin-top: 2vh;
+    font-size: 5vw;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.Dash2 .underline{
+    width:15vw;
+    margin-left: 47vw;
+    position: absolute;
+}
+
+.info{
+    height:80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Dash2 .dashInfo{
+    height:92vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/*.dashBottom{
+  width: 100%; 
+} */
+
+.Dash2 .Section{
+width: 23vw;
+flex-shrink: 0;
+border-radius: 61px;
+background: rgba(143, 143, 143, 0.50);
+
+}
+#trackingSection{
+    height: 100vh;
+}
+#CommunitySection{
+    margin-top: 10vh;
+    height: 90vh;
+}
+#ToDoSection{
+    margin-top: 20vh;
+    height: 80vh;
+}
+#ChatSection{
+    margin-top: 30vh;
+    height: 70vh;
+}
+.Dash2 .sectionTitle{
+    font-size: 3vw;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+/* Move into just navbar component once navbar ones have same functionality */
+.navbar-buttons {
+    display: flex;
+}
+
+.navbar-button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #ff004f; /* Button background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.navbar-button:hover {
+    background-color: #e60045; /* Slightly darker on hover for feedback */
+}
+
