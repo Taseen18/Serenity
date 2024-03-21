@@ -163,3 +163,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+#source venv/bin/activate
+#python3 manage.py runserver  
