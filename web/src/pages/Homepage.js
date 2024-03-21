@@ -1,14 +1,10 @@
 import React, {useState, useEffect, useCallback} from "react";
-import { useNavigate } from 'react-router-dom'
 //import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
-import dashBottom from "../assets/images/dashBottom.svg"
 import Line from "../assets/images/Line.png"
 import Navbar from "../components/Navbar";
 
-function Homepage({ token }) {
-  let navigate = useNavigate();
-  
+function Homepage({ token }) {  
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = useCallback(async () => {
@@ -36,17 +32,11 @@ function Homepage({ token }) {
     fetchTasks();
   }, [fetchTasks]); // fetchTasks is now stable and won't cause the effect to rerun unnecessarily
 
-  function handleLogout() {
-      sessionStorage.removeItem('token');
-      navigate('/');
-  }
 
   return (
     <div className = "Home">
       <div className="Dash">
-      <Navbar/>
-
-        <button className="navbar-button" onClick={handleLogout}>Log out</button>
+      <Navbar />
         <button className="navbar-button" onClick={fetchTasks}>Fetch Tasks</button>
         <h1 className="title">Serenity</h1>
         <div className='welcome-message'>
