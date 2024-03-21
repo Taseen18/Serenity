@@ -38,7 +38,7 @@ import UserIcon from "../assets/images/UserIcon.png"
         <div className="UserInfo">
             <h2>FDM employee</h2>
             <div className="lower_section">
-            <p> {name}</p>
+            <p> bengaunt</p>
             <Link to="/" onClick={handleLogout} className="navbar-button">Log out</Link>
             </div>
         </div>
