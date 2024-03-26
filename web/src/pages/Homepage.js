@@ -12,7 +12,7 @@ function Homepage({ token }) {
       console.error('Token not available');
       return;
     }
-    const response = await fetch('/api/tasks/', {
+    const response = await fetch('/to_do_list/tasks/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,23 @@ function Homepage({ token }) {
 
   useEffect(() => {
     fetchTasks();
-  }, [fetchTasks]); // fetchTasks is now stable and won't cause the effect to rerun unnecessarily
+  }, [fetchTasks]);
+
+  const markTaskAsComplete = async (taskId) => {
+    const response = await fetch(`/to_do_list/tasks/update/${taskId}/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token.session.access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ completed: true }),
+    })
+    if (response.ok) {
+      fetchTasks();
+    } else {
+      console.error('Error: failed to mark task as complete')
+    }
+  };
 
 
   return (
@@ -70,6 +86,7 @@ function Homepage({ token }) {
                         <div key={index} className='task'>
                             <h3>{task.title}</h3>
                             <p>{task.description}</p>
+                            <button onClick={() => markTaskAsComplete(task.task_id)}>Mark As Done</button>
                         </div>
                     ))}
                 </div>
