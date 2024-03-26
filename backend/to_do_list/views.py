@@ -40,6 +40,8 @@ class TaskListCreate(APIView):
                         'description': task.description,
                         'completed': task.completed,
                     })
+
+            print(len(tasks), "tasks found")
             
             return JsonResponse({'tasks': tasks}, safe=False)
         
