@@ -8,6 +8,21 @@ def get_supabase_client() -> Client:
     return create_client(url, key)
 
 def fetch_user_tasks(user_uuid):
-    client = get_supabase_client()  # Ensure you have this function set up to create a Supabase client
-    data = client.table('to_do_list_tasks').select('title, description').eq('user_id', user_uuid).execute()
+    client = get_supabase_client()
+    data = client.table('to_do_list_tasks').select('*').eq('user_id', user_uuid).eq('completed', False).execute()
     return data
+
+def mark_as_complete(task_id):
+    client = get_supabase_client()
+    error_message = None
+
+    response = client.table('to_do_list_tasks').update({'completed': True}).eq('task_id', task_id).execute()
+
+    # Check for errors in the response. Adjust this according to the actual structure of the response object
+    if not response.data:
+        error_message = "Failed to update task in Supabase."
+        if hasattr(response, 'error') and response.error:
+            error_message = response.error.message
+        return error_message
+    
+    return None  # No errors, return None
