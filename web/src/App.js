@@ -7,7 +7,8 @@ import Chat from './pages/Chat'
 import Tracking from './pages/Tracking'
 import About from './pages/About'
 import Exercise from './pages/Exercise'
-
+import Diet from './pages/Diet'
+import MentalHealth from './pages/MentalHealth'
 
 const App = () => {
 
@@ -37,6 +38,8 @@ const App = () => {
                 <Route exact path='/Chat' element={<Chat />} />
                 <Route exact path='/About' element={<About />} />
                 <Route exact path='/Exercise' element={<Exercise />} />
+                <Route exact path='/Diet' element={<Diet />} />
+                <Route exact path='/MentalHealth' element={<MentalHealth />} />
             </Routes>
 
     </div>
