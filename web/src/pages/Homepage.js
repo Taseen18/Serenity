@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 
 function Homepage({ token }) {  
   const [tasks, setTasks] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
+  const [newTask, setNewTask] = useState({ title: '', description: '' }); // For new task data
 
   const fetchTasks = useCallback(async () => {
     if (!token || !token.session.access_token) {
@@ -48,6 +50,29 @@ function Homepage({ token }) {
     }
   };
 
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+    if (!newTask.title) {
+      alert("Title is required.");
+      return;
+    }
+    const response = await fetch('/to_do_list/tasks/create/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token.session.access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: newTask.title, description: newTask.description || '' }),
+    });
+    if (response.ok) {
+      fetchTasks();
+      setIsModalOpen(false);
+      setNewTask({ title: '', description: '' });
+    } else {
+      console.error('Error: failed to add new task');
+    }
+  };
+
 
   return (
     <div className = "Home">
@@ -80,6 +105,7 @@ function Homepage({ token }) {
             </div>
             <div id="ToDoSection" className="Section">
               <h1 className="sectionTitle">To Do</h1> 
+              <button onClick={() => setIsModalOpen(true)}>Add Task</button> 
               <div className='to-do-list'>
                 <div className='to-do-list-box'>
                     {tasks.map((task, index) => (
@@ -91,6 +117,18 @@ function Homepage({ token }) {
                     ))}
                 </div>
               </div>
+              {isModalOpen && (
+                <div className='modal'>
+                  <form onSubmit={handleAddTask}>
+                    <label>Title</label>
+                    <input type="text" value={newTask.title} onChange={(e) => setNewTask({ ...newTask, title: e.target.value })} required />
+                    <label>Description</label>
+                    <textarea value={newTask.description} onChange={(e) => setNewTask({ ...newTask, description: e.target.value })} required />
+                    <button type="submit">Submit</button>
+                    <button onClick={() => setIsModalOpen(false)}>Close</button>
+                  </form>
+                </div>
+              )}
             </div>
             <div id="ChatSection" className="Section">
               <h1 className="sectionTitle">Chat</h1>
