@@ -19,9 +19,9 @@ function Resources() {
       <div className="selection">
           
         
-        <Link to="/exercise" className="linker"> <img className="pad" src={diet} /> </Link>
+        <Link to="/diet" className="linker"> <img className="pad" src={diet} /> </Link>
         <Link to="/exercise" className="linker"> <img id="middlepad"className="pad"src={exercise} /> </Link>
-        <Link to="/exercise" className="linker">  <img className="pad"src={mh} /> </Link>
+        <Link to="/mentalhealth" className="linker">  <img className="pad"src={mh} /> </Link>
         
        
       </div>
