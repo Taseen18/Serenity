@@ -1,4 +1,7 @@
-
+.Community{
+    overflow: hidden;
+    max-height: 100vh;
+}
 .Community .title{
     font-size: 3vw;
     text-align: center;

@@ -4,7 +4,8 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    
+    overflow: hidden;
+    max-height: 100vh;
 }
 .Resources .underline{
     width:15vw;

@@ -8,7 +8,7 @@ function Community() {
   return (
     <div className="Community">
       <Navbar />
-
+      
       <div className="topSection">
         <img className="filter" src={filter} />
         <div className="titleSection">

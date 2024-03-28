@@ -1,4 +1,7 @@
-
+.Holder{
+    overflow: hidden;
+    max-height: 100vh;
+}
 .Holder .title{
     font-size: 3vw;
     text-align: center;

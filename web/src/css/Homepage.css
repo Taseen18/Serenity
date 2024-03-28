@@ -8,24 +8,21 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     display: grid;
-    height: 200vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
     grid-template-areas:
         "page1"
         "scrolldown"
         "page2";
-background-image: url('../assets/images/mountains-night-background.jpg');
-        background-position: top;
+    background-image: url('../assets/images/mountains-night-background.jpg');
+    background-position: bottom;
+    background-size: cover;
 
-        
 }
 .Dash{
 
     height: 95vh;
     grid-area: page1;
-    background-image: url('../assets/images/mountains-night-background.jpg');
-    background-position: top;
 }
 .Dash .title{
     margin-top: 7vh;
@@ -102,14 +99,10 @@ background-image: url('../assets/images/mountains-night-background.jpg');
 }
 
 .Dash2{
-    
-    background: linear-gradient(294deg, rgba(1, 68, 107, 0.8) 1.02%, rgba(24, 140, 140, 0.8) 97.27%);
-
     grid-area: page2;
-    min-height: 200vh;
+    height: 100vh;
     position: relative;
-    background-image: url('../assets/images/mountains-night-background.jpg');
-    background-position: bottom;
+    overflow-y: hidden;
 
 
 }

@@ -31,6 +31,9 @@
     letter-spacing: 6.72px;
     margin-top: 1vh;
 }
+.navbar .navTitle:hover{
+    color: #e60045;
+}
 
 .navbar.middle{
  
