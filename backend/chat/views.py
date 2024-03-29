@@ -19,7 +19,18 @@ class GetChats(APIView):
             chats = []
 
             if response.data:
-                pass
+                for chat in response.data:
+                    chats.append({
+                        'chat_id': chat['chat_id'],
+                        'created_at': chat['created_at'],
+                        'user_id': chat['user_id'],
+                        'mhp_id': chat['mhp_id'],
+                    })
+            
+            print(len(chats), "chats found")
+            return JsonResponse({'chats': chats}, safe=False)
 
-        except:
-            pass
+        except Exception as e:
+            print("Error fetching chats")
+            print(e)
+            return JsonResponse({'error': 'Failed to fetch chats'}, status=500)
