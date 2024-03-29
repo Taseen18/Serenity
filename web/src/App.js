@@ -9,6 +9,7 @@ import About from './pages/About'
 import Exercise from './pages/Exercise'
 import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
+import ChatPage from './pages/Messenger'
 
 const App = () => {
 
@@ -40,6 +41,7 @@ const App = () => {
                 <Route exact path='/Exercise' element={<Exercise />} />
                 <Route exact path='/Diet' element={<Diet />} />
                 <Route exact path='/MentalHealth' element={<MentalHealth />} />
+                <Route exact path='/Messenger' element={<ChatPage />} />
             </Routes>
 
     </div>

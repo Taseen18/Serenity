@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
+import { Link } from 'react-router-dom';
 //import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
 import Line from "../assets/images/Line.png"
@@ -7,7 +8,7 @@ import Navbar from "../components/Navbar";
 function Homepage({ token }) {  
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
-  const [newTask, setNewTask] = useState({ title: '', description: '' }); // For new task data
+  const [newTask, setNewTask] = useState({ title: '', description: '' });
 
   const fetchTasks = useCallback(async () => {
     if (!token || !token.session.access_token) {
@@ -132,6 +133,7 @@ function Homepage({ token }) {
             </div>
             <div id="ChatSection" className="Section">
               <h1 className="sectionTitle">Chat</h1>
+              <Link to="/messenger"> Messenger </Link>
             </div>
           </div>
 

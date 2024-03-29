@@ -7,9 +7,9 @@ def get_supabase_client() -> Client:
     key: str = settings.SUPABASE_KEY
     return create_client(url, key)
 
-def fetch_user_tasks(user_uuid):
+def fetch_user_tasks(user_id):
     client = get_supabase_client()
-    data = client.table('to_do_list_tasks').select('*').eq('user_id', user_uuid).eq('completed', False).execute()
+    data = client.table('to_do_list_tasks').select('*').eq('user_id', user_id).eq('completed', False).execute()
     return data
 
 def mark_as_complete(task_id):
