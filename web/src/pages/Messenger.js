@@ -1,31 +1,53 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../lib/helper/AuthContext';
 import { Link } from 'react-router-dom';
 
-function ChatPage() {
-  const [messages, setMessages] = useState([]); // State to store messages
+function Messenger() {
+  const { token } = useAuth();
+  const [chats, setChats] = useState([]);
 
+  
   useEffect(() => {
-    // Fetch existing chats from Supabase and setMessages
-  }, []);
+    const fetchChats = async () => {
+      if (!token || !token.session.access_token) {
+        console.error('Token not available');
+        return;
+      }
+      const response = await fetch('/chat/getChats/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token.session.access_token}`,  
+        },
+      });
+      const data = await response.json();
+      if (data && data.chats) {
+        setChats(data.chats);
+      } else {
+        // Handle any errors or empty responses
+        console.error('Failed to fetch chats or no chats available');
+      }
+    };
 
-  const sendMessage = (content) => {
-    // Function to send a message. Implement sending message to Supabase here.
-  };
+    fetchChats();
+  }, [token]);
 
   return (
     <div>
-      <h1>Chat with a Mental Health Professional</h1>
+      <h1>Chats with Mental Health Professionals</h1>
       <div>
-        {/* Display messages here */}
-        {messages.map((message) => (
-          <div key={message.message_id}>{message.content}</div>
+        {chats.map((chat, index) => (
+          <div key={index} className='chat-container'>
+            <p>Chat with: {chat.mhp_id}</p>
+            <p>Chat ID: {chat.chat_id}</p>
+            <p>Created At: {chat.created_at}</p>
+            {/* You can add more details or interaction options like opening the chat */}
+          </div>
         ))}
       </div>
-      <input type="text" placeholder="Type a message..." />
-      <button onClick={() => sendMessage("Your message content")}>Send</button>
-      <Link to="/Homepage"> Homepage </Link>
+      <Link to="/">Back to Homepage</Link>
     </div>
   );
 }
 
-export default ChatPage;
+export default Messenger;

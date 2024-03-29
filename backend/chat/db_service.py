@@ -8,18 +8,16 @@ def get_supabase_client() -> Client:
 
 def check_user_type(user_id):
     client = get_supabase_client()
+    # Attempt to fetch the user from the 'mhp' table
     response = client.table('mhp').select('*').eq('mhp_id', user_id).execute()
+    print(response)
 
-    if response.get('error') is not None:
-        print("An error occurred checking the user type.", response['error'])
-        return None
-    
-    if not response.data:
-        print("User was not found in mhp table.")
-        #should check users table in the future
-        return "employee"
+    if response.data:
+        print("User found as a MHP.")
+        return "MHP"
     else:
-        return "mhp"
+        print("User not found as MHP, marked as employee.")
+        return "employee"
 
 def fetch_chats(user_id):
     client = get_supabase_client()

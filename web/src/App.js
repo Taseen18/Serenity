@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './lib/helper/AuthContext';
 import { SignUp, Login, Homepage} from './pages'
-import {Routes, Route} from 'react-router-dom'
 import Resources from './pages/Resources'
 import Community from './pages/Community'
 import Chat from './pages/Chat'
@@ -9,43 +10,46 @@ import About from './pages/About'
 import Exercise from './pages/Exercise'
 import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
-import ChatPage from './pages/Messenger'
+import Messenger from './pages/Messenger';
 
 const App = () => {
-
-    const [token, setToken] = useState(false)
-
-    if(token){
-        sessionStorage.setItem('token',JSON.stringify(token))
-    }
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
-        if(sessionStorage.getItem('token')){
-            let data = JSON.parse(sessionStorage.getItem('token'))
-            setToken(data)
+        const storedToken = sessionStorage.getItem('token');
+        if (storedToken) {
+            setToken(JSON.parse(storedToken));
+            console.log("token found")
         }
-    }, [])
-    
+    }, []);
 
-  return (
-    <div className='app'>
-            <Routes>
-            <Route path={'/signup'} element={<SignUp />}/>
-                <Route path={'/'} element={<Login setToken={setToken}/>} />
-                {token?<Route path={'/homepage'} element={<Homepage token={token}/>}/>:""}
-                <Route exact path='/Resources' element={<Resources />} />
-                <Route exact path='/Tracking' element={<Tracking />} />
-                <Route exact path='/Community' element={<Community />} />
-                <Route exact path='/Chat' element={<Chat />} />
-                <Route exact path='/About' element={<About />} />
-                <Route exact path='/Exercise' element={<Exercise />} />
-                <Route exact path='/Diet' element={<Diet />} />
-                <Route exact path='/MentalHealth' element={<MentalHealth />} />
-                <Route exact path='/Messenger' element={<ChatPage />} />
-            </Routes>
+    useEffect(() => {
+        if (token) {
+            sessionStorage.setItem('token', JSON.stringify(token));
+            console.log("token set")
+        }
+    }, [token]);
 
-    </div>
-  )
+    return (
+        <div className='app'>
+            <AuthProvider>
+                    <Routes>
+                        <Route path='/signup' element={<SignUp />} />
+                        <Route path='/' element={<Login />} />
+                        <Route path='/homepage' element={<Homepage />} />
+                        <Route path='/Resources' element={<Resources />} />
+                        <Route path='/Tracking' element={<Tracking />} />
+                        <Route path='/Community' element={<Community />} />
+                        <Route path='/Chat' element={<Chat />} />
+                        <Route path='/About' element={<About />} />
+                        <Route path='/Exercise' element={<Exercise />} />
+                        <Route path='/Diet' element={<Diet />} />
+                        <Route path='/MentalHealth' element={<MentalHealth />} />
+                        <Route path='/Messenger' element={<Messenger />} />
+                    </Routes>
+            </AuthProvider>
+        </div>
+    );
 }
 
-export default App
+export default App;

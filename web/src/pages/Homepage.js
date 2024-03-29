@@ -1,11 +1,13 @@
 import React, {useState, useEffect, useCallback} from "react";
+import { useAuth } from "../lib/helper/AuthContext";
 import { Link } from 'react-router-dom';
 //import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
 import Line from "../assets/images/Line.png"
 import Navbar from "../components/Navbar";
 
-function Homepage({ token }) {  
+function Homepage() {  
+  const { token } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
   const [newTask, setNewTask] = useState({ title: '', description: '' });
