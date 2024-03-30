@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useRef} from "react";
+import { useAuth } from "../lib/helper/AuthContext";
 import { supabase } from "../lib/helper/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import HALO from "vanta/dist/vanta.halo.min.js";
 
 import '../css/Login.css'
 
-const Login = ({setToken}) => {
+const Login = () => {
     let navigate = useNavigate()
+    const { setToken } = useAuth();
 
     const [formData,setFormData] = useState({email:'',password:''})
     const vantaRef = useRef(null);
