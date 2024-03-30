@@ -13,6 +13,7 @@ function Messenger() {
   const webSocket = useRef(null);
 
   useEffect(() => {
+    /*
     const fetchChats = async () => {
       if (!token || !token.session.access_token) {
         console.error('Token not available');
@@ -34,12 +35,35 @@ function Messenger() {
     };
 
     fetchChats();
-    return () => {
-      if (webSocket.current) {
-        webSocket.current.close();
-      }
+    */
+
+    const chatsWsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+    const chatsWsUrl = `${chatsWsScheme}://localhost:8000/ws/chat/`;
+
+    const chatsWebSocket = new WebSocket(chatsWsUrl);
+
+    chatsWebSocket.open = (event) => {
+      console.log('Chats WebSocket opened');
     };
-  }, [token]);
+
+    chatsWebSocket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Chat update received:", data);
+      setChats(data.chats);
+    };
+
+    chatsWebSocket.onclose = (event) => {
+      console.log('Chats WebSocket closed');
+    };
+
+    chatsWebSocket.onerror = (event) => {
+      console.log('Chats WebSocket error', event);
+    };
+
+    return () => {
+      chatsWebSocket.close();
+    };
+  }, []);
 
   useEffect(() => {
     if (selectedChatId) {
