@@ -5,6 +5,7 @@ import '../css/Messenger.css';
 
 function Messenger() {
   const { token } = useAuth();
+  const user_id = token.user.id;
   const navigate = useNavigate();
   const [chats, setChats] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -69,7 +70,7 @@ function Messenger() {
         <div className='chats-box'>
           {chats.map((chat, index) => (
             <div key={index} className='chat-container' onClick={() => handleChatClick(chat.chat_id)}>
-              <p>Chat with: {chat.mhp_id}</p>
+              <p>Chat with: {chat.user_id}</p>
               <p>Chat ID: {chat.chat_id}</p>
               <p>Created At: {chat.created_at}</p>
             </div>
@@ -77,12 +78,13 @@ function Messenger() {
         </div>
         {selectedChatId && (
           <div className='messages-box'>
-            {messages.map((message, index) => (
-              <div key={index} className='message-container'>
-                <p>{message.content}</p>
-              </div>
-            ))}
-          </div>
+          {messages.map((message, index) => (
+            <div key={index} className={`message-container ${message.sender_id === user_id ? 'sent' : 'received'}`}>
+              <p>{message.content}</p>
+              <span className="timestamp">{new Date(message.sent_at).toLocaleString()}</span>
+            </div>
+          ))}
+        </div>
         )}
       </div>
     </div>
