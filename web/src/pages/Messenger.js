@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../lib/helper/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../css/Messenger.css';
@@ -10,6 +10,7 @@ function Messenger() {
   const [chats, setChats] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [messages, setMessages] = useState([]);
+  const webSocket = useRef(null);
 
   useEffect(() => {
     const fetchChats = async () => {
@@ -33,8 +34,46 @@ function Messenger() {
     };
 
     fetchChats();
+    return () => {
+      if (webSocket.current) {
+        webSocket.current.close();
+      }
+    };
   }, [token]);
 
+  useEffect(() => {
+    if (selectedChatId) {
+      setMessages([]);
+      const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+      const chatRoomUrl = `${wsScheme}://localhost:8000/ws/chat/${selectedChatId}/`;
+
+      webSocket.current = new WebSocket(chatRoomUrl);
+
+      webSocket.current.onopen =  (event) => {
+        console.log('WebSocket opened');
+      }; 
+
+      webSocket.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log("Message received:", data);
+        if (Array.isArray(data)) {
+          setMessages(data);
+        } else if (data.message) {
+          setMessages(prevMessages => [...prevMessages, data.message]);
+        }
+      };
+
+      webSocket.current.onclose = (event) => {
+        console.log('WebSocket closed');
+      };
+
+      webSocket.current.onerror = (event) => {
+        console.error('WebSocket error', event);
+      };
+    }
+  }, [selectedChatId]);
+
+  /*
   const fetchMessages = async (chatId) => {
     if (!token || !token.session.access_token) {
       console.error('Token not available');
@@ -55,11 +94,11 @@ function Messenger() {
       console.error('Failed to fetch messages or no messages available');
     }
   };
+  */
   
 
   const handleChatClick = (chatId) => {
     setSelectedChatId(chatId);
-    fetchMessages(chatId);
   };
 
   return (
@@ -79,7 +118,7 @@ function Messenger() {
         {selectedChatId && (
           <div className='messages-box'>
           {messages.map((message, index) => (
-            <div key={index} className={`message-container ${message.sender_id === user_id ? 'sent' : 'received'}`}>
+            <div key={index} className={`message-container ${message.sender === user_id ? 'sent' : 'received'}`}>
               <p>{message.content}</p>
               <span className="timestamp">{new Date(message.sent_at).toLocaleString()}</span>
             </div>
