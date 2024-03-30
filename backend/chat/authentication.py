@@ -1,3 +1,4 @@
+#this file is a copy from the file in authentication app. this file is not needed but im too scared to remove it.
 from django.contrib.auth.models import User
 from django.conf import settings
 from rest_framework import authentication, exceptions

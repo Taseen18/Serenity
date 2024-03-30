@@ -34,3 +34,33 @@ class GetChats(APIView):
             print("Error fetching chats")
             print(e)
             return JsonResponse({'error': 'Failed to fetch chats'}, status=500)
+
+class GetMessages(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.user.username
+        chat_id = request.GET.get('chat_id', None)
+
+        try:
+            if chat_id is not None:
+                messages = []
+                response = fetch_messages(chat_id)
+                for message in response.data:
+                    messages.append({
+                        'message_id': message['message_id'],
+                        'sent_at': message['sent_at'],
+                        'sender_id': message['sender_id'],
+                        'receiver_id': message['receiver_id'],
+                        'content': message['content'],
+                        'chat_id': message['chat_id'],
+                    })
+                
+                print(len(messages), "messages found")
+                return JsonResponse({'messages': messages}, safe=False)
+
+        except Exception as e:
+            print("Error fethcing messages")
+            print(e)
+            return JsonResponse({'error': 'Failed to fetch messages'}, status=500)
+        

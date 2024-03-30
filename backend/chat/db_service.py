@@ -14,7 +14,7 @@ def check_user_type(user_id):
 
     if response.data:
         print("User found as a MHP.")
-        return "MHP"
+        return "mhp"
     else:
         print("User not found as MHP, marked as employee.")
         return "employee"
@@ -35,8 +35,8 @@ def fetch_chats(user_id):
         return response
     return None
 
+def fetch_messages(chat_id):
+    client = get_supabase_client()
 
-
-
-def fetch_messages():
-    pass
+    response = client.table('messages').select('*').eq('chat_id', chat_id).execute()
+    return response
