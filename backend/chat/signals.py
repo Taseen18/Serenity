@@ -17,8 +17,9 @@ def send_message_update(sender, instance, created, **kwargs):
                 'chat_id': instance.chat_id,
                 'content': instance.content,
                 'sender': instance.sender.username,
-                "receiver": instance.receiver.username,
-                'sent_at': instance.sent_at.strftime("%Y-%m-%d %H:%M:%S")  # Format datetime as string
+                'receiver': instance.receiver.username,
+                'sent_at': instance.sent_at.strftime("%Y-%m-%d %H:%M:%S"),
+                'sent_by': "send_message_update"
             }
         }
 

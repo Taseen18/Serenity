@@ -39,6 +39,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for each chat */
 }
 
+.chat-container.selected-chat {
+  background-color: blueviolet;
+}
+
+.chat-container.selected-chat p {
+  color: white;
+}
+
 .chat-container p {
     margin: 5px 0;
     color: black;

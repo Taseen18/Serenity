@@ -12,6 +12,7 @@ function Messenger() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const webSocket = useRef(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
 
@@ -85,6 +86,12 @@ function Messenger() {
     }
   }, [selectedChatId, token]);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behaviour: "smooth" });
+    }
+  }, [messages])
+
   const handleChatClick = (chatId) => {
     setSelectedChatId(chatId);
   };
@@ -109,8 +116,12 @@ function Messenger() {
       <div className='chats-container'>
         <div className='chats-box'>
           {chats.map((chat, index) => (
-            <div key={index} className='chat-container' onClick={() => handleChatClick(chat.chat_id)}>
-              <p>Chat with: {chat.chat_with}</p>
+            <div
+              key={index}
+              className={`chat-container ${selectedChatId === chat.chat_id ? 'selected-chat' : ''}`}
+              onClick={() => handleChatClick(chat.chat_id)}
+            >
+              <p>Chat with: {chat.chat_with_first_name} {chat.chat_with_last_name}</p>
               <p>Chat ID: {chat.chat_id}</p>
               <p>Last Message At: {chat.last_message_at}</p>
             </div>
@@ -125,6 +136,7 @@ function Messenger() {
                   <span className="timestamp">{new Date(message.sent_at).toLocaleString()}</span>
                 </div>
               ))}
+              <div ref={messagesEndRef} />
             </div>
             <div className="message-input-container">
               <input

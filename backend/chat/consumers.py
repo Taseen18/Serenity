@@ -168,16 +168,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
 
 @sync_to_async
-def fetch_recent_messages(room_name, limit=10):
+def fetch_recent_messages(room_name, limit=50):
     print("Connecting to room:", room_name)
     messages = Message.objects.filter(chat_id=room_name).order_by('sent_at')[:limit]
     recent_messages = [{
         "content": message.content,
         "sender": message.sender.username,
         "receiver": message.receiver.username,
-        "sent_at": message.sent_at.strftime("%Y-%m-%d %H:%M:%S")
+        "sent_at": message.sent_at.strftime("%Y-%m-%d %H:%M:%S"),
+        "sent_by": "fetch_recent_messages"
     } for message in messages]
-    print(len(recent_messages), "messages found")  # Debug print
+    print(len(recent_messages), "messages found")
+    if len(recent_messages) >= 50:
+        print("CAUTION: Message fetch limit reached")
     return recent_messages
 
 @sync_to_async
@@ -188,19 +191,26 @@ def get_user_chats(user_id):
 
     recent_chats = []
     for chat in chats:
-        chat_data = {
-            'chat_id': chat.chat_id,
-            'last_message_at': chat.last_message_at.strftime("%Y-%m-%d %H:%M:%S"),
-            'employee_id': chat.employee_id,
-            'mhp_id': chat.mhp_id,
-            'me_id': user_id,
-        }
-        if user_id == chat.employee_id:
-            chat_data['chat_with'] = chat.mhp_id
-        elif user_id == chat.mhp_id:
-            chat_data['chat_with'] = chat.employee_id
+        chat_with = None
+        if user_id == chat.employee.username:
+            chat_with = chat.mhp
+        elif user_id == chat.mhp.username:
+            chat_with = chat.employee
         else:
-            chat_data['chat_with'] = "unknown"
-        recent_chats.append(chat_data)
+            print("User not found in chat")
+                
+        if chat_with:
+
+            chat_data = {
+                'chat_id': chat.chat_id,
+                'last_message_at': chat.last_message_at.strftime("%Y-%m-%d %H:%M:%S"),
+                'employee_id': chat.employee_id,
+                'mhp_id': chat.mhp_id,
+                'me_id': user_id,
+                'chat_with_id': chat_with.username,
+                'chat_with_first_name': chat_with.first_name,
+                'chat_with_last_name': chat_with.last_name
+            }
+            recent_chats.append(chat_data)
     print(len(recent_chats), "chats found")
     return recent_chats
