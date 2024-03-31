@@ -10,39 +10,22 @@ function Messenger() {
   const [chats, setChats] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
   const webSocket = useRef(null);
 
   useEffect(() => {
-    /*
-    const fetchChats = async () => {
-      if (!token || !token.session.access_token) {
-        console.error('Token not available');
-        return;
-      }
-      const response = await fetch('/chat/getChats/', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token.session.access_token}`,
-        },
-      });
-      const data = await response.json();
-      if (data && data.chats) {
-        setChats(data.chats);
-      } else {
-        console.error('Failed to fetch chats or no chats available');
-      }
-    };
 
-    fetchChats();
-    */
+    if (!token || !token.session || !token.session.access_token) {
+      console.error('Token not available for WebSocket connection');
+      return;
+    }
 
     const chatsWsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-    const chatsWsUrl = `${chatsWsScheme}://localhost:8000/ws/chat/`;
+    const chatsWsUrl = `${chatsWsScheme}://localhost:8000/ws/chat/?token=${token.session.access_token}`;
 
     const chatsWebSocket = new WebSocket(chatsWsUrl);
 
-    chatsWebSocket.open = (event) => {
+    chatsWebSocket.onopen = (event) => {
       console.log('Chats WebSocket opened');
     };
 
@@ -61,20 +44,25 @@ function Messenger() {
     };
 
     return () => {
-      chatsWebSocket.close();
+      if (chatsWebSocket.readyState === WebSocket.OPEN) {
+        chatsWebSocket.close();
+      }
     };
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (selectedChatId) {
+      if (webSocket.current && webSocket.current.readyState !== webSocket.CLOSED) {
+        webSocket.current.close()
+      }
       setMessages([]);
       const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-      const chatRoomUrl = `${wsScheme}://localhost:8000/ws/chat/${selectedChatId}/`;
+      const chatRoomUrl = `${wsScheme}://localhost:8000/ws/chat/${selectedChatId}/?token=${token.session.access_token}`;
 
       webSocket.current = new WebSocket(chatRoomUrl);
 
       webSocket.current.onopen =  (event) => {
-        console.log('WebSocket opened');
+        console.log('WebSocket opened for chat', selectedChatId);
       }; 
 
       webSocket.current.onmessage = (event) => {
@@ -88,42 +76,31 @@ function Messenger() {
       };
 
       webSocket.current.onclose = (event) => {
-        console.log('WebSocket closed');
+        console.log('WebSocket closed for chat', selectedChatId);
       };
 
       webSocket.current.onerror = (event) => {
-        console.error('WebSocket error', event);
+        console.error('WebSocket error for chat', selectedChatId, event);
       };
     }
-  }, [selectedChatId]);
-
-  /*
-  const fetchMessages = async (chatId) => {
-    if (!token || !token.session.access_token) {
-      console.error('Token not available');
-      return;
-    }
-    // Assuming your server expects the chat_id as a query parameter
-    const response = await fetch(`/chat/getMessages/?chat_id=${chatId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token.session.access_token}`,
-      },
-    });
-    const data = await response.json();
-    if (data && data.messages) {
-      setMessages(data.messages);
-    } else {
-      console.error('Failed to fetch messages or no messages available');
-    }
-  };
-  */
-  
+  }, [selectedChatId, token]);
 
   const handleChatClick = (chatId) => {
     setSelectedChatId(chatId);
   };
+
+  const sendMessage = () => {
+  if (newMessage.trim() !== '') {
+    const messageData = {
+      content: newMessage,
+      sender: user_id,
+      chat_id: selectedChatId,
+    };
+    webSocket.current.send(JSON.stringify(messageData));
+    console.log("Message sent");
+    setNewMessage('');
+  }
+};
 
   return (
     <div className='chats-page'>
@@ -133,21 +110,34 @@ function Messenger() {
         <div className='chats-box'>
           {chats.map((chat, index) => (
             <div key={index} className='chat-container' onClick={() => handleChatClick(chat.chat_id)}>
-              <p>Chat with: {chat.user_id}</p>
+              <p>Chat with: {chat.chat_with}</p>
               <p>Chat ID: {chat.chat_id}</p>
-              <p>Created At: {chat.created_at}</p>
+              <p>Last Message At: {chat.last_message_at}</p>
             </div>
           ))}
         </div>
         {selectedChatId && (
-          <div className='messages-box'>
-          {messages.map((message, index) => (
-            <div key={index} className={`message-container ${message.sender === user_id ? 'sent' : 'received'}`}>
-              <p>{message.content}</p>
-              <span className="timestamp">{new Date(message.sent_at).toLocaleString()}</span>
+          <div className='chat-interface'>
+            <div className='messages-scroll-box'>
+              {messages.map((message, index) => (
+                <div key={index} className={`message-container ${message.sender === user_id ? 'sent' : 'received'}`}>
+                  <p>{message.content}</p>
+                  <span className="timestamp">{new Date(message.sent_at).toLocaleString()}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+            <div className="message-input-container">
+              <input
+                type="text"
+                className="message-input"
+                placeholder="Type a message..."
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+              />
+              <button className="send-message-button" onClick={sendMessage}>Send</button>
+            </div>
+          </div>
         )}
       </div>
     </div>

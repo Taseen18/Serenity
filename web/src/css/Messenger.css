@@ -1,6 +1,23 @@
+.chats-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .chats-container {
     display: flex;
+    flex: 1;
+    overflow: hidden;
   }
+
+.chats-box, .chat-interface {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .chats-box {
     margin-top: 20px;
@@ -27,18 +44,21 @@
     color: black;
 }
   
-.chats-box, .messages-box {
-    flex: 1; /* Allows both boxes to take up equal space */
-    overflow-y: auto; /* Adds scroll to each box */
-  }
-  
-.messages-box {
-    padding: 20px;
-    background-color: #fff; /* Change as needed */
-    border-left: 2px solid #ccc; /* Visually separates chats and messages */
-    position: relative; /* For absolute positioning of elements inside */
-    min-height: 600px; /* Adjust based on your layout */
-  }
+.chats-box, .chat-interface {
+  flex: 1; /* Both containers take up equal width and adjust to the remaining height */
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-scroll-box {
+  overflow-y: auto;
+  flex-grow: 1; /* Allows this box to take up available space for messages */
+}
+
+/* Ensure the message input container doesn't shrink or grow disproportionately */
+.message-input-container {
+  flex-shrink: 0;
+}
   
 .message-container {
     margin-bottom: 12px;
@@ -67,4 +87,33 @@
     text-align: right;
     display: block; /* Makes sure it's on its own line */
     margin-top: 5px;
+  }
+
+  .message-input-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #fff;
+    border-top: 2px solid #ccc;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .send-message-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .send-message-button:hover {
+    background-color: #0056b3;
   }
