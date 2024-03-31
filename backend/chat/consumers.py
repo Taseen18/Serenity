@@ -177,7 +177,7 @@ def fetch_recent_messages(room_name, limit=10):
         "receiver": message.receiver.username,
         "sent_at": message.sent_at.strftime("%Y-%m-%d %H:%M:%S")
     } for message in messages]
-    print("Fetched messages:", recent_messages)  # Debug print
+    print(len(recent_messages), "messages found")  # Debug print
     return recent_messages
 
 @sync_to_async
@@ -202,5 +202,5 @@ def get_user_chats(user_id):
         else:
             chat_data['chat_with'] = "unknown"
         recent_chats.append(chat_data)
-    print("Fetched chats:", recent_chats)
+    print(len(recent_chats), "chats found")
     return recent_chats
