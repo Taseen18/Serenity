@@ -90,7 +90,7 @@ function Messenger() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behaviour: "smooth" });
     }
-  }, [messages])
+  }, [messages]);
 
   const handleChatClick = (chatId) => {
     setSelectedChatId(chatId);
