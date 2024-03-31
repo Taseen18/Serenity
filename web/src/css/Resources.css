@@ -38,3 +38,26 @@
     margin: auto;
     margin-top:2vh;
 }
+.frog {
+    position: absolute;
+    bottom: 50%;
+    left: 15%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure the frog is above the lily pad image */
+    font-size: 8rem;
+  }
+  
+.thought-bubble {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background-color: grey;
+    color: black;
+    border-radius: 50%;
+    padding: 20px;
+    z-index: 5; /* Below the frog but above the lily pad */
+    width: auto;
+    height: auto;
+    text-align: center;
+}
