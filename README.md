@@ -36,6 +36,7 @@ Run `pip install supabase`.
 Now you can run `python3 manage.py runserver`. 
 This will set up Django's environment and links.
 
+In another terminal start the redis-server. Ensure the VENV is started and cd to the backend and type the command `redis-server`. If not found you may have to install redis.
 
 ## Setting up the React App
 
