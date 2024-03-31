@@ -18,6 +18,8 @@ If not install run `python3 -m pip install --upgrade pip setuptools wheel` to in
 
 ## Installation Steps fo Djago
 
+Run `source venv/bin/activate` in the root project directory. `cd backend` and install the following. If already installed skip running the server.  
+
 Run `python3 -m pip install Django`.
 Check if install by running `django-admin --version`.
 
