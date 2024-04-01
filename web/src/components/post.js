@@ -8,7 +8,8 @@ function Post() {
     const response = await fetch('/community/postList', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
+        //'Authorization': `Bearer ${token.session.access_token}`, 
       },
     });
     const data = await response.json();

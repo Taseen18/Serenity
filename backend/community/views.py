@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
  #   all_posts = Posts.objects.all
   #  return render(request, '../../web/src/components/post.js')
 
-class TaskListCreate(APIView):
+class PostListCreate(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
