@@ -1,5 +1,5 @@
 .Community{
-    overflow: hidden;
+    /*overflow: hidden;*/
     max-height: 100vh;
 }
 .Community .title{
@@ -68,6 +68,7 @@
     width: 50vw;
 }
 
+/*
 .Community .modal {
     display: none;
     position: fixed;
@@ -79,6 +80,18 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+}
+*/
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: wheat;
+    padding: 20px;
+    z-index: 2; /* Ensure modal is above other content */
+    border-radius: 10px;
 }
 
 /* Style for the overlay/background behind the modal */
