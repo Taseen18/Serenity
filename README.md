@@ -33,6 +33,10 @@ Run `pip install psycopg2-binary`.
 
 Run `pip install PyJWT`.
 
+Run `pip install daphne`.
+
+Run `pip install channels`.
+
 Run `pip install supabase`.
 
 Now you can run `python3 manage.py runserver`. 
@@ -46,7 +50,7 @@ In another terminal start the redis-server. Ensure the VENV is started and cd to
 Ensure that Node.js and npm (Node Package Manager) are installed on your system. These are necessary to manage the project's frontend dependencies and to run the development server.
 
 Change directory to /Serenity/web.
-Run `npm install` and then `npm start.
+Run `npm install` and then `npm start`.
 
 The webpage should load correctly.
 
