@@ -16,19 +16,18 @@ function Post() {
       },
     });
     const data = await response.json();
-    console.log(data)
-    if (data && data.posts) {
-      setPosts(data.posts);  
+    if (data && data.postList) {
+      setPosts(data.postList);  
     } else {
       // Handle any errors or empty responses
-      console.error('Failed to fetch posts or no posts available');
+      console.error('Failed to fetch tasks or no tasks available');
     }
-  }, [token]);
+  }, );
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
 
-  
+
 
   const [liked, setLike] = useState(false);
 
@@ -43,6 +42,8 @@ function Post() {
   };
   return (
     <div className="postss">
+      <button className="navbar-button" onClick={fetchPosts}>Fetch posts</button>
+
       {postList.map((postList, index) => (
                         <div key={index} className='PostHolder'>
                           {/*Insert users profile picture here */}<div className="imgHolder"><img src={UserIcon} /></div>
