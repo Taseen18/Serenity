@@ -43,7 +43,6 @@ function Post() {
   };
   return (
     <div className="postss">
-      <button className="navbar-button" onClick={fetchPosts}>Fetch posts</button>
 
       {postList.map((postList, index) => (
                         <div key={index} className='PostHolder'>
