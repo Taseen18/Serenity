@@ -1,16 +1,28 @@
-.chats-page h1 {
-    font-size: 400%;
-    text-align: center; /* Centers your heading */
+.chats-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.chats-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+.chats-box, .chat-interface {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .chats-box {
-    display: flex;
-    flex-direction: column; /* Stack chats vertically */
-    align-items: center; /* Center-align the chat containers */
-    justify-content: flex-start; /* Align items to the start of the flex container */
     margin-top: 20px;
     width: 60vw; /* Adjusted for a wider view */
-    max-width: 600px; /* Maintains max-width for larger screens */
+    width: 60%; /* Maintains max-width for larger screens */
     margin: 20px auto; /* Centers the box with automatic horizontal margins */
     padding: 20px;
     background-color: #f5f5f5; /* Light grey background */
@@ -18,7 +30,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.chat-container { /* Updated to match JSX className */
+.chat-container {
     background-color: white; /* White background for each chat */
     padding: 15px;
     margin-bottom: 10px; /* Space between each chat */
@@ -27,8 +39,89 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for each chat */
 }
 
-.chat-container p {
-    margin: 5px 0; /* Standardizes margin for paragraphs within a chat */
-    color: #333; /* Dark grey color for text for better readability */
+.chat-container.selected-chat {
+  background-color: blueviolet;
 }
 
+.chat-container.selected-chat p {
+  color: white;
+}
+
+.chat-container p {
+    margin: 5px 0;
+    color: black;
+}
+  
+.chats-box, .chat-interface {
+  flex: 1; /* Both containers take up equal width and adjust to the remaining height */
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-scroll-box {
+  overflow-y: auto;
+  flex-grow: 1; /* Allows this box to take up available space for messages */
+}
+
+/* Ensure the message input container doesn't shrink or grow disproportionately */
+.message-input-container {
+  flex-shrink: 0;
+}
+  
+.message-container {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word; /* Ensures text breaks to prevent overflow */
+  }
+  
+.sent {
+    background-color: #007bff; /* Blue for sent messages */
+    color: white;
+    align-self: flex-end;
+    margin-left: auto; /* Aligns the message to the right */
+  }
+  
+.received {
+    background-color: #e0e0e0; /* Grey for received messages */
+    color: black;
+    align-self: flex-start;
+    margin-right: auto; /* Aligns the message to the left */
+  }
+  
+.timestamp {
+    font-size: 0.85em;
+    text-align: right;
+    display: block; /* Makes sure it's on its own line */
+    margin-top: 5px;
+  }
+
+  .message-input-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #fff;
+    border-top: 2px solid #ccc;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .send-message-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .send-message-button:hover {
+    background-color: #0056b3;
+  }

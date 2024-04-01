@@ -18,6 +18,8 @@ If not install run `python3 -m pip install --upgrade pip setuptools wheel` to in
 
 ## Installation Steps fo Djago
 
+Run `source venv/bin/activate` in the root project directory. `cd backend` and install the following. If already installed skip running the server.  
+
 Run `python3 -m pip install Django`.
 Check if install by running `django-admin --version`.
 
@@ -36,6 +38,7 @@ Run `pip install supabase`.
 Now you can run `python3 manage.py runserver`. 
 This will set up Django's environment and links.
 
+In another terminal start the redis-server. Ensure the VENV is started and cd to the backend and type the command `redis-server`. If not found you may have to install redis.
 
 ## Setting up the React App
 

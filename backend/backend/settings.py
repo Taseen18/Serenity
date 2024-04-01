@@ -32,10 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'to_do_list',
     'community',
+    'chat',
     'rest_framework',
     'corsheaders',
+    'channels',
+    'to_do_list',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+ASGI_APPLICATION = 'backend.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -151,6 +158,15 @@ LOGGING = {
     },
 }
 '''
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],  # Update this if your Redis isn't running on the default settings
+        },
+    },
+}
 
 SUPABASE_URL = 'https://yltkxqmckodbklfqdecl.supabase.co'
 #DELETE THE BELOW KEYS WHEN COMMITTING TO GIT
