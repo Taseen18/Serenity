@@ -4,8 +4,9 @@ import json
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .db_service import fetch_user_tasks, mark_as_complete
+from .db_service import fetch_user_tasks, mark_as_complete, add_task
 from .models import Task
 from django.contrib.auth.models import User
 
@@ -40,6 +41,8 @@ class TaskListCreate(APIView):
                         'description': task.description,
                         'completed': task.completed,
                     })
+
+            print(len(tasks), "tasks found")
             
             return JsonResponse({'tasks': tasks}, safe=False)
         
@@ -63,4 +66,26 @@ class TaskUpdate(APIView):
         task.save()
 
         return Response({'success': 'Task marked as complete.'})
+    
 
+
+class TaskCreate(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        username = request.user.username
+        title = request.data.get('title')
+        description = request.data.get('description', '')
+
+        if not title:
+            return Response({'error': 'Title is required.'}, status=400)
+        
+        user = User.objects.get(username=username)
+
+        error_message = add_task(title, description, username)
+
+        if error_message:
+            return Response({'error': error_message}, status=500)
+        
+        print("Task added successfully")
+        return Response({'success': 'Task created successfully.'})

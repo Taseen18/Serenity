@@ -159,7 +159,7 @@ SUPABASE_SECRET_KEY = '8zup9RBktgaahUcdU45QekbvsmOb1oPcqrz/VNI6JwEz++yh0cYJzIiEx
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'to_do_list.authentication.JWTAuthentication',
+        'authentication.authentication.JWTAuthentication',
     ),
 }
 
