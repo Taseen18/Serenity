@@ -4,8 +4,8 @@ from django.utils import timezone  # Import timezone
 
 class Posts(models.Model):
     post_id = models.CharField(max_length=255, unique=True)
-    post_title = models.CharField(max_length=255)
-    post_content = models.CharField(max_length=255)
+    post_title = models.TextField()
+    post_content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='postList')
     likes = models.IntegerField(default=0) 
     posted_at = models.DateTimeField(default=timezone.now)  # Set default to the current time
