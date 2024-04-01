@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "daphne",
+    'daphne',
+    'to_do_list',
+    'community',
+    'chat',
     'rest_framework',
     'corsheaders',
     'channels',
