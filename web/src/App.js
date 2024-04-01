@@ -11,6 +11,7 @@ import Exercise from './pages/Exercise'
 import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
 import Messenger from './pages/Messenger';
+import Post from './components/post';
 
 const App = () => {
     const [token, setToken] = useState(null);
@@ -46,6 +47,7 @@ const App = () => {
                         <Route path='/Diet' element={<Diet />} />
                         <Route path='/MentalHealth' element={<MentalHealth />} />
                         <Route path='/Messenger' element={<Messenger />} />
+                        <Route path='/Post' element={<Post />} />
                     </Routes>
             </AuthProvider>
         </div>

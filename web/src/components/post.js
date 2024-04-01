@@ -1,15 +1,18 @@
 import React, {useState, useEffect, useCallback} from "react";
 import "../css/post.css"
 import UserIcon from "../assets/images/UserIcon.png"
+import { useAuth } from '../lib/helper/AuthContext';
+
 function Post() {
   const [postList, setPosts] = useState([]);
+  const { token } = useAuth();
 
   const fetchPosts = useCallback(async () => {
     const response = await fetch('/community/postList', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': `Bearer ${token.session.access_token}`, 
+        'Authorization': `Bearer ${token.session.access_token}`, 
       },
     });
     const data = await response.json();

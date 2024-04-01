@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'channels',
-    'to_do_list',
-    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
