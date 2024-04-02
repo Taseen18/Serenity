@@ -19,7 +19,7 @@ class PostListCreate(APIView):
 
     def get(self, request):
         user_uuid = request.user.username
-        
+
         try:
             response = fetch_post()
             postList = []
@@ -83,8 +83,8 @@ class CommentListCreate(APIView):
             print("Error fethcing comments")
             print(e)
             return JsonResponse({'error': 'Failed to fetch comments'}, status=500)
-        
-        
+
+
 class PostCreate(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
@@ -93,11 +93,11 @@ class PostCreate(APIView):
         content = request.data.get('content', '')
         if not title:
             return Response({'error': 'Title is required.'}, status=400)
-        
+
         user = User.objects.get(username=username)
         error_message = add_post(title, content, user.username)
         if error_message:
             return Response({'error': error_message}, status=500)
-        
+
         print("post added successfully")
-        return Response({'success': 'post created successfully.'})
+        return JsonResponse({'success': 'post created successfully.'})

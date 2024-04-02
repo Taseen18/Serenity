@@ -28,7 +28,7 @@ function Post() {
     fetchPosts();
   }, [fetchPosts]);
 
-  
+
 
   const [liked, setLike] = useState(false);
 
@@ -43,6 +43,8 @@ function Post() {
   };
   return (
     <div className="postss">
+      <button className="navbar-button" onClick={fetchPosts}>Fetch posts</button>
+
       {postList.map((postList, index) => (
                         <div key={index} className='PostHolder'>
                           {/*Insert users profile picture here */}<div className="imgHolder"><img src={UserIcon} /></div>

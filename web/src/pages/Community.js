@@ -48,8 +48,9 @@ function Community() {
   }
   */
 
-  return (
 
+
+  return (
     <div className="Community">
       <Navbar />
       <button onClick={() => setIsModalOpen(true)}>Add post</button> 
@@ -63,7 +64,7 @@ function Community() {
             <button type="submit">Submit</button>
             <button onClick={() => setIsModalOpen(false)}>Close</button>
           </form>
-          
+
         </div>
       )}
 

@@ -31,4 +31,3 @@ def add_post(post_title, post_content, user_id):
         error_message = "Failed to create post in supabase."
         if hasattr(response, 'error') and response.error:
             error_message = response.error.message
-        return error_message
