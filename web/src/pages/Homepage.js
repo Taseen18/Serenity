@@ -17,6 +17,7 @@ function Homepage() {
       console.error('Token not available');
       return;
     }
+    console.log(token.session.access_token);
     const response = await fetch('/to_do_list/tasks/', {
       method: 'GET',
       headers: {

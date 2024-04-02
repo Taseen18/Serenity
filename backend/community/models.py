@@ -8,7 +8,7 @@ class Posts(models.Model):
     post_content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='postList')
     likes = models.IntegerField(default=0) 
-    posted_at = models.DateTimeField(default=timezone.now)  # Set default to the current time
+    posted_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

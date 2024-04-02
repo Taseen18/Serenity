@@ -1,70 +1,42 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FFF', // Assuming a dark theme based on your CSS
-        paddingVertical: 100,
-        paddingHorizontal: '20%',
+        alignItems: 'center',
     },
     title: {
-        fontSize: 20, // Adjusted from 800% to an absolute size for React Native
-        color: '#123', // Set text color to white
+      fontSize: 48, // Adjust the size as needed
+      color: 'white', // Choose a color that stands out against your background
+      fontWeight: 'bold',
+      position: 'absolute',
+      top: 100, // Adjust the distance from the top as needed
+      textShadowColor: 'rgba(0, 0, 0, 0.75)', // Optional: Adds a shadow for better readability
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10
     },
-    wrapper: {
-        marginTop: '2%',
-        width: 400,
-        height: 440,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent (no backdrop-filter in React Native)
-        borderColor: '#000',
-        borderWidth: 2,
-        borderRadius: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
-        shadowRadius: 30,
-        elevation: 20, // For Android shadow
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    loginContainer: {
-        width: '100%',
-        padding: 40,
-    },
-    heading: {
-        fontSize: 24,
-        color: '#FFF', // Set text color to white
-        textAlign: 'center',
-    },
-    inputBox: {
-        width: '100%',
-        height: 50,
-        borderBottomWidth: 2,
-        borderBottomColor: '#000',
-        marginVertical: 30,
-    },
-    input: {
+    overlay: {
         width: '100%',
         height: '100%',
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        color: '#000',
-        fontWeight: '600',
-        fontSize: 16,
-    },
-    button: {
-        width: '100%',
-        height: 45,
-        backgroundColor: '#FFF',
-        borderRadius: 6,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.45)', // Add a slight background overlay to ensure text is readable
     },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: 'blue', // Assuming you want the text color to be black on a white button
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 12,
+        padding: 10,
+        width: '80%',
+        backgroundColor: 'white',
     },
+    baseText: {
+        fontSize: 20,
+        textAlign: 'center',
+        color: 'white',
+    }
 });
+
+export default styles;
