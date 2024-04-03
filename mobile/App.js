@@ -10,16 +10,16 @@ import * as SplashScreen from 'expo-splash-screen';
 import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 
+//Placeholders:
 const Messages = () => null;
 const Resources = () => null;
 const Trackers = () => null;
-const Profile = () => null;
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// Create a MainTabScreen component that holds the bottom tab navigator
 function MainTabScreen() {
   return (
     <Tab.Navigator 

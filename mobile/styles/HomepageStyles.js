@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     marginTop: 20,
     paddingLeft: 20,
-    paddingTop: 100,
+    paddingTop: 70,
   },
   gridContainer: {
     alignItems: 'center',
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   square: {
     width: 160,
     height: 160,
-    backgroundColor: '#446964',
     margin: 10,
     borderRadius: 20,
+    overflow: 'hidden',
   },
   squareContent: {
     flexDirection: 'row',
@@ -46,25 +46,60 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'left',
   },
-  squareIconWrapper: {
+  squareIconWrapperCommunity: {
     width: 40,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'flex-end',
     borderRadius: 10,
-    //position: 'absolute',
     bottom: 20,
     right: 20,
     borderColor: 'None',
-    backgroundColor: '#f9cab9',
+    backgroundColor: '#C8D4F3',
+  },
+  squareIconWrapperAppointment: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    bottom: 20,
+    right: 20,
+    borderColor: 'None',
+    backgroundColor: '#FFEAE0',
+  },
+  squareIconWrapperOther1: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    bottom: 20,
+    right: 20,
+    borderColor: 'None',
+    backgroundColor: '#CEC0C0',
+  },
+  squareIconWrapperOther2: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    bottom: 20,
+    right: 20,
+    borderColor: 'None',
+    backgroundColor: '#9FA7D8',
   },
   squareIcon: {
     //paddingBottom: 10,
     //paddingRight: 10,
   },
   taskListContainer: {
-    maxHeight: 200,
+    maxHeight: 300,
     padding: 20,
   },
   taskListTitle: {
@@ -75,9 +110,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   taskItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
+  },
+  taskTextContainer: {
+    flex: 1,
   },
   taskTitle: {
     fontFamily: 'Montserrat-Medium',
@@ -86,6 +126,9 @@ const styles = StyleSheet.create({
   taskDescription: {
     fontFamily: 'Montserrat-Regular',
     fontSize: 15,
+  },
+  taskMarkAsComplete: {
+    marginLeft: 10,
   },
 });
 
