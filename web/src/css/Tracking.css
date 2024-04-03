@@ -1,0 +1,86 @@
+.Tracking{
+    color: white;
+    height:100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 100vh;
+}
+.Tracking .underline{
+    width:15vw;
+    margin-left: 47vw;
+    margin-top: -1vh;
+}
+.Tracking .title{
+    margin-top: 2vh;
+    font-size: 5vw;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.Tracking .selection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    margin-right: 0;
+}
+.Tracking .pad{
+    width:30vw;
+}
+#middlepad{
+    margin-top: 10vh;
+    width:33vw;
+}
+.Tracking .info{
+    font-size: 1vw;
+    margin: auto;
+    margin-top:2vh;
+}
+.frog {
+    position: absolute;
+    bottom: 50%;
+    left: 15%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure the frog is above the lily pad image */
+    font-size: 8rem;
+  }
+  
+.thought-bubble {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background-color: grey;
+    color: black;
+    border-radius: 50%;
+    padding: 20px;
+    z-index: 5; /* Below the frog but above the lily pad */
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+
+
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: center; /* switched from default (flex-start, see below) */
+  }
+#container > div {
+    background-color: #4646fe;
+    width:max-content;
+    border-radius: 5em;
+    margin: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    }
