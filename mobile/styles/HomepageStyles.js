@@ -7,14 +7,14 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     alignItems: 'left',
+    marginTop: 50,
   },
   welcomeText: {
     fontSize: 50,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
-    marginTop: 20,
     paddingLeft: 20,
-    paddingTop: 70,
+    paddingTop: 20,
   },
   gridContainer: {
     alignItems: 'center',
@@ -98,9 +98,48 @@ const styles = StyleSheet.create({
     //paddingBottom: 10,
     //paddingRight: 10,
   },
+
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  modalText: {
+    marginBottom: 15,
+    padding: 10,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+  },
+  addButton: {
+    // Your add button styles
+  },
+
   taskListContainer: {
     maxHeight: 300,
     padding: 20,
+  },
+  taskListHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
   },
   taskListTitle: {
     fontFamily: 'Montserrat-Bold',

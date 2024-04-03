@@ -1,15 +1,24 @@
 // pages/Homepage.js
 import React, {useState, useEffect, useCallback} from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, ScrollView, Platform, ImageBackground } from 'react-native';
+import { 
+  View, 
+  Text, 
+  StyleSheet,
+  TextInput, 
+  Button, TouchableOpacity, ScrollView, Platform, ImageBackground, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import { supabase } from '../lib/helper/supabaseClient'; // Adjust the path as necessary
 import styles from '../styles/HomepageStyles';
-import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 
 const Homepage = ({ navigation }) => {
   const [first_name, setFirstName] = useState('');
   const [tasks, setTasks] = useState([]);
   const [completingTaskIds, setCompletingTaskIds] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [newTaskDescription, setNewTaskDescription] = useState('');
+
   const apiUrl = Platform.select({
     ios: 'http://localhost:8000/to_do_list/tasks/',
     android: 'http://10.0.2.2:8000/to_do_list/tasks/',
@@ -100,6 +109,34 @@ const Homepage = ({ navigation }) => {
       setCompletingTaskIds(oldIds => oldIds.filter(id => id !== taskId));
     }
   };
+
+  const handleAddTask = async (newTaskTitle, newTaskDescription = '') => {
+    const tokenString = await AsyncStorage.getItem('userToken');
+    if (!tokenString) {
+      console.warn('Token not available');
+      return;
+    }
+    const token = JSON.parse(tokenString);
+    const access_token = token.access_token;
+
+    const response = await fetch(`${apiUrl}create/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: newTaskTitle, description: newTaskDescription }),
+    });
+
+    if (response.ok) {
+      fetchTasks();
+      setModalVisible(false);
+      setNewTaskTitle('');
+      setNewTaskDescription('');
+    } else {
+      console.error('Error: Failed to add new task');
+    }
+  };
   
 
   return (
@@ -171,17 +208,53 @@ const Homepage = ({ navigation }) => {
               style={{ flex: 1 }}
             >
               <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Other</Text>
+                <Text style={styles.squareText}>Journal</Text>
                 <View style={styles.squareIconWrapperOther2}>
-                  <MaterialIcons name="settings" size={24} color="black" style={styles.squareIcon} />
+                  <FontAwesome5 name="book-open" size={24} color="black" style={styles.squareIcon} />
                 </View>
               </View>
             </ImageBackground>
           </TouchableOpacity>
         </View>
       </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TextInput
+              placeholder="Task Title"
+              value={newTaskTitle}
+              onChangeText={setNewTaskTitle}
+              style={styles.modalText}
+            />
+            <TextInput
+              placeholder="Description (Optional)"
+              value={newTaskDescription}
+              onChangeText={setNewTaskDescription}
+              style={styles.modalText}
+              multiline
+            />
+            <Button title="Add Task" onPress={() => handleAddTask(newTaskTitle, newTaskDescription)} />
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
+
       <View style={styles.taskListContainer}>
-      <Text style={styles.taskListTitle}>To Do List ✅</Text>
+        <View style={styles.taskListHeader}>
+          <Text style={styles.taskListTitle}>To Do List ✅</Text>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <AntDesign name="pluscircle" size={24} color="blue" />
+          </TouchableOpacity>
+
+        </View>
         <ScrollView style={styles.taskScrollView}>
           {tasks.map((task, index) => (
             <View key={index} style={styles.taskItem}>
