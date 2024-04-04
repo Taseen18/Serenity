@@ -31,7 +31,7 @@ import UserIcon from "../assets/images/UserIcon.png"
         <Link to="/Community" className="linker"> Community </Link>
         <Link to="/Chat" className="linker"> Chat </Link>
         <Link to="/About" className="linker"> About </Link>
-      <button className="navbar-button" >Fetch Tasks</button>
+    {/*}  <button className="navbar-button" >Fetch Tasks</button> */}
       </div>
       <div className = "rightSide">
         <img src={UserIcon} />

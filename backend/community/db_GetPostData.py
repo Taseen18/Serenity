@@ -31,3 +31,19 @@ def add_post(post_title, post_content, user_id):
         error_message = "Failed to create post in supabase."
         if hasattr(response, 'error') and response.error:
             error_message = response.error.message
+
+def add_comment(PostContent, user_id,post_id):
+    client = get_supabase_client()
+    error_message = None
+    response = client.table('comments').insert({
+        'PostContent': PostContent,
+        'user_id': user_id,
+        'post_id':post_id
+
+    }).execute()
+
+    if not response.data:
+        error_message = "Failed to create post in supabase."
+        if hasattr(response, 'error') and response.error:
+            error_message = response.error.message
+

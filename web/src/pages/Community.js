@@ -9,8 +9,8 @@ import Post from "../components/post"
 function Community() {
   const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
   const [newPost, setNewPost] = useState({ title: '', content: '' });
-  const [newComment, setNewComment] = useState({content: ''});
   const { token } = useAuth();
+
 
   const handleAddPost = async (e) => {
     e.preventDefault();
@@ -48,25 +48,32 @@ function Community() {
   }
   */
 
-
-
   return (
     <div className="Community">
       <Navbar />
-      <button onClick={() => setIsModalOpen(true)}>Add post</button> 
+       
       {isModalOpen && (
-        <div className='modal'>
+        <div className='AddPostWrapper'>
+          <div className="AddPostContainer">
+          <button className="closeButton" onClick={() => setIsModalOpen(false)}>X</button>
+           <h2>Add Post</h2>
           <form onSubmit={handleAddPost}>
-            <label>Title</label>
-            <input type="text" value={newPost.title} onChange={(e) => setNewPost({ ...newPost, title: e.target.value })} required />
-            <label>Content</label>
-            <textarea value={newPost.description} onChange={(e) => setNewPost({ ...newPost, content: e.target.value })} required />
-            <button type="submit">Submit</button>
-            <button onClick={() => setIsModalOpen(false)}>Close</button>
+            <div className="AddPostInput">
+              <label>Title</label>
+              <input type="text" value={newPost.title} onChange={(e) => setNewPost({ ...newPost, title: e.target.value })} required />
+              <label>Content</label>
+              <textarea value={newPost.content} onChange={(e) => setNewPost({ ...newPost, content: e.target.value })} required />
+            </div>
+            <button className="submitButton " type="submit" >Submit</button>
+            
           </form>
-
+          </div>
         </div>
       )}
+
+
+
+
 
       <div className="topSection">
         <img className="filter" src={filter} />
@@ -74,11 +81,10 @@ function Community() {
           <h1 className="title">Community</h1>
           <img className="underline" src={Line} />
         </div>
-        <button className="postButton" >Add Post</button>
+       <button className="postButton" onClick={() => setIsModalOpen(true)}>Add post</button>
       </div>
 
       <div className="postsWrapper">
-        {/* Make into components instead of img maybe or cld be like this as just prototype */}
         <Post />
      
       </div>
