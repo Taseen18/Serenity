@@ -6,105 +6,43 @@ import '../css/resourceMore.css';
 import Navbar from "../components/Navbar";
 import Line from "../assets/images/Line.png"
 import nhsLogo from "../assets/images/nhs_attribution.png";
+import CaloriesArticle from './articles/CaloriesArticle';
+import BalancedDietArticle from './articles/BalancedDietArticle';
+import TipsArticle from './articles/TipsArticle';
+import ArticleCard from './ArticleCard';
+
+
+
 function Diet() {
 
-  const [caloriesData, setcaloriesData] = useState(null);
-  const [dietData, setdietData] = useState(null);
-  const [tipsData, setTipsData] = useState(null);
+  const articles = [
+    {
+      id: 'calories',
+      title: 'Understanding Calories',
+      Component: CaloriesArticle,
+      description: 'Explore the science of calories and their impact on weight management to help you make informed dietary choices',
+    },
+    {
+      id: 'diet',
+      title: 'Eating a balanced diet',
+      Component: BalancedDietArticle,
+      description:'Discover the key components of a balanced diet and how it can significantly improve your overall health',
+    },
+    {
+      id: 'tips',
+      title: '8 tips for healthy eating',
+      Component: TipsArticle,
+      description:'Learn eight practical tips that can guide you towards healthier eating habits and better nutrition.',
+    },
+  ];
 
+  const [selectedArticleId, setSelectedArticleId] = useState(null);
 
-  // const fetchData = async (url, headers) => {
-  //   setIsLoading(true)
-  //   try {
-  //     const response = await axios.get(url, { headers });
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error('There was an error fetching data', error);
-  //   }
-  // };
-
-  // function getContent(contents){
-  //   const listItems = contents.map((content, index) => {
-  //     if (!content.hasPart || !Array.isArray(content.hasPart) || content.hasPart.length === 0) {
-  //       console.error('Invalid content structure', content);
-  //       return null;
-  //     }
-  //     // return <div key={index}>{content.hasPart[0].text} </div>;
-  //     return <div key = {index} dangerouslySetInnerHTML={{__html: content.hasPart[0].text}} />
+  const handleArticleSelect = (id) => {
+    setSelectedArticleId(id);
+  };
   
-  //   });
-  //   return listItems
-  // }
-
-  const fetchData = async (url, headers) => {
-  try {
-    const response = await axios.get(url, { headers });
-    // Ensure there is a response and it has the expected structure
-    if (response.data && response.data.mainEntityOfPage) {
-      return response.data;
-    } else {
-      // Handle the unexpected structure or missing data gracefully
-      console.warn('Unexpected response structure', response);
-      return { mainEntityOfPage: [] }; // Provide a default structure
-    }
-  } catch (error) {
-    console.error('There was an error fetching data', error);
-    return { mainEntityOfPage: [] }; // Provide a default structure in case of error
-  }
-};
-
-function getContent(contents) {
-  // Use optional chaining and provide a default empty array to map over
-  const listItems = (contents || []).map((content, index) => {
-    // Your existing logic, perhaps with added null checks
-    if (!content.hasPart || !Array.isArray(content.hasPart) || content.hasPart.length === 0) {
-      console.error('Invalid content structure', content);
-      return null; // Return null for React to ignore
-    }
-    return <div key = {index} dangerouslySetInnerHTML={{__html: content.hasPart[0].text}} />
-  });
-  return listItems;
-}
-
-
-  useEffect(() => {
-    // Call fetch for the first type of content
-    fetchData('https://api.nhs.uk/live-well/healthy-weight/managing-your-weight/understanding-calories', {
-      'subscription-key': 'af78f07dd16b47319525bc4c719bb9b2',
-      'Content-Type': 'application/json'
-    }).then(data => {
-      console.log('Diet Data:', data);
-      setcaloriesData(data);
-    });
-
-    // Call fetch for another type of content
-    fetchData('https://api.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/', {
-      'subscription-key': 'af78f07dd16b47319525bc4c719bb9b2',
-      'Content-Type': 'application/json'
-    }).then(data => {
-      console.log('Another Data:', data);
-      setdietData(data);
-    });
-
-    // Call fetch for another type of content
-    fetchData('https://api.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eight-tips-for-healthy-eating', {
-      'subscription-key': 'af78f07dd16b47319525bc4c719bb9b2',
-      'Content-Type': 'application/json'
-    }).then(data => {
-      console.log('Another Data:', data);
-      setTipsData(data);
-
-    });
-    
-
-
-  }, []); // Runs once on component mount
-
-  if (!dietData || !caloriesData || !tipsData) return <div className='loader'></div>;
-
-    const caloriesContent = getContent(caloriesData.mainEntityOfPage)
-    const dietContent = getContent(dietData.mainEntityOfPage)
-    const tipsContent = getContent(tipsData.mainEntityOfPage)
+  const SelectedArticleComponent = articles.find(article => article.id === selectedArticleId)?.Component;
 
 
   return (
@@ -125,19 +63,17 @@ function getContent(contents) {
         <h3><a href="/exercise">Exercise</a>{">"}</h3>
       </div>
 
-      <div className="resourceWrapper">
-
-        <h1>{caloriesData.name}</h1>
-        <ul>{caloriesContent}</ul>
-        <h1>{dietData.name}</h1>
-        <ul>{dietContent}</ul>
-        <h1>{tipsData.name}</h1>
-        <ul>{tipsContent}</ul>
+      <div className='container'>
+        {articles.map((article) => (
+            <a href="#content"><ArticleCard className='card' key={article.id} article={article} onArticleSelect={handleArticleSelect} /></a>
+        ))}
+      </div>
+      <div id= "content" className='resourceWrapper'>
+        {SelectedArticleComponent && <div style={{ marginTop: '20px' }}><SelectedArticleComponent /></div>}
         <div className="logo-container" style={{ textAlign: 'center', marginTop: '20px' }}>
-        <a href='https://www.nhs.uk/'><img src={nhsLogo} alt="NHS Logo" className="nhs" style={{ maxWidth: '200px' }} /></a>
+          <a href='https://www.nhs.uk/'><img src={nhsLogo} alt="NHS Logo" className="nhs" style={{ maxWidth: '200px' }} /></a>
         </div>
       </div>
-
     </div>
   )
 }

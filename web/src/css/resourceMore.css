@@ -1,4 +1,5 @@
 .Holder{
+    scroll-behavior: smooth;
     overflow: scroll;
     max-height: 100vh;
 }
@@ -38,13 +39,96 @@
     opacity: 100%;
 }
 
-a{
+.topSection a{
     text-decoration: none;
-    color: white;
+    color:white;
 }
 
-.resourceWrapper{
+a{
+    text-decoration: none;
+}
+
+
+
+.resourceWrapper {
     overflow: scroll;
+    margin: auto;
+    margin-top: 30vh; /* Adjust this value based on your layout */
+    width: 80vw;
+    max-width: 960px; /* Set a max-width to keep line length manageable */
+    padding: 2rem; /* Add padding inside the wrapper */
+    background-color: #ffffff; /* A light grey background can be easier on the eyes */
+    border-radius: 15px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    color: #333; /* Darker text for contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A modern, readable font */
+}
+
+.resourceWrapper h1, .resourceWrapper h3 {
+    color: #2c3e50; /* Slightly different color for headings */
+    padding-bottom: .5rem; /* Space below headings */
+}
+
+.resourceWrapper p {
+    font-size: 1rem; /* Readable font size */
+    line-height: 1.6; /* Space between lines for readability */
+    color: #555; /* Slightly lighter color for the paragraph text */
+    margin-bottom: 1rem; /* Space after paragraphs */
+}
+
+.resourceWrapper a {
+    color: #007bff; /* Default link color */
+    text-decoration: none; /* No underlines on links */
+}
+
+.resourceWrapper a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+.resourceWrapper ul {
+    list-style: inside; /* Bullets inside to align with text */
+    padding-left: 0; /* No padding on the left of lists */
+}
+
+.resourceWrapper li {
+    margin-bottom: 0.5rem; /* Space between list items */
+}
+
+.resourceWrapper table {
+    width: 100%; /* Full width tables */
+    border-collapse: collapse; /* Collapsed borders for cleaner look */
+    margin-top: 1rem; /* Space before table */
+}
+
+.resourceWrapper th, .resourceWrapper td {
+    padding: 0.5rem; /* Padding inside table cells */
+    border: 1px solid #dee2e6; /* Light borders for cells */
+}
+
+.resourceWrapper th {
+    background-color: #e9ecef; /* Light background for header */
+    font-weight: bold; /* Bold font for header */
+}
+
+
+
+/* .resourceWrapper{
+    overflow: scroll;
+    margin: auto;
+    margin-top: 30vh; /* Adjust this value based on your layout 
+    width: 80vw;
+    border-radius: 50px;
+    background: rgba(143, 143, 143, 0.50);
+    box-shadow: 0 3px 10px 0 rgb(18, 33, 69);
+    text-align: center;
+} */
+
+/* .resourceWrapper{
+    overflow: scroll;
+    position: absolute;
+    top: 90em;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: auto;
     margin-top: 2vh;
     width: 80vw;
@@ -52,7 +136,7 @@ a{
     background: rgba(143, 143, 143, 0.50);
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
-}
+} */
 
 .loader {
     position: fixed;
@@ -84,11 +168,26 @@ a{
 
 .resourceWrapper h1{
     font-size: 5rem;
-}
-
+} 
+/*
 .resourceWrapper p{
     font-size: 1vw;
     width:60vw;
     margin: auto;
-    padding-top: 5vh;
+    padding-top: 2vh;
+} */
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; /* Adjust width as needed */
+    margin: auto;
+    padding-top: 16vh; /* Adjust this value based on your layout */
 }
+
+.container a{
+    text-decoration: none;
+    color: white;
+}
+
+

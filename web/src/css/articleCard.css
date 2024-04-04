@@ -1,0 +1,57 @@
+.card{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A modern, readable font */
+    background-color: hsl(206, 6%, 22%);
+    opacity: 90%;
+    box-shadow: 0 3px 10px 0 rgb(57, 117, 255);
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    height: 280px;
+    border-radius: 2em;
+    margin: 1rem; /* Space around cards */
+    transition: transform 0.2s; /* Smooth transformation on hover */
+
+    
+
+
+}
+
+  /* Hover effect for card */
+  .card:hover {
+    transform: translateY(-5px); /* Slightly raise the card on hover */
+  }
+  
+  /* Card title style */
+  .card .title {
+    font-size: 1.5rem; /* Title font size */
+    font-weight: bold; /* Title font weight */
+    margin: 0.5rem; /* Title margin */
+    color: #333; /* Title color */
+  }
+  
+  /* Card description style */
+  .card p {
+    font-size: 1rem; /* Paragraph font size */
+    color: #666; /* Paragraph text color */
+    line-height: 1.6; /* Spacing between lines */
+    margin: 0.5rem 1rem; /* Paragraph margin */
+  }
+  
+  /* Ensure anchor tags have no default text decoration */
+  .card a {
+    text-decoration: none;
+    color: inherit; /* Anchor inherits color from parent element */
+  }
+  
+  /* Style for any icons or buttons inside the card */
+  .card .icon {
+    font-size: 1.2rem; /* Icon size */
+    margin-right: 0.5rem; /* Space after icon */
+  }
+
+  .card-description p{
+    opacity: 50%;
+    color: rgb(195, 242, 255);
+  }
