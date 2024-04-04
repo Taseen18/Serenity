@@ -1,4 +1,3 @@
-// App.js
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,9 +10,10 @@ import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
+import ChatsList from './pages/ChatsList';
+import MessengerScreen from './pages/MessengerScreen';
 
 //Placeholders:
-const Messages = () => null;
 const Resources = () => null;
 const Trackers = () => null;
 
@@ -37,14 +37,13 @@ function MainTabScreen() {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="home" color={color} size={size} />
           ),
-          tarBarShowLabel: false,
         }}
       />
       <Tab.Screen 
         name="Messages" 
-        component={Messages}
+        component={ChatsList}
         options={{
-          tabBarLabel: 'Messages', // Corrected from 'tarBarLabel' to 'tabBarLabel'
+          tabBarLabel: 'Messages',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubbles" color={color} size={size} />
           ),
@@ -54,7 +53,7 @@ function MainTabScreen() {
         name="Resources" 
         component={Resources}
         options={{
-          tabBarLabel: 'Resources', // Corrected from 'tarBarLabel' to 'tabBarLabel'
+          tabBarLabel: 'Resources',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="article" color={color} size={size} />
           ),
@@ -124,6 +123,11 @@ const App = () => {
           name="Sign Up" 
           component={SignUp}
           options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Messenger" 
+          component={MessengerScreen}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
