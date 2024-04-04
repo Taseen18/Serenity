@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from .db_GetPostData import fetch_post, fetch_comments, add_post, add_comment
 from .models import Posts
 from django.contrib.auth.models import User
+import datetime
 
 #def post(request):
  #   all_posts = Posts.objects.all
@@ -37,13 +38,18 @@ class PostListCreate(APIView):
                             'user': user
                         }
                     )
+                                       # Parse the posted_at timestamp
+                    posted_at = datetime.datetime.strptime(post.posted_at, '%Y-%m-%dT%H:%M:%S.%f%z')
+
+                    # Format the posted_at timestamp
+                    formatted_posted_at = posted_at.strftime('%Y-%m-%d %H:%M')
 
                     postList.append({
                         'post_id': post.post_id,
                         'post_title': post.post_title,
                         'post_content': post.post_content,
                         'likes': post.likes,
-                        'posted_at': post.posted_at,
+                        'posted_at': formatted_posted_at,
                         'poster_name': user.first_name
                     })
 

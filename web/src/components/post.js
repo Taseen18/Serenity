@@ -70,7 +70,7 @@ function Post() {
   }, []);
 
   const handleAddComment  = async (e) => {
-    e.preventDefault();
+    e.preventDefault(selectedPost);
   
       const response = await fetch(`/community/comment/create`, {
         method: 'POST',
@@ -123,7 +123,7 @@ function Post() {
         </div>
       )}
 
-    {isCommentModalOpen && (
+    {isCommentModalOpen && selectedPost && (
           <div className="addCommmentWrapper">
             <div className='AddPostWrapper'>
               <div className="AddPostContainer">
@@ -134,7 +134,7 @@ function Post() {
                   <label>Comment</label>
                   <textarea required />
        
-                <button className="submitButton " type="submit" onClick={() => handleAddComment}>Submit</button>
+                <button className="submitButton " type="submit" onClick={() => handleAddComment(selectedPost)}>Submit</button>
                 
               </form>
               </div>
