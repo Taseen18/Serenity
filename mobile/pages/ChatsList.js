@@ -32,7 +32,7 @@ const ChatsList = ({ navigation }) => {
 
             webSocket.current.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                console.log("Chat List update received:", data);
+                //console.log("Chat List update received:", data);
                 setChats(data.chats);
             };
 
@@ -59,7 +59,7 @@ const ChatsList = ({ navigation }) => {
           {chats.map((chat, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => navigation.navigate('Messenger', { chatId: chat.chat_id })}
+              onPress={() => navigation.navigate('Messenger', { chatId: chat.chat_id, chatWith: (chat.chat_with_first_name + " " + chat.chat_with_last_name) })}
               style={styles.chatContainer}
             >
               <Text>Chat with: {chat.chat_with_first_name} {chat.chat_with_last_name}</Text>

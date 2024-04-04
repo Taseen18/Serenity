@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Send } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform, TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity, View, Button, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { MaterialIcons } from '@expo/vector-icons';
+import styles from '../styles/MessengerScreenStyles';
 
 const MessengerScreen = ({ route, navigation }) => {
     const { chatId } = route.params;
+    const { chatWith } = route.params;
     const [messages, setMessages] = useState([]);
     const webSocket = useRef(null);
     const apiUrl = Platform.select({
         ios: 'ws://localhost:8000/',
         android: 'ws://10.0.2.2:8000/',
     });
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
         const initialiseWebSocket = async () => {
@@ -21,6 +26,8 @@ const MessengerScreen = ({ route, navigation }) => {
             }
             const token = JSON.parse(tokenString);
             const access_token = token.access_token;
+            const userId = token.user?.id;
+            setUserId(userId);
             const chatUrl = `${apiUrl}ws/chat/${chatId}/?token=${access_token}`;
 
             webSocket.current = new WebSocket(chatUrl);
@@ -50,6 +57,7 @@ const MessengerScreen = ({ route, navigation }) => {
 
             webSocket.current.onclose = () => {
                 console.log('WebSocket closed for chat', chatId);
+                setMessages([]);
             };
         };
 
@@ -83,10 +91,28 @@ const MessengerScreen = ({ route, navigation }) => {
 
 
     return (
-        <GiftedChat
-            messages={messages}
-            onSend={messages => onSend(messages)}
-        />
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.messengerHeader}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <MaterialIcons name="arrow-back" size={24} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.messengerHeaderTitle}>{chatWith}</Text>
+            </View>
+            <GiftedChat
+                messages={messages}
+                onSend={onSend}
+                user={{
+                    _id: userId,
+                }}
+                renderSend={(props) => (
+                    <Send {...props}>
+                        <View style={{ marginRight: 10, marginBottom: 5 }}>
+                            <MaterialIcons name="send" size={30} color="#6646ee" />
+                        </View>
+                    </Send>
+                )}
+            />
+        </SafeAreaView>
     );
 };
 
