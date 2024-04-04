@@ -86,29 +86,24 @@ function Tracking() {
     else{
       table = "exercise"
     }
-    try{
-      const { data, error } = await supabase.from(table).select().eq('user_id', userID)
-      const Today = new Date(data[data.length-1].created_at).toDateString().slice(0,3)
-      const index = daysOfWeek.indexOf(Today);
-      let count = 0
-      for (let i=index;i>=0;i--){
-        if (data[data.length-count-1]){
-          if (activeDGraph){
-            yval[i]=data[data.length-count-1].calories
-          }
-          else{
-            yval[i]=data[data.length-count-1].steps          
-          }
-  
+    const { data, error } = await supabase.from(table).select().eq('user_id', userID)
+    const Today = new Date(data[data.length-1].created_at).toDateString().slice(0,3)
+    const index = daysOfWeek.indexOf(Today);
+    let count = 0
+    for (let i=index;i>=0;i--){
+      if (data[data.length-count-1]){
+        if (activeDGraph){
+          yval[i]=data[data.length-count-1].calories
         }
-        count += 1
+        else{
+          yval[i]=data[data.length-count-1].steps          
+        }
+
       }
-      return yval
-  
+      count += 1
     }
-    catch{
-      return yval
-    }
+    return yval
+
   }
 
  function DietGraph(){
