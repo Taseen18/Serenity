@@ -56,6 +56,7 @@ const Homepage = ({ navigation }) => {
       return;
     }
     const token = JSON.parse(tokenString);
+    console.log(token);
     const access_token = token.access_token;
     //console.log(access_token)
     const response = await fetch(apiUrl, {

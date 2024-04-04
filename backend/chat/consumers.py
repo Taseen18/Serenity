@@ -172,6 +172,7 @@ def fetch_recent_messages(room_name, limit=50):
     print("Connecting to room:", room_name)
     messages = Message.objects.filter(chat_id=room_name).order_by('sent_at')[:limit]
     recent_messages = [{
+        "message_id": message.message_id,
         "content": message.content,
         "sender": message.sender.username,
         "receiver": message.receiver.username,
