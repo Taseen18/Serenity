@@ -6,6 +6,7 @@
     flex-direction: column;
     overflow: hidden;
     max-height: 100vh;
+    
 }
 .Resources .underline{
     width:15vw;
@@ -25,10 +26,21 @@
     justify-content: space-between;
     width: 100vw;
     margin-right: 0;
+    flex-wrap: wrap; /* Wrap onto the next line on small screens */
 }
 .Resources .pad{
     width:30vw;
+    transition: transform 0.3s ease; /* Smooth transition for hover */
+
+
+
 }
+
+.pad:hover{
+    transform: translateY(-10px); /* Slightly raise the card on hover */
+
+}
+
 #middlepad{
     margin-top: 10vh;
     width:33vw;
@@ -45,8 +57,15 @@
     transform: translateX(-50%);
     z-index: 10; /* Ensure the frog is above the lily pad image */
     font-size: 8rem;
-  }
-  
+    animation: bounce 1s infinite alternate; /* Bounce animation */
+}
+
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
 .thought-bubble {
     position: absolute;
     bottom: 40%;
