@@ -44,7 +44,7 @@ body{
 }
 
 .welcome-message h1 span {
-    color: #ff004f;
+    color: greenyellow;
 }
 
 .Home .footer {
@@ -62,7 +62,7 @@ body{
 }
 .Home .footer:hover {
     transition: 0.3s;
-    background-color: rgb(255, 0, 79, 0.5);
+    background-color: greenyellow;
 }
 
 
@@ -197,15 +197,15 @@ background: rgba(143, 143, 143, 0.50);
 .navbar-button {
     padding: 10px 15px;
     margin-left: 10px;
-    background-color: #ff004f; /* Button background color */
+    background-color: greenyellow; /* Button background color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: black;
     font-size: 16px;
 }
 
 .navbar-button:hover {
-    background-color: #e60045; /* Slightly darker on hover for feedback */
+    background-color: greenyellow; /* Slightly darker on hover for feedback */
 }
 
