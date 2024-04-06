@@ -32,7 +32,7 @@
     margin-top: 1vh;
 }
 .navbar .navTitle:hover{
-    color: #e60045;
+    color: greenyellow;
 }
 
 .navbar.middle{
@@ -54,7 +54,7 @@
 
 }
 .navbar .linker:hover{
-    color: #e60045;
+    color: greenyellow;
 }
 
 .navbar .rightSide{

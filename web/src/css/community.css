@@ -37,17 +37,18 @@
 .Community .postButton {
     padding: 2vh 3.5vw;
     margin-left: 10px;
-    background-color: #ff004f; /* Button background color */
+    background-color: black; /* Button background color */
     border: none;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
     cursor: pointer;
-    color: white;
+    color: greenyellow;
     font-size: 1.7vw;
 }
 
 .Community .postButton:hover {
-    background-color: #e60045; /* Slightly darker on hover for feedback */
+    background-color: greenyellow; /* Slightly darker on hover for feedback */
+    color: black;
     box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.45) inset;
 }
 .Community .filter{
