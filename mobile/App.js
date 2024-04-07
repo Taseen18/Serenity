@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
+import MakeAppointmentScreen from './pages/MakeAppointment';
 
 //Placeholders:
 const Resources = () => null;
@@ -127,6 +128,11 @@ const App = () => {
         <Stack.Screen 
           name="Messenger" 
           component={MessengerScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Make Appointment" 
+          component={MakeAppointmentScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

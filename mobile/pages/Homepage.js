@@ -20,8 +20,8 @@ const Homepage = ({ navigation }) => {
   const [newTaskDescription, setNewTaskDescription] = useState('');
 
   const apiUrl = Platform.select({
-    ios: 'http://localhost:8000/to_do_list/tasks/',
-    android: 'http://10.0.2.2:8000/to_do_list/tasks/',
+    ios: 'http://localhost:8000/',
+    android: 'http://10.0.2.2:8000/',
   });
 
   useEffect(() => {
@@ -44,11 +44,30 @@ const Homepage = ({ navigation }) => {
   }, []);
 
   const navigateToScreen = (screenName) => {
-    //implement navigation.navigate(screenName)
+    navigation.navigate(screenName);
     console.log(`Navigate to ${screenName}`);
   };
 
-  
+  /*
+  const makeAppointment = async () => {
+    const tokenString = await AsyncStorage.getItem('userToken');
+    if (!tokenString) {
+      console.warn('Token not available');
+      return;
+    }
+    const token = JSON.parse(tokenString);
+    //console.log(token);
+    const access_token = token.access_token;
+    const response = await fetch(`${apiUrl}appointment/makeAppointment/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`, 
+      }
+    })
+  }
+  */
+
   const fetchTasks = async () => {
     const tokenString = await AsyncStorage.getItem('userToken');
     if (!tokenString) {
@@ -56,10 +75,10 @@ const Homepage = ({ navigation }) => {
       return;
     }
     const token = JSON.parse(tokenString);
-    console.log(token);
+    //console.log(token);
     const access_token = token.access_token;
     //console.log(access_token)
-    const response = await fetch(apiUrl, {
+    const response = await fetch(`${apiUrl}to_do_list/tasks/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +139,7 @@ const Homepage = ({ navigation }) => {
     const token = JSON.parse(tokenString);
     const access_token = token.access_token;
 
-    const response = await fetch(`${apiUrl}create/`, {
+    const response = await fetch(`${apiUrl}to_do_list/tasks/create/`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${access_token}`,
@@ -167,7 +186,7 @@ const Homepage = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.square}
-            onPress={() => navigateToScreen('Screen2')}
+            onPress={() => navigateToScreen('Make Appointment')}
           >
             <ImageBackground
               source={require('../assets/images/squares/sandy.png')}

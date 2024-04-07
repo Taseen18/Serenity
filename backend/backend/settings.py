@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'to_do_list',
     'community',
     'chat',
+    'appointment',
     'rest_framework',
     'corsheaders',
     'channels',
