@@ -33,7 +33,7 @@ const MakeAppointmentScreen = () => {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorzation': `Bearer ${access_token}`,
+                        'Authorization': `Bearer ${access_token}`, 
                     },
                 });
 
@@ -68,7 +68,7 @@ const MakeAppointmentScreen = () => {
         const access_token = token.access_token;
 
         const formattedDate = date.toISOString();
-        const mhpId = selectedMhp ? selectedMhp.id : null;
+        const mhpId = selectedMhp ? selectedMhp.mhp_id : null;
         const response = await fetch(`${apiUrl}appointment/makeAppointment/`, {
             method: 'POST',
             headers: {
@@ -85,7 +85,9 @@ const MakeAppointmentScreen = () => {
         }
     };
 
-    const filteredMhpList = searchText ? mhpList.filter(mhp => mhp.name.toLowerCase().includes(searchText.toLowerCase())) : [];
+    const filteredMhpList = searchText 
+    ? mhpList.filter(mhp => mhp?.name?.toLowerCase().includes(searchText.toLowerCase()))
+    : [];
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -124,7 +126,7 @@ const MakeAppointmentScreen = () => {
                 {searchText && (
                     <FlatList
                         data={filteredMhpList}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.mhp_id.toString()}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 style={styles.mhpItem}

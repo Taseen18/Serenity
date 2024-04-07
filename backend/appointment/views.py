@@ -17,10 +17,14 @@ class MakeAppointment(APIView):
         user_type = check_user_type(request.user.username)
         if user_type == "employee":
             employee = User.objects.get(username=request.user.username)
-            response = get_mhps()
-            mhp_num = random.randrange(0, len(response.data))
-            mhp_key = response.data[mhp_num]
-            mhp_id = mhp_key["mhp_id"]
+
+            if not request.data.get('mhp'):
+                response = get_mhps()
+                mhp_num = random.randrange(0, len(response.data))
+                mhp_key = response.data[mhp_num]
+                mhp_id = mhp_key["mhp_id"]
+            
+            mhp_id = request.data.get('mhpId')
             mhp = User.objects.get(username=mhp_id)
 
             reason = request.data.get('reason')
@@ -47,10 +51,14 @@ class FetchUsers(APIView):
             mhps = []
             response = get_mhps()
             for mhp in response.data:
+                mhp_user = User.objects.get(username=mhp['mhp_id'])
+                name = mhp_user.first_name + " " + mhp_user.last_name
                 mhps.append({
-                    'mhp_id': mhp['mhp_id']
+                    'mhp_id': mhp['mhp_id'],
+                    'name': name
                 })
             
+            print(mhps)
             return JsonResponse({'mhps': mhps}, safe=False)
 
 

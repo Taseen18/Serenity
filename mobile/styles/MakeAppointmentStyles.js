@@ -26,6 +26,13 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  mhpItem: {
+    padding: 15,
+    marginVertical: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   }
 })
 
