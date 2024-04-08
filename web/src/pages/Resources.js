@@ -21,9 +21,6 @@ function Resources() {
         <div>
           <Link to="/diet" className="linker"> <img className="pad" src={diet} /> </Link>
           <div className="frog" role="img" aria-label="frog">🐸</div>
-          <div className="thought-bubble">
-            <p>Click on a lilypad. SPEECH BUBBLE?? ADD BUBBLE OR TAIL? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-          </div>
         </div>
         <Link to="/exercise" className="linker"> <img id="middlepad"className="pad"src={exercise} /> </Link>
         <Link to="/mentalhealth" className="linker">  <img className="pad"src={mh} /> </Link>
