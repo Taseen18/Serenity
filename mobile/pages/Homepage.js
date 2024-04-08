@@ -44,7 +44,7 @@ const Homepage = ({ navigation }) => {
   }, []);
 
   const navigateToScreen = (screenName) => {
-    //implement navigation.navigate(screenName)
+    navigation.navigate(screenName)
     console.log(`Navigate to ${screenName}`);
   };
 
@@ -150,7 +150,7 @@ const Homepage = ({ navigation }) => {
         <View style={styles.grid}>
           <TouchableOpacity
             style={styles.square}
-            onPress={() => navigateToScreen('Screen1')}
+            onPress={() => navigateToScreen('Community')}
           >
             <ImageBackground
               source={require('../assets/images/squares/tropical.png')}
@@ -158,7 +158,7 @@ const Homepage = ({ navigation }) => {
               style={{ flex: 1 }}
             >
               <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Community</Text>
+                <Text style={styles.squareText}>Counity</Text>
                 <View style={styles.squareIconWrapperCommunity}>
                   <FontAwesome name="users" size={24} color="black" style={styles.squareIcon} />
                 </View>
@@ -167,7 +167,7 @@ const Homepage = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.square}
-            onPress={() => navigateToScreen('Screen2')}
+            onPress={() => navigateToScreen('Community')}
           >
             <ImageBackground
               source={require('../assets/images/squares/sandy.png')}

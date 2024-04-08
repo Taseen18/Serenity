@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
+import Community from './pages/Community';
 
 //Placeholders:
 const Resources = () => null;
@@ -39,6 +40,13 @@ function MainTabScreen() {
           ),
         }}
       />
+      <Tab.Screen
+  name="Community"
+  component={Community}
+  options={{
+    // Add any options here if needed
+  }}
+/>
       <Tab.Screen 
         name="Messages" 
         component={ChatsList}
