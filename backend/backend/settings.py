@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6lp#%3%ygdb)lnq0wq5uvcsev#*bf*_ipd7m##eqcrm&!i#3c7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '10.0.2.2']
 
 
 # Application definition
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'to_do_list',
     'community',
     'chat',
+    'appointment',
     'rest_framework',
     'corsheaders',
     'channels',

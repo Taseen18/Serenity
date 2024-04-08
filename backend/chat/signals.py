@@ -15,6 +15,7 @@ def send_message_update(sender, instance, created, **kwargs):
             'type': 'chat_message',  # This should match the method name in your consumer
             'message': {
                 'chat_id': instance.chat_id,
+                'message_id': instance.message_id,
                 'content': instance.content,
                 'sender': instance.sender.username,
                 'receiver': instance.receiver.username,
