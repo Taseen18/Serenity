@@ -1,6 +1,11 @@
 .Community{
-    /*overflow: hidden;*/
-    max-height: 100vh;
+    overflow: hidden;
+    height: 100vh;
+    /*background: linear-gradient(360deg, #170c7f 1.02%, #0a3969 77.27%); */
+   /* background: linear-gradient(13deg, #004AB8 11.6%, #004382 18.31%, #003A8A 36.97%, #00467D 55.32%, #0065CA 80.05%, #0087D2 146.56%, #004C77 146.56%);*/
+   background: linear-gradient(249deg, #00467D 8.74%, #00347A 11.31%, #004AB8 19.69%, #0053BB 22.36%, #004CB9 25.71%, #004A8D 33.85%, #00479F 41.27%, #005299 45.57%, #004595 50.35%, #004C77 68.94%, #004B79 79.17%, #0068CB 88.93%, #0087D2 95.47%),
+                linear-gradient(176deg, #00467D -2.59%, #004AB8 9.6%, #0053BB 12.57%, #00347A 20.26%, #004A8D 25.37%, #00479F 33.63%, #005299 38.42%, #004595 43.74%, #004CB9 52.64%, #004C77 71.5%, #004B79 75.82%, #0068CB 86.69%, #0087D2 93.97%);
+
 }
 .Community .title{
     font-size: 3vw;
@@ -32,16 +37,19 @@
 .Community .postButton {
     padding: 2vh 3.5vw;
     margin-left: 10px;
-    background-color: #ff004f; /* Button background color */
+    background-color: black; /* Button background color */
     border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
     cursor: pointer;
-    color: white;
+    color: greenyellow;
     font-size: 1.7vw;
 }
 
 .Community .postButton:hover {
-    background-color: #e60045; /* Slightly darker on hover for feedback */
+    background-color: greenyellow; /* Slightly darker on hover for feedback */
+    color: black;
+    box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.45) inset;
 }
 .Community .filter{
     width:4vw;
@@ -50,9 +58,9 @@
     overflow-y: auto; /* Enable vertical scrolling */
     margin: auto;
     margin-top: 2vh;
-    width: 80vw;
-    height: 100vh;
-    border-radius: 140px;
+    width: 70vw;
+    height: 77vh;
+    border-radius: 40px 40px 0px 0px;
     background: rgba(143, 143, 143, 0.50);
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -67,6 +75,10 @@
     margin-left: 15vw;
     width: 50vw;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+    }
 
 /*
 .Community .modal {
@@ -83,16 +95,6 @@
 }
 */
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: wheat;
-    padding: 20px;
-    z-index: 2; /* Ensure modal is above other content */
-    border-radius: 10px;
-}
 
 /* Style for the overlay/background behind the modal */
 .Community .overlay {
@@ -104,4 +106,101 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 900;
+}
+
+
+.AddPostWrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 440px;
+    background-color: rgba(27, 90, 179, 0.8); /* Navyish color with transparency */
+    border: 2px solid black;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AddPostWrapper .AddPostContainer {
+    width: 100%;
+    padding: 40px;
+    margin-top: -20px;
+}
+
+.AddPostContainer h2 {
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    
+}
+
+.AddPostInput{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid white;
+    margin: 30px 0;
+}
+
+.AddPostInput input {
+    width: 100%;
+    height:100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: white;
+    font-weight: 600;
+    padding-bottom: 27px; /* Adjust the padding here */
+}
+.AddPostInput textarea {
+    width: 100%; /* Change this value to the desired width */
+    height: 100px; /* Change this value to the desired height */
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    color: white;
+    font-weight: 600;
+    padding-bottom: 27px; /* Adjust the padding here if needed */
+    resize: none; /* Prevent resizing */
+}
+
+.AddPostInput label{
+    font-size: 1.5em;
+}
+.closeButton{
+    margin-left: 330px;
+    width:20px;
+    height:20px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+
+}
+.closeButton:hover{
+    background-color: rgb(233, 108, 108);
+}
+.submitButton {
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top:150px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.submitButton:hover {
+    background-color: #e60045; /* Slightly darker on hover for feedback */
+    box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.45) inset;
 }

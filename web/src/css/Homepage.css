@@ -1,5 +1,7 @@
 body{
-    background-image: url('../assets/images/mountains-night-background.jpg');
+    background-image: url('../assets/images/mountains-night-background.jpg'); 
+   /* background: linear-gradient(294deg, #0074B6 1.02%, #127575 97.27%);*/
+   /* background: linear-gradient(294deg, #170c7f 1.02%, #0a3969 97.27%);*/
     background-position: top;
     font-family: Arial, Helvetica, sans-serif;
 } /* heads up, even tho only the homepage.js is importing this css file, once it is loaded up it is used across
@@ -42,7 +44,7 @@ body{
 }
 
 .welcome-message h1 span {
-    color: #ff004f;
+    color: greenyellow;
 }
 
 .Home .footer {
@@ -60,7 +62,7 @@ body{
 }
 .Home .footer:hover {
     transition: 0.3s;
-    background-color: rgb(255, 0, 79, 0.5);
+    background-color: greenyellow;
 }
 
 
@@ -195,15 +197,15 @@ background: rgba(143, 143, 143, 0.50);
 .navbar-button {
     padding: 10px 15px;
     margin-left: 10px;
-    background-color: #ff004f; /* Button background color */
+    background-color: greenyellow; /* Button background color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: black;
     font-size: 16px;
 }
 
 .navbar-button:hover {
-    background-color: #e60045; /* Slightly darker on hover for feedback */
+    background-color: greenyellow; /* Slightly darker on hover for feedback */
 }
 

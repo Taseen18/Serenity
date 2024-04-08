@@ -25,12 +25,11 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .topWrapper{
-
     height: 12vh;
-flex-shrink: 0;
-border-radius: 14px 14px 0px 0px;
-background: rgba(255, 0, 79, 0.8);
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    border-radius: 14px 14px 0px 0px;
+    background: greenyellow;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .Chat .bodyWrapper{
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -108,15 +107,16 @@ box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     width: 12.5vw;
     height:7vh;
     border-radius: 33px;
-    background: rgba(255, 0, 79, 0.80);
+    background: black;
     text-align: center;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: white;
+    color: greenyellow;
     font-size: 1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .Chat .option:hover{
-    background-color: #9f0030;
+    background-color: greenyellow;
+    color: black;
 }
 .Chat .send{
     all: initial;
@@ -124,7 +124,7 @@ box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     font-size: 2vw;
     cursor:pointer;
     font-weight: 550;
-    color:rgba(255, 0, 79);
+    color: greenyellow;
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 .Chat .send:hover{
