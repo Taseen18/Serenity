@@ -5,7 +5,6 @@ import '../css/resourceMore.css';
 import Navbar from "../components/Navbar";
 import Line from "../assets/images/Line.png"
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import nhsLogo from "../assets/images/nhs_attribution.png";
 import BenefitsArticle from './articles/BenefitsExerciseArticle';
 import SittingArticle from './articles/SittingArticle';

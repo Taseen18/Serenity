@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import '../css/resourceMore.css';
 //import {resourceList} from "../helper/resourceList" //use open and close curly braces to grab file individually from export
 //import resourceItem from "../components/resource"
