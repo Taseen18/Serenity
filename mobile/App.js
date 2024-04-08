@@ -17,6 +17,7 @@ import AccountSettings from './pages/profilePages/Account';
 import ChangeName from './pages/profilePages/accountPages/ChangeName';
 import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
 import ChangePassword from './pages/profilePages/accountPages/ChangePassword'
+import Community from './pages/Community';
 
 //Placeholders:
 const Resources = () => null;
@@ -44,6 +45,13 @@ function MainTabScreen() {
           ),
         }}
       />
+      <Tab.Screen
+  name="Community"
+  component={Community}
+  options={{
+    // Add any options here if needed
+  }}
+/>
       <Tab.Screen 
         name="Messages" 
         component={ChatsList}

@@ -177,11 +177,12 @@ const Homepage = ({ navigation }) => {
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>Hi, {first_name} 👋</Text>
         </View>
+        <Button title="Fetch Tasks" onPress={fetchTasks} />
         <View style={styles.gridContainer}>
           <View style={styles.grid}>
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Screen1')}
+              onPress={() => navigateToScreen('Community')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/tropical.png')}
@@ -198,7 +199,7 @@ const Homepage = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Make Appointment')}
+              onPress={() => navigateToScreen('Screen2')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/sandy.png')}
