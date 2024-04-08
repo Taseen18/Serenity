@@ -6,7 +6,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-    // Add more styles as needed
+    input: {
+      height: 40,
+      margin: 12,
+      padding: 10,
+    },
   });
 
 export default styles;

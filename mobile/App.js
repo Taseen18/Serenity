@@ -13,6 +13,10 @@ import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
 import MakeAppointmentScreen from './pages/MakeAppointment';
+import AccountSettings from './pages/profilePages/Account';
+import ChangeName from './pages/profilePages/accountPages/ChangeName';
+import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
+import ChangePassword from './pages/profilePages/accountPages/ChangePassword'
 
 //Placeholders:
 const Resources = () => null;
@@ -134,6 +138,26 @@ const App = () => {
           name="Make Appointment" 
           component={MakeAppointmentScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Account Settings" 
+          component={AccountSettings}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Name" 
+          component={ChangeName}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Email" 
+          component={ChangeEmail}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Password" 
+          component={ChangePassword}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>

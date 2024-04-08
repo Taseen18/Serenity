@@ -39,8 +39,19 @@ const Homepage = ({ navigation }) => {
       }
     };
 
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session) {
+        await AsyncStorage.setItem('userToken', JSON.stringify(session));
+        setFirstName(session.user?.user_metadata?.first_name || 'there');
+      }
+    });
+
     loadUser();
     fetchTasks();
+
+    return () => {
+      authListener?.unsubscribe();
+    };
   }, []);
 
   const navigateToScreen = (screenName) => {
