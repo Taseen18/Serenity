@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import styles from '../styles/ChatsListStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChatsList = ({ navigation }) => {
     const [chats, setChats] = useState([]);
@@ -55,18 +56,23 @@ const ChatsList = ({ navigation }) => {
     }, []);
 
     return (
-        <View style={styles.container}>
-          {chats.map((chat, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => navigation.navigate('Messenger', { chatId: chat.chat_id, chatWith: (chat.chat_with_first_name + " " + chat.chat_with_last_name) })}
-              style={styles.chatContainer}
-            >
-              <Text>Chat with: {chat.chat_with_first_name} {chat.chat_with_last_name}</Text>
-              <Text>Last message at: {chat.last_message_at}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <View style={styles.heading}>
+                    <Text style={styles.header}>Messages 💬</Text>
+                </View>
+                {chats.map((chat, index) => (
+                    <TouchableOpacity
+                    key={index}
+                    onPress={() => navigation.navigate('Messenger', { chatId: chat.chat_id, chatWith: (chat.chat_with_first_name + " " + chat.chat_with_last_name) })}
+                    style={styles.chatContainer}
+                    >
+                    <Text style={styles.chatWith}>{chat.chat_with_first_name} {chat.chat_with_last_name}</Text>
+                    <Text style={styles.lastMessage}>Last message at: {chat.last_message_at}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </SafeAreaView>
     );
 };
 

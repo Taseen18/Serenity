@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput, Alert } from 'react-native';
+import { View, TouchableOpacity, Alert, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../lib/helper/supabaseClient';
 import styles from '../styles/ProfileStyles';
@@ -43,10 +44,19 @@ const Profile = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Button title="Account Settings" onPress={() => navigation.navigate('Account Settings')} />
-      <Button title="Log Out" onPress={logOut} />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.heading}>
+          <Text style={styles.header}>Profile 👤</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Account Settings')}>
+          <Text style={styles.text}>Account Settings</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={logOut}>
+          <Text style={styles.text}>Sign Out</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 

@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // Import 
 import { supabase } from '../lib/helper/supabaseClient'; // Adjust the path as necessary
 import styles from '../styles/HomepageStyles';
 import { MaterialIcons, FontAwesome, AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Homepage = ({ navigation }) => {
   const [first_name, setFirstName] = useState('');
@@ -50,7 +51,7 @@ const Homepage = ({ navigation }) => {
     fetchTasks();
 
     return () => {
-      authListener?.unsubscribe();
+      authListener?.unsubscribe?.();
     };
   }, []);
 
@@ -171,145 +172,146 @@ const Homepage = ({ navigation }) => {
   
 
   return (
-    <View style={styles.container}>
-      <View style={styles.welcomeContainer}>
-        <Text style={styles.welcomeText}>Hi, {first_name} 👋</Text>
-      </View>
-      <Button title="Fetch Tasks" onPress={fetchTasks} />
-      <View style={styles.gridContainer}>
-        <View style={styles.grid}>
-          <TouchableOpacity
-            style={styles.square}
-            onPress={() => navigateToScreen('Screen1')}
-          >
-            <ImageBackground
-              source={require('../assets/images/squares/tropical.png')}
-              resizeMode='cover'
-              style={{ flex: 1 }}
-            >
-              <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Community</Text>
-                <View style={styles.squareIconWrapperCommunity}>
-                  <FontAwesome name="users" size={24} color="black" style={styles.squareIcon} />
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.square}
-            onPress={() => navigateToScreen('Make Appointment')}
-          >
-            <ImageBackground
-              source={require('../assets/images/squares/sandy.png')}
-              resizeMode='cover'
-              style={{ flex: 1 }}
-            >
-              <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Make Appointment</Text>
-                <View style={styles.squareIconWrapperAppointment}>
-                  <AntDesign name="clockcircle" size={24} color="black" style={styles.squareIcon} />
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.square}
-            onPress={() => navigateToScreen('Screen3')}
-          >
-            <ImageBackground
-              source={require('../assets/images/squares/mountain.png')}
-              resizeMode='cover'
-              style={{ flex: 1 }}
-            >
-              <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Other</Text>
-                <View style={styles.squareIconWrapperOther1}>
-                  <FontAwesome name="heart" size={24} color="black" style={styles.squareIcon} />
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.square}
-            onPress={() => navigateToScreen('Screen4')}
-          >
-            <ImageBackground
-              source={require('../assets/images/squares/woods.png')}
-              resizeMode='cover'
-              style={{ flex: 1 }}
-            >
-              <View style={{flex: 1, justifyContent: 'space-between'}}>
-                <Text style={styles.squareText}>Journal</Text>
-                <View style={styles.squareIconWrapperOther2}>
-                  <FontAwesome5 name="book-open" size={24} color="black" style={styles.squareIcon} />
-                </View>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcomeText}>Hi, {first_name} 👋</Text>
         </View>
-      </View>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <TextInput
-              placeholder="Task Title"
-              value={newTaskTitle}
-              onChangeText={setNewTaskTitle}
-              style={styles.modalText}
-            />
-            <TextInput
-              placeholder="Description (Optional)"
-              value={newTaskDescription}
-              onChangeText={setNewTaskDescription}
-              style={styles.modalText}
-              multiline
-            />
-            <Button title="Add Task" onPress={() => handleAddTask(newTaskTitle, newTaskDescription)} />
-            <Button title="Close" onPress={() => setModalVisible(false)} />
+        <View style={styles.gridContainer}>
+          <View style={styles.grid}>
+            <TouchableOpacity
+              style={styles.square}
+              onPress={() => navigateToScreen('Screen1')}
+            >
+              <ImageBackground
+                source={require('../assets/images/squares/tropical.png')}
+                resizeMode='cover'
+                style={{ flex: 1 }}
+              >
+                <View style={{flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={styles.squareText}>Community</Text>
+                  <View style={styles.squareIconWrapperCommunity}>
+                    <FontAwesome name="users" size={24} color="black" style={styles.squareIcon} />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.square}
+              onPress={() => navigateToScreen('Make Appointment')}
+            >
+              <ImageBackground
+                source={require('../assets/images/squares/sandy.png')}
+                resizeMode='cover'
+                style={{ flex: 1 }}
+              >
+                <View style={{flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={styles.squareText}>Make Appointment</Text>
+                  <View style={styles.squareIconWrapperAppointment}>
+                    <AntDesign name="clockcircle" size={24} color="black" style={styles.squareIcon} />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.square}
+              onPress={() => navigateToScreen('Screen3')}
+            >
+              <ImageBackground
+                source={require('../assets/images/squares/mountain.png')}
+                resizeMode='cover'
+                style={{ flex: 1 }}
+              >
+                <View style={{flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={styles.squareText}>Other</Text>
+                  <View style={styles.squareIconWrapperOther1}>
+                    <FontAwesome name="heart" size={24} color="black" style={styles.squareIcon} />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.square}
+              onPress={() => navigateToScreen('Screen4')}
+            >
+              <ImageBackground
+                source={require('../assets/images/squares/woods.png')}
+                resizeMode='cover'
+                style={{ flex: 1 }}
+              >
+                <View style={{flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={styles.squareText}>Journal</Text>
+                  <View style={styles.squareIconWrapperOther2}>
+                    <FontAwesome5 name="book-open" size={24} color="black" style={styles.squareIcon} />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
 
-      <View style={styles.taskListContainer}>
-        <View style={styles.taskListHeader}>
-          <Text style={styles.taskListTitle}>To Do List ✅</Text>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <AntDesign name="pluscircle" size={24} color="blue" />
-          </TouchableOpacity>
-
-        </View>
-        <ScrollView style={styles.taskScrollView}>
-          {tasks.map((task, index) => (
-            <View key={index} style={styles.taskItem}>
-              <View style={styles.taskTextContainer}>
-                <Text style={styles.taskTitle}>{task.title}</Text>
-                <Text style={styles.taskDescription}>{task.description}</Text>
-              </View>
-            
-              
-              <TouchableOpacity 
-                styles={styles.taskMarkAsComplete} 
-                onPress={() => markTaskAsComplete(task.task_id)}
-              >
-                {completingTaskIds.includes(task.task_id) ? (
-                  <MaterialIcons name="check-circle" size={24} color="green" />
-                ) : (
-                  <MaterialIcons name="radio-button-unchecked" size={24} color="grey" />
-                )}
-              </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <TextInput
+                placeholder="Task Title"
+                value={newTaskTitle}
+                onChangeText={setNewTaskTitle}
+                style={styles.modalText}
+              />
+              <TextInput
+                placeholder="Description (Optional)"
+                value={newTaskDescription}
+                onChangeText={setNewTaskDescription}
+                style={styles.modalText}
+                multiline
+              />
+              <Button title="Add Task" onPress={() => handleAddTask(newTaskTitle, newTaskDescription)} />
+              <Button title="Close" onPress={() => setModalVisible(false)} />
             </View>
-          ))}
-        </ScrollView>
+          </View>
+        </Modal>
+
+        <View style={styles.taskListContainer}>
+          <View style={styles.taskListHeader}>
+            <Text style={styles.taskListTitle}>To Do List ✅</Text>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <AntDesign name="pluscircle" size={24} color="blue" />
+            </TouchableOpacity>
+
+          </View>
+          <ScrollView style={styles.taskScrollView}>
+            {tasks.map((task, index) => (
+              <View key={index} style={styles.taskItem}>
+                <View style={styles.taskTextContainer}>
+                  <Text style={styles.taskTitle}>{task.title}</Text>
+                  <Text style={styles.taskDescription}>{task.description}</Text>
+                </View>
+              
+                
+                <TouchableOpacity 
+                  styles={styles.taskMarkAsComplete} 
+                  onPress={() => markTaskAsComplete(task.task_id)}
+                >
+                  {completingTaskIds.includes(task.task_id) ? (
+                    <MaterialIcons name="check-circle" size={24} color="green" />
+                  ) : (
+                    <MaterialIcons name="radio-button-unchecked" size={24} color="grey" />
+                  )}
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

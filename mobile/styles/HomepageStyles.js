@@ -4,28 +4,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
+    padding: 15,
   },
   welcomeContainer: {
     alignItems: 'left',
-    marginTop: 50,
+    marginTop: 20,
+    marginBottom: 30,
   },
   welcomeText: {
     fontSize: 50,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
-    paddingLeft: 20,
-    paddingTop: 20,
   },
   gridContainer: {
     alignItems: 'center',
     width: '100%',
+    marginBottom: 20,
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: '96%',
+    width: '100%',
   },
   square: {
     width: 160,
@@ -128,18 +129,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   addButton: {
-    // Your add button styles
+    //paddingTop: 10,
   },
 
   taskListContainer: {
     maxHeight: 300,
-    padding: 20,
+    padding: 10,
   },
   taskListHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
   },
   taskListTitle: {
     fontFamily: 'Montserrat-Bold',
@@ -151,12 +151,13 @@ const styles = StyleSheet.create({
   taskItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
+    paddingTop: 10,
   },
   taskTextContainer: {
     flex: 1,
+    marginBottom: 10,
   },
   taskTitle: {
     fontFamily: 'Montserrat-Medium',
@@ -168,6 +169,7 @@ const styles = StyleSheet.create({
   },
   taskMarkAsComplete: {
     marginLeft: 10,
+    marginTop: 10,
   },
 });
 
