@@ -77,7 +77,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: wheat;
+    background-color: greenyellow;
     padding: 20px;
     z-index: 2; /* Ensure modal is above other content */
     border-radius: 10px;
