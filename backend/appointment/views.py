@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from .serializers import AppointmentSerializer
 from django.shortcuts import get_object_or_404, render
 from .db_service import check_user_type, get_mhps
 from django.contrib.auth.models import User
@@ -29,6 +30,7 @@ class MakeAppointment(APIView):
             else:
                 mhp_id = request.data.get('mhpId')
 
+            print("mhp", mhp_id)
             mhp = User.objects.get(username=mhp_id)
 
             reason = request.data.get('reason')
@@ -87,6 +89,48 @@ class FetchUsers(APIView):
             return JsonResponse({'mhps': mhps}, safe=False)
         else:
             return Response({'error', 'User is MHP'}, status=403)
+        
+class FetchAppointments(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_type = check_user_type(request.user.username)
+        user = User.objects.get(username=request.user.username)
+        
+        appointments_dict = Appointment.objects.filter(employee=user) | Appointment.objects.filter(mhp=user)
+        
+        serialiser = AppointmentSerializer(appointments_dict, many=True)
+        print("")
+        
+        appointments = []
+
+        for appointment in serialiser.data:
+            if user_type == "employee":
+                mhp = User.objects.get(username=appointment['mhp'])
+                appointments.append({
+                    'id': appointment['id'],
+                    'employee': appointment['employee'],
+                    'mhp': appointment['mhp'],
+                    'date_time': appointment['date_time'],
+                    'reason': appointment['reason'],
+                    'created_at': appointment['created_at'],
+                    'with': {'id': mhp.username, 'name': mhp.first_name + " " + mhp.last_name}
+                })
+            elif user_type == "mhp":
+                employee = User.objects.get(username=appointment['employee'])
+                appointments.append({
+                    'id': appointment['id'],
+                    'employee': appointment['employee'],
+                    'mhp': appointment['mhp'],
+                    'date_time': appointment['date_time'],
+                    'reason': appointment['reason'],
+                    'created_at': appointment['created_at'],
+                    'with': {'id': employee.username, 'name': employee.first_name + " " + employee.last_name}
+                })
+
+        return JsonResponse({'appointments': appointments}, safe=False)
+
+
 
 
 

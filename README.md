@@ -54,6 +54,6 @@ Run `npm install` and then `npm start`.
 
 The webpage should load correctly.
 
-
-
-
+## Mobile
+Start the server via `npx expo start`.
+`mobile/lib/helper/djangoURL.JS`, edit this accordingly whether you are using an emulator or your personal device. It is required so that your requests to django are sent to the right place. If using personal device (expo go app), start django server with command `python3 manage.py runserver X.X.X.X:PORT`. X.X.X.X should be your own computers IP and PORT should be 8000. Note, running the django server on your computers local IP is not yet supported by the website (it expects localhost); it should only be used for mobile development.
