@@ -1492,3 +1492,4 @@ backend/to_do_list/migrations/__pycache__/0002_task_task_id_task_title_alter_tas
 backend/to_do_list/migrations/__pycache__/0003_task_created_at.cpython-310.pyc
 .DS_Store
 node_modules/
+dump.rdb

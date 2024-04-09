@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import {TouchableOpacity} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 
 import Login from './pages/Login';
@@ -19,9 +20,12 @@ import ChangeName from './pages/profilePages/accountPages/ChangeName';
 import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
 import ChangePassword from './pages/profilePages/accountPages/ChangePassword'
 import Community from './pages/Community';
+import Resources from './pages/Resources';
+import ExerciseArticle from './pages/ExerciseArticle'
+import Diet from './pages/Diet'
+import MentalHealth from './pages/MentalHealth'
 
 //Placeholders:
-const Resources = () => null;
 const Trackers = () => null;
 
 const Stack = createNativeStackNavigator();
@@ -144,6 +148,40 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen 
+          name="ExerciseArticle"
+          component={ExerciseArticle}
+          options={({ navigation }) => ({ 
+            title: 'Articles',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen name="Diet"
+        component={Diet}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+        <Stack.Screen name="MentalHealth"
+        component={MentalHealth}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+        <Stack.Screen 
           name="Make Appointment" 
           component={MakeAppointmentScreen}
           options={{ headerShown: false }}
@@ -174,6 +212,7 @@ const App = () => {
           options={{ headerShown: true }}
         />
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 };
