@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
 import MakeAppointmentScreen from './pages/MakeAppointment';
+import MHPSelection from './pages/MakeAppointmentMhpSelection';
 import AccountSettings from './pages/profilePages/Account';
 import ChangeName from './pages/profilePages/accountPages/ChangeName';
 import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
@@ -145,6 +146,11 @@ const App = () => {
         <Stack.Screen 
           name="Make Appointment" 
           component={MakeAppointmentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Select MHP" 
+          component={MHPSelection}
           options={{ headerShown: false }}
         />
         <Stack.Screen 

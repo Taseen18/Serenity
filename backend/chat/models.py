@@ -16,4 +16,4 @@ class Chat(models.Model):
     chat_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(User, related_name='employee_id', on_delete=models.CASCADE, to_field='username')
     mhp = models.ForeignKey(User, related_name='mhp_id', on_delete=models.CASCADE, to_field='username')
-    last_message_at = models.DateTimeField(auto_now=True)
+    last_message_at = models.DateTimeField(auto_now=False)
