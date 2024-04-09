@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import {TouchableOpacity} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 
 import Login from './pages/Login';
@@ -133,14 +134,39 @@ const App = () => {
           component={MessengerScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="ExerciseArticle"
+        <Stack.Screen 
+        name="ExerciseArticle"
         component={ExerciseArticle}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
         />
         <Stack.Screen name="Diet"
         component={Diet}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
         />
         <Stack.Screen name="MentalHealth"
         component={MentalHealth}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useState, useEffect } from 'react';
-// import nhsLogo from "../assets/images/nhs_attribution.png";
 import StressArticle from './articles/StressArticle';
 import AnxietyArticle from './articles/AnxietyArticle';
 import DepressionArticle from './articles/DepressionArticle';
@@ -41,50 +40,95 @@ function MentalHealth() {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.topSection}>
-        <Text style={styles.title}>Mental Health</Text>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerTitle}>Mental Health 🧠</Text>
       </View>
       <View style={styles.articleContainer}>
         {articles.map((article) => (
-          <TouchableOpacity key={article.id} style={styles.card} onPress={() => handleArticleSelect(article.id)}>
-            <Text>{article.title}</Text>
-            <Text>{article.description}</Text>
+          <TouchableOpacity
+            key={article.id}
+            style={styles.card}
+            onPress={() => handleArticleSelect(article.id)}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.articleTitle}>{article.title}</Text>
+            <Text style={styles.articleDescription}>{article.description}</Text>
           </TouchableOpacity>
         ))}
       </View>
       {SelectedArticleComponent && <SelectedArticleComponent />}
+      <View style={styles.creditContainer}>
+        <Image
+            source={require("../assets/images/nhs.png")}
+            resizeMode="contain"
+            style={styles.creditLogo}
+        />
+        <Text style={styles.creditText}>Content supplied by the NHS website</Text>
+     </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FAFAFA',
   },
-  topSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  headerContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 5,
   },
-  title: {
-    fontSize: 24,
+  headerTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#333333',
   },
   articleContainer: {
-    flexDirection: 'column',
+    padding: 20,
   },
   card: {
-    margin: 10,
-    padding: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 3,
   },
-  logoContainer: {
+  articleTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#333333',
+  },
+  articleDescription: {
+    fontSize: 16,
+    color: '#666666',
+  },
+  creditContainer: {
     alignItems: 'center',
-    margin: 20,
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#eaeaea',
   },
-  logo: {
-    width: 200,
-    height: 100,
-  }
+  creditLogo: {
+    width: 150,
+    height: 50,
+  },
+  creditText: {
+    fontSize: 12,
+    color: '#7f8c8d',
+    marginTop: 5,
+  },
 });
 
 export default MentalHealth;

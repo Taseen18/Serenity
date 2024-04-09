@@ -1,174 +1,46 @@
+import { CurrentRenderContext } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    backgroundColor: '#f5f5f5', // A light background color
+    marginTop:50,
   },
-  welcomeContainer: {
-    alignItems: 'left',
-    marginTop: 50,
-  },
-  welcomeText: {
+  headerText: {
     fontSize: 50,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
     paddingLeft: 20,
     paddingTop: 20,
   },
-  gridContainer: {
-    alignItems: 'center',
-    width: '100%',
-  },
   grid: {
+    marginTop: 30,
     flexDirection: 'column',
     alignContent:'center',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '96%',
+    justifyContent:'center',
   },
-  square: {
-    width: 200,
+  card: {
+    width: '48%',
     height: 200,
-    margin: 10,
-    borderRadius: 20,
-    overflow: 'hidden',
+    marginBottom: 16,
+    borderRadius: 16,
+    overflow: 'hidden', 
+    elevation: 4, 
   },
-  squareContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-  squareText: {
-    paddingTop: 15,
-    paddingLeft: 12,
-    fontFamily: 'Montserrat-SemiBold',
-    fontSize: 15,
-    textAlign: 'left',
-  },
-  squareIconWrapperCommunity: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    borderRadius: 10,
-    bottom: 20,
-    right: 20,
-    borderColor: 'None',
-    backgroundColor: '#C8D4F3',
-  },
-  squareIconWrapperAppointment: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    borderRadius: 10,
-    bottom: 20,
-    right: 20,
-    borderColor: 'None',
-    backgroundColor: '#FFEAE0',
-  },
-  squareIconWrapperOther1: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    borderRadius: 10,
-    bottom: 20,
-    right: 20,
-    borderColor: 'None',
-    backgroundColor: '#CEC0C0',
-  },
-  squareIconWrapperOther2: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    borderRadius: 10,
-    bottom: 20,
-    right: 20,
-    borderColor: 'None',
-    backgroundColor: '#9FA7D8',
-  },
-   Icon: {
-    //paddingBottom: 10,
-    //paddingRight: 10,
-  },
-
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  modalText: {
-    marginBottom: 15,
-    padding: 10,
-    borderColor: 'gray',
-    borderWidth: 1,
+  cardImage: {
     width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end', // Aligns the text to the bottom
   },
-  addButton: {
-    // Your add button styles
-  },
-
-  taskListContainer: {
-    maxHeight: 300,
-    padding: 20,
-  },
-  taskListHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-  },
-  taskListTitle: {
-    fontFamily: 'Montserrat-Bold',
-    fontSize: 30,
-  },
-  taskScrollView: {
-    width: '100%',
-  },
-  taskItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
-  },
-  taskTextContainer: {
-    flex: 1,
-  },
-  taskTitle: {
-    fontFamily: 'Montserrat-Medium',
-    fontSize: 20,
-  },
-  taskDescription: {
-    fontFamily: 'Montserrat-Regular',
-    fontSize: 15,
-  },
-  taskMarkAsComplete: {
-    marginLeft: 10,
+  cardText: {
+    textAlign:'center',
+    fontSize: 24,
+    fontWeight: '600',
+    color: 'white',
+    padding: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
 });
 

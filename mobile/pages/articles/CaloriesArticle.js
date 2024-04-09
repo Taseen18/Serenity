@@ -1,5 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, StyleSheet, Linking, View } from 'react-native';
+import styles from '../../styles/ArticleStyles';
+
 
 const CaloriesArticle = () => {
   const openURL = (url) => {
@@ -38,53 +40,16 @@ const CaloriesArticle = () => {
       <Text style={styles.link} onPress={() => openURL('https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/')}>
         Find out your BMI
       </Text>
-      {/* Include more sections here as needed */}
       <Text style={styles.subheader}>Do</Text>
-      {/* List items */}
       <Text style={styles.listItem}>
         check nutrition labels on food packaging for calorie information – this will be displayed under the "energy" heading
       </Text>
-      {/* Continue with other "Do" list items and sections */}
       <Text style={styles.link} onPress={() => openURL('https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/')}>
         The Eatwell Guide
       </Text>
-      {/* And so on for each link and piece of content */}
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  header: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subheader: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  paragraph: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  listItem: {
-    fontSize: 16,
-    marginLeft: 10,
-    marginBottom: 8,
-  },
-  bold: {
-    fontWeight: 'bold',
-  },
-  link: {
-    color: 'blue',
-    textDecorationLine: 'underline',
-    marginBottom: 8,
-  }
-});
 
 export default CaloriesArticle;

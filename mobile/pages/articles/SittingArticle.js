@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, StyleSheet, Linking } from 'react-native';
+import styles from '../../styles/ArticleStyles';
 
 const SittingArticle = () => {
   const openURL = (url) => {
@@ -9,35 +10,24 @@ const SittingArticle = () => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>Why we should sit less</Text>
+
       <Text style={styles.paragraph}>
-        There is increasing evidence that, unless you are a wheelchair user, sitting down too much can be a risk to your health. To reduce our risk of ill health from inactivity, we are advised to exercise regularly, at least 150 minutes a week, and reduce sitting time.
+        <Text style={styles.bold}>
+          There is increasing evidence that, unless you are a wheelchair user, sitting down too much can be a risk to your health.
+        </Text>
+        {' '}To reduce our risk of ill health from inactivity, we are advised to exercise regularly, at least{' '}
+        <Text style={styles.link} onPress={() => openURL('https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/')}>
+          150 minutes a week
+        </Text>, and reduce sitting time.
       </Text>
-      {/* Example of linking to external URLs */}
-      <Text style={styles.link} onPress={() => openURL('https://www.nhs.uk/live-well/exercise/')}>
-        Find out about physical activity guidelines
+        <Text style={styles.listItem}>• Do not leave a child in a pram or buggy, car seats or highchair for longer than 1 hour at a time</Text>
+        <Text style={styles.listItem}>• Reduce time spent in walking aids or baby bouncers</Text>
+        <Text style={styles.listItem}>• Reduce time spent in front of the TV or other screens</Text>
+      <Text style={styles.link} onPress={() => openURL('https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-children-under-five-years/')}>
+      Find out about physical activity guidelines for children under 5 years
       </Text>
-      {/* Continue with the rest of your article content */}
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  header: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  paragraph: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  link: {
-    color: 'blue',
-    textDecorationLine: 'underline',
-  }
-});
 
 export default SittingArticle;
