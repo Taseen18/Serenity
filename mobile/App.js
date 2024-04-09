@@ -12,9 +12,13 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
+import Resources from './pages/Resources';
+import ExerciseArticle from './pages/ExerciseArticle'
+import Diet from './pages/Diet'
+import MentalHealth from './pages/MentalHealth'
+
 
 //Placeholders:
-const Resources = () => null;
 const Trackers = () => null;
 
 const Stack = createNativeStackNavigator();
@@ -128,6 +132,15 @@ const App = () => {
           name="Messenger" 
           component={MessengerScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen name="ExerciseArticle"
+        component={ExerciseArticle}
+        />
+        <Stack.Screen name="Diet"
+        component={Diet}
+        />
+        <Stack.Screen name="MentalHealth"
+        component={MentalHealth}
         />
       </Stack.Navigator>
     </NavigationContainer>
