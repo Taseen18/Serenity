@@ -1,7 +1,6 @@
 import React from "react";
 import{ Link } from "react-router-dom"
 import "../css/Navbar.css"
-import UserIcon from "../assets/images/UserIcon.png"
 
 
 //import Navbar from "./components/Navbar";
@@ -23,18 +22,17 @@ import UserIcon from "../assets/images/UserIcon.png"
   return (
     <div className = "navbar">
       <div className="leftSide">
-      <Link to="/homepage" className="navTitle"><h1 className="navTitle">Serenity</h1> </Link>
+      <Link to="/homepage" className="navTitle"><h1 className="navTitle">SERENITY</h1> </Link>
       </div>
       <div className = "middle">
         <Link to="/resources" className="linker"> Resources </Link>
         <Link to="/Tracking" className="linker"> Tracking </Link>
         <Link to="/Community" className="linker"> Community </Link>
-        <Link to="/Chat" className="linker"> Chat </Link>
+        <Link to="/Messenger" className="linker"> Chat </Link>
         <Link to="/About" className="linker"> About </Link>
-      <button className="navbar-button" >Fetch Tasks</button>
+    {/*}  <button className="navbar-button" >Fetch Tasks</button> */}
       </div>
       <div className = "rightSide">
-        <img src={UserIcon} />
         <div className="UserInfo">
             <h2>FDM employee</h2>
             <div className="lower_section">

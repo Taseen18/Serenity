@@ -6,9 +6,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .db_GetPostData import fetch_post, fetch_comments, add_post
+from .db_GetPostData import fetch_post, fetch_comments, add_post, add_comment
 from .models import Posts
 from django.contrib.auth.models import User
+import datetime
 
 #def post(request):
  #   all_posts = Posts.objects.all
@@ -37,13 +38,18 @@ class PostListCreate(APIView):
                             'user': user
                         }
                     )
+                                       # Parse the posted_at timestamp
+                    posted_at = datetime.datetime.strptime(post.posted_at, '%Y-%m-%dT%H:%M:%S.%f%z')
+
+                    # Format the posted_at timestamp
+                    formatted_posted_at = posted_at.strftime('%Y-%m-%d %H:%M')
 
                     postList.append({
                         'post_id': post.post_id,
                         'post_title': post.post_title,
                         'post_content': post.post_content,
                         'likes': post.likes,
-                        'posted_at': post.posted_at,
+                        'posted_at': formatted_posted_at,
                         'poster_name': user.first_name
                     })
 
@@ -57,26 +63,24 @@ class PostListCreate(APIView):
             return JsonResponse({'error': 'Failed to fetch and sync posts.'}, status=500)
 
 class CommentListCreate(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        post_id = request.GET.get('post_id', None)
-
+    def get(self, request, post_id):
+      #  post_id = request.GET.get('post_id', None)
+        
         try:
             if post_id is not None:
                 response = fetch_comments(post_id)
                 comments = []
                 if response.data:
                     for comment in response.data:
-                        comment.append({
+                        comments.append({
                             'comment_id': comment['comment_id'],
                             'commented_at': comment['commented_at'],
                             'post_id': comment['post_id'],
                             'user_id': comment['user_id'],
-                            'parent_comment_id': comment['parent_comment_id'],
-                            'content': comment['content']
+                            'PostContent': comment['PostContent']
                         })
-                    print(len(comments), "comments found")
+                        print(len(comments), "comments found")
+                        print(comments)
                 return JsonResponse({'comments': comments}, safe=False)
 
         except Exception as e:
@@ -101,3 +105,16 @@ class PostCreate(APIView):
 
         print("post added successfully")
         return JsonResponse({'success': 'post created successfully.'})
+    
+class CommentCreate(APIView):
+    #permission_classes = [IsAuthenticated]
+    def post(self, request,post_id):
+        username = request.user.username
+        PostContent = request.data.get('PostContent', '')
+        user = User.objects.get(username=username)
+        error_message = add_comment(PostContent, user.username,post_id)
+        if error_message:
+            return Response({'error': error_message}, status=500)
+        
+        print("comment added successfully")
+        return JsonResponse({'success': 'comment created successfully.'})

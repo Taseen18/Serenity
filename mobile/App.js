@@ -13,11 +13,17 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
+import MakeAppointmentScreen from './pages/MakeAppointment';
+import MHPSelection from './pages/MakeAppointmentMhpSelection';
+import AccountSettings from './pages/profilePages/Account';
+import ChangeName from './pages/profilePages/accountPages/ChangeName';
+import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
+import ChangePassword from './pages/profilePages/accountPages/ChangePassword'
+import Community from './pages/Community';
 import Resources from './pages/Resources';
 import ExerciseArticle from './pages/ExerciseArticle'
 import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
-
 
 //Placeholders:
 const Trackers = () => null;
@@ -44,6 +50,13 @@ function MainTabScreen() {
           ),
         }}
       />
+      <Tab.Screen
+  name="Community"
+  component={Community}
+  options={{
+    // Add any options here if needed
+  }}
+/>
       <Tab.Screen 
         name="Messages" 
         component={ChatsList}
@@ -135,16 +148,16 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen 
-        name="ExerciseArticle"
-        component={ExerciseArticle}
-        options={({ navigation }) => ({ 
-          title: 'Articles',
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
-        })}
+          name="ExerciseArticle"
+          component={ExerciseArticle}
+          options={({ navigation }) => ({ 
+            title: 'Articles',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
         />
         <Stack.Screen name="Diet"
         component={Diet}
@@ -168,7 +181,38 @@ const App = () => {
           ),
         })}
         />
+        <Stack.Screen 
+          name="Make Appointment" 
+          component={MakeAppointmentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Select MHP" 
+          component={MHPSelection}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Account Settings" 
+          component={AccountSettings}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Name" 
+          component={ChangeName}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Email" 
+          component={ChangeEmail}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Change Password" 
+          component={ChangePassword}
+          options={{ headerShown: true }}
+        />
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 };
