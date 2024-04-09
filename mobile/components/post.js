@@ -7,6 +7,7 @@ import {
   Button, TouchableOpacity, ScrollView, Platform, ImageBackground, Modal } from 'react-native';
 import styles from "../styles/communityAndPostStyles"
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Post = ({ navigation }) => {
   const [postList, setPosts] = useState([]);
@@ -18,17 +19,20 @@ const Post = ({ navigation }) => {
   const [newPostComment, setnewPostComment] = useState({content: '' });
 
   const postsUrl = Platform.select({
-    ios: 'http://localhost:8000/postList/',
-    android: 'http://10.0.2.2:8000/postList/',
+    ios: 'http://localhost:8000/community/postList/',
+    android: 'http://10.0.2.2:8000/community/postList/',
   });
 
   const fetchPosts = useCallback(async () => {
+    const tokenString = await AsyncStorage.getItem('userToken');
+    const token = JSON.parse(tokenString);
+    const access_token = token.access_token;
     try {
         const response = await fetch(postsUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          //'Authorization': `Bearer ${token.session.access_token}`, 
+          'Authorization': `Bearer ${access_token}`, 
         },
       });
       const data = await response.json();
@@ -45,13 +49,14 @@ const Post = ({ navigation }) => {
   
   useEffect(() => {
     fetchPosts();
-  }, [fetchPosts]);
+  }, []);
 
   const [liked, setLike] = useState(false);
 
   const handlePostClick = (post) => {
     setSelectedPost(post);
     setIsPostModalOpen(true);
+    
   };
   
  /* const handleLike = () => {
@@ -79,10 +84,12 @@ const Post = ({ navigation }) => {
     }
   };
 
+  /*
   useEffect(() => {
     // Fetch comments when component mounts
     fetchComments(); // Provide postId if applicable
   }, []);
+  */
 
   const handleAddComment = async (newPostComment) => {
     newPostComment.preventDefault(selectedPost);
@@ -110,65 +117,77 @@ const Post = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.post}>
-    {postList.map((post, index) => (
-        <View key={index} style={styles.PostHolder}  onPress={() => handlePostClick(post)}>
-            <Text style={styles.postTitle}>{post.post_title}</Text>
-            <Text style={styles.postContent}>{post.post_content}</Text>
-            <Text style={styles.postedBy}>Posted by - {post.poster_name}</Text>
-            {/* <button className={`likeButton ${liked ? 'clicked' : ''}`} onClick={handleLike}></button> */}   
-          <Text style={styles.PostDate}>Posted by - {post.posted_at}</Text>
-        </View>
-      ))}
-    
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.post}>
+      {postList.map((post, index) => (
+        
+          
+          <TouchableOpacity onPress={() => handlePostClick(post)}>
+            <View key={index} style={styles.PostHolder} >
+              <Text style={styles.frontPostTitle}>{post.post_title}</Text>
+              <Text style={styles.frontPostedBy}>Posted by - {post.poster_name}</Text>
+              {/* <button className={`likeButton ${liked ? 'clicked' : ''}`} onClick={handleLike}></button> */}
+            </View>
+        </TouchableOpacity>
+          
       
-    <Modal
-    animationType="slide"
-    transparent={true}
-    visible={isPostModalOpen}
-    onRequestClose={() => {
-        setIsPostModalOpen(false);
-    }}
->
-    <Button title="Close" onPress={() => setIsPostModalOpen(false)} />
-    {selectedPost && (
-        <View style={styles.PostHolder} key={selectedPost.post_id}>
-            <Text style={styles.postTitle}>{selectedPost.post_title}</Text>
-            <Text style={styles.postContent}>{selectedPost.post_content}</Text>
-            <Text style={styles.postedBy}>Posted by - {selectedPost.poster_name}</Text>
-            <Text style={styles.PostDate}>Posted by - {selectedPost.posted_at}</Text>
-        </View>
-    )}
-    <View style={styles.CommentSection} key={comments.comment_id}>
-        <Text>{comments.content}</Text>
-    </View>
-    <Button title="Add comment" style={styles.AddCommentButton} onPress={() => setIsCommentModalOpen(true)} />
-</Modal>
-
-
-    <Modal
+        ))}
+      
+        
+      <Modal
         animationType="slide"
         transparent={true}
-        visible={isCommentModalOpen }
+        visible={isPostModalOpen}
         onRequestClose={() => {
-            setIsCommentModalOpen(false);
-        }}
-        >
-        
-        <View style={styles.addCommmentWrapper}>
-            <Button title="Close" onPress={() =>  setIsCommentModalOpen(false)} />
-            <TextInput
-              placeholder="..."
-              value={newPostComment}
-              onChangeText={setnewPostComment}
-              style={styles.modalText}
-              multiline
-            />
-            <Button title="Add Comment" onPress={() => handleAddComment(newPostComment)} />
-        </View>
-    </Modal>
-    
+        setIsPostModalOpen(false);
+      }}
+      
+      >
+      <View style={styles.openPost}>
+      <Button title="Close" onPress={() => setIsPostModalOpen(false)} />
+      {selectedPost && (
+        <TouchableOpacity onPress={() => fetchComments(selectedPost.post_id)}>
+          <View style={styles.PostHolder} key={selectedPost.post_id}>
+              <Text style={styles.postTitle}>{selectedPost.post_title}</Text>
+              <Text style={styles.postContent}>{selectedPost.post_content}</Text>
+              <Text style={styles.postedBy}>Posted by - {selectedPost.poster_name}</Text>
+              <Text style={styles.PostDate}>Posted at - {selectedPost.posted_at}</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+      <View style={styles.CommentSection} key={comments.comment_id}>
+          <Text>{comments.content}</Text>
+      </View>
+      <Button title="Add comment" style={styles.AddCommentButton} onPress={() => setIsCommentModalOpen(true)} />
     </View>
+  </Modal>
+
+
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isCommentModalOpen }
+          onRequestClose={() => {
+              setIsCommentModalOpen(false);
+          }}
+          >
+          {selectedPost && (
+          <View style={styles.addCommmentWrapper}>
+              <Button title="Close" onPress={() =>  setIsCommentModalOpen(false)} />
+              <TextInput
+                placeholder="..."
+                value={newPostComment}
+                onChangeText={setnewPostComment}
+                style={styles.modalText}
+                multiline
+              />
+              <Button title="Add Comment" onPress={() => handleAddComment(newPostComment)} />
+          </View>
+        )}
+      </Modal>
+      
+      </View>
+    </SafeAreaView>
   )
 }
 
