@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, TextInput, FlatList, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TextInput, FlatList, Platform, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from '../styles/MakeAppointmentStyles';
-import { AuthSessionMissingError } from '@supabase/supabase-js';
+import { useNavigation } from '@react-navigation/native';
 
-const MakeAppointmentScreen = () => {
+const MakeAppointmentScreen = ({ route }) => {
+    const navigation = useNavigation();
     const [date, setDate] = useState(new Date());
     const [reason, setReason] = useState('');
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const [mhpList, setMhpList] = useState([]);
     const [selectedMhp, setSelectedMhp] = useState(null);
     const [searchText, setSearchText] = useState('');
     const apiUrl = Platform.select({
@@ -19,38 +19,15 @@ const MakeAppointmentScreen = () => {
       });
 
     useEffect(() => {
-        const fetchMhps = async () => {
-            try {
-                const tokenString = await AsyncStorage.getItem('userToken');
-                if (!tokenString) {
-                    console.warn('Token not available');
-                    return;
-                }
-                const token = JSON.parse(tokenString);
-                const access_token = token.access_token;
+        if (route.params?.selectMhp) {
+            setSelectedMhp(route.params.selectMhp);
+            console.log(`Selected MHP: ${route.params.selectMhp.name}`)
+        }
+    }, [route.params]);
 
-                const response = await fetch(`${apiUrl}appointment/getMhps/`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`, 
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch MHPs');
-                }
-                const data = await response.json();
-                setMhpList(data.mhps);
-            } catch (error) {
-                console.error('Failed to load MHPs', error);
-            }
-        };
-
-        fetchMhps();
-    }, []);
-    
-
+    const openMHPSelectionScreen = () => {
+        navigation.navigate('Select MHP');
+    };
 
     const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -79,9 +56,13 @@ const MakeAppointmentScreen = () => {
         });
 
         if (response.ok) {
+            Alert.alert("Success", "Appointment made successfully", [
+                { text: "OK", onPress: () => navigation.goBack() }
+            ]);
             console.log('Appointment made successfully');
         } else {
             console.error('Failed to make appointment');
+            Alert.alert("Error", "Failed to make appointment");
         }
     };
 
@@ -116,30 +97,8 @@ const MakeAppointmentScreen = () => {
                     placeholder='Reason for appointment'
                 />
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setSearchText}
-                    value={searchText}
-                    placeholder='Search for an MHP'
-                />
-
-                {searchText && (
-                    <FlatList
-                        data={filteredMhpList}
-                        keyExtractor={item => item.mhp_id.toString()}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity
-                                style={styles.mhpItem}
-                                onPress={() => {
-                                    setSelectedMhp(item);
-                                    setSearchText(item.name);
-                                }}  
-                            >
-                                <Text>{item.name}</Text>
-                            </TouchableOpacity>
-                        )}
-                    />
-                )}
+                <Button title="Select Mental Health Professional" onPress={() => navigation.navigate('Select MHP')}/>
+                <Text>Selected MHP: {selectedMhp?.name || 'Any'}</Text>
 
                 <Button title="Submit" onPress={submitAppointment} />
             </View>

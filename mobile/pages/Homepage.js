@@ -177,7 +177,6 @@ const Homepage = ({ navigation }) => {
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>Hi, {first_name} 👋</Text>
         </View>
-        <Button title="Fetch Tasks" onPress={fetchTasks} />
         <View style={styles.gridContainer}>
           <View style={styles.grid}>
             <TouchableOpacity
@@ -197,9 +196,28 @@ const Homepage = ({ navigation }) => {
                 </View>
               </ImageBackground>
             </TouchableOpacity>
+            
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Screen2')}
+              onPress={() => navigateToScreen('Screen4')}
+            >
+              <ImageBackground
+                source={require('../assets/images/squares/woods.png')}
+                resizeMode='cover'
+                style={{ flex: 1 }}
+              >
+                <View style={{flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={styles.squareText}>Journal</Text>
+                  <View style={styles.squareIconWrapperOther2}>
+                    <FontAwesome5 name="book-open" size={24} color="black" style={styles.squareIcon} />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.square}
+              onPress={() => navigateToScreen('Make Appointment')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/sandy.png')}
@@ -214,6 +232,7 @@ const Homepage = ({ navigation }) => {
                 </View>
               </ImageBackground>
             </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.square}
               onPress={() => navigateToScreen('Screen3')}
@@ -227,23 +246,6 @@ const Homepage = ({ navigation }) => {
                   <Text style={styles.squareText}>Other</Text>
                   <View style={styles.squareIconWrapperOther1}>
                     <FontAwesome name="heart" size={24} color="black" style={styles.squareIcon} />
-                  </View>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.square}
-              onPress={() => navigateToScreen('Screen4')}
-            >
-              <ImageBackground
-                source={require('../assets/images/squares/woods.png')}
-                resizeMode='cover'
-                style={{ flex: 1 }}
-              >
-                <View style={{flex: 1, justifyContent: 'space-between'}}>
-                  <Text style={styles.squareText}>Journal</Text>
-                  <View style={styles.squareIconWrapperOther2}>
-                    <FontAwesome5 name="book-open" size={24} color="black" style={styles.squareIcon} />
                   </View>
                 </View>
               </ImageBackground>

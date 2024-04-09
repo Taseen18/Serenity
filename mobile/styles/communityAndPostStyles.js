@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import Community from '../pages/Community';
 
 const styles = StyleSheet.create({
     community :{
