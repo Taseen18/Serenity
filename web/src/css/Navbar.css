@@ -8,9 +8,9 @@
    
     color: white;
     flex-shrink: 0;
-    background: rgba(132, 132, 132, 0.1) ; /* Change transparency of navbar background if want */
+    /*background: rgba(132, 132, 132, 0.1) ; /* Change transparency of navbar background if want */
     font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);*/
 }
 
 .navbar .leftSide{

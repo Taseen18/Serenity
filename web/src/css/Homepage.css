@@ -1,37 +1,12 @@
 body{
-    background-image: url('../assets/images/mountains-night-background.jpg'); 
-   /* background: linear-gradient(294deg, #0074B6 1.02%, #127575 97.27%);*/
-   /* background: linear-gradient(294deg, #170c7f 1.02%, #0a3969 97.27%);*/
-    background-position: top;
-    font-family: Arial, Helvetica, sans-serif;
-} /* heads up, even tho only the homepage.js is importing this css file, once it is loaded up it is used across
-    all other pages, so only have stuff here that u want on every page */
-.Home{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    display: grid;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    grid-template-areas:
-        "page1"
-        "scrolldown"
-        "page2";
-    background-image: url('../assets/images/mountains-night-background.jpg');
-    background-position: bottom;
+    background-image: url('../assets/images/background.jpg');
     background-size: cover;
+}
+.Home{
+}
 
-}
-.Dash{
-
-    height: 95vh;
-    grid-area: page1;
-}
-.Dash .title{
-    margin-top: 7vh;
-    font-size: 10vw;
-    text-align: center;
-    font-weight: 400;
-}
 .welcome-message {
     padding: 10px 10%;
     margin-top: 2vh;
@@ -47,138 +22,74 @@ body{
     color: greenyellow;
 }
 
-.Home .footer {
-    grid-area: scrolldown;
-    width: 100%;
-    height:5vh;
-    color: #fff;
-    text-align: center;
-    font-size: 2vw;
-   
-}
-.Home .dashFooter{
-    text-decoration: none; 
-    color:white;
-}
-.Home .footer:hover {
-    transition: 0.3s;
-    background-color: greenyellow;
+.homepage-flex-container {
+    display: flex;
 }
 
+.Section {
+    flex: 1;
+    padding: 0 20px;
+}
 
-.to-do-list {
+.Section h1{
+    font-size: 30px;
+}
+
+.section-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
+
+
+
   
 .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: greenyellow;
+    background-color: white;
     padding: 20px;
     z-index: 2; /* Ensure modal is above other content */
     border-radius: 10px;
   }
 
-.to-do-list-box {
+.modal label {
+    color: black;
+}
+
+
+.box {
     width: 20vw; /* Adjust width as needed */
     max-width: 600px; /* Set a max-width for larger screens */
     margin: auto;
     padding: 20px;
-    background-color: #f5f5f5; /* Light grey background */
-    border-radius: 10px; /* Rounded corners for the box */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 20px;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
   
-.task {
-    background-color: white; /* White background for tasks */
+.box {
+    background-color: rgba(0, 0, 0, 0.15);
     padding: 15px;
     margin-bottom: 10px; /* Space between tasks */
     border-radius: 5px; /* Rounded corners for task items */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for each task */
 }
   
-.task h3 {
+.box h3 {
     margin-top: 0;
-    color: black;
+    color: white;
 }
   
-.task p {
+.box p {
     margin: 5px 0 0; /* Small top margin for the paragraph, remove bottom margin */
-    color: black;
+    color: white;
 }
 
-.Dash2{
-    grid-area: page2;
-    height: 100vh;
-    position: relative;
-    overflow-y: hidden;
-
-
-}
-.Dash2.top{
-    height:12vh;
-}
-.Dash2 .title{
-
-    margin-top: 2vh;
-    font-size: 5vw;
-    text-align: center;
-    font-weight: 400;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.Dash2 .underline{
-    width:15vw;
-    margin-left: 47vw;
-    position: absolute;
-}
-
-.info{
-    height:80vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.Dash2 .dashInfo{
-    height:92vh;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-/*.dashBottom{
-  width: 100%; 
-} */
-
-.Dash2 .Section{
-width: 23vw;
-flex-shrink: 0;
-border-radius: 61px;
-background: rgba(143, 143, 143, 0.50);
-
-}
-#trackingSection{
-    height: 100vh;
-}
-#CommunitySection{
-    margin-top: 10vh;
-    height: 90vh;
-}
-#ToDoSection{
-    margin-top: 20vh;
-    height: 80vh;
-}
-#ChatSection{
-    margin-top: 30vh;
-    height: 70vh;
-}
-.Dash2 .sectionTitle{
-    font-size: 3vw;
-    text-align: center;
-}
 
 
 

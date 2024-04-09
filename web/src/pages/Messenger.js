@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../lib/helper/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../css/Messenger.css';
+import Navbar from '../components/Navbar';
 
 function Messenger() {
   const { token } = useAuth();
@@ -111,8 +112,9 @@ function Messenger() {
 
   return (
     <div className='chats-page'>
-      <h1>Your Chats</h1>
-      <button onClick={() => navigate('/homepage')}>Back to homepage</button>
+      <Navbar />
+      <h1 className="title">  Your Chats</h1>
+      
       <div className='chats-container'>
         <div className='chats-box'>
           {chats.map((chat, index) => (
