@@ -8,9 +8,9 @@ import {
 import styles from '../styles/ResourcesStyles';
 import ExerciseArticle from './ExerciseArticle';
 import { MaterialIcons, FontAwesome, AntDesign, FontAwesome5 } from '@expo/vector-icons';
-import exerciseImage from '/Users/nyram/Documents/GitHub/Serenity/mobile/assets/images/exercise.png';
-import dietImage from '/Users/nyram/Documents/GitHub/Serenity/mobile/assets/images/diet.png';
-import mentalHealthImage from '/Users/nyram/Documents/GitHub/Serenity/mobile/assets/images/brain.png';
+import exerciseImage from '../assets/images/exercise.png';
+import dietImage from '../assets/images/diet.png';
+import mentalHealthImage from '../assets/images/brain.png';
 
 
 const Resources = ({ navigation }) => {
