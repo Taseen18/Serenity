@@ -42,6 +42,7 @@ function Post() {
   const handlePostClick = (post) => {
     setSelectedPost(post);
     setIsPostModalOpen(true);
+    fetchComments(post.post_id);
   };
   
   const handleLike = () => {
@@ -60,19 +61,15 @@ function Post() {
         console.error('Failed to fetch comments');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching comments:', error);
     }
   };
 
-  useEffect(() => {
-    // Fetch comments when component mounts
-    fetchComments(); // Provide postId if applicable
-  }, []);
 
-  const handleAddComment  = async (e) => {
-    e.preventDefault(selectedPost);
+  const handleAddComment  = async (e,postId) => {
+    e.preventDefault();
   
-      const response = await fetch(`/community/comment/create`, {
+      const response = await fetch(`/community/comment/create/${postId}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,6 +83,9 @@ function Post() {
       if (response.ok) {
         // Refresh comments after successful addition
         setNewComment({ content: '' });
+        setIsCommentModalOpen(false)
+        fetchComments(postId)
+       
       } else {
         console.error('Failed to add comment');
       }
@@ -93,7 +93,7 @@ function Post() {
 
   return (
     <div className="postss">
-      {postList.map((post, index) => (
+      {postList.slice().reverse().map((post, index) => (
         <div key={index} className='PostHolder'  onClick={() => handlePostClick(post)}>
           <div className="Postinfo">
             <h3 className="PostTitle">{post.post_title}</h3>
@@ -116,9 +116,18 @@ function Post() {
             <button className={`likeButton ${liked ? 'clicked' : ''}`} onClick={handleLike}></button>    
             <h4 className="PostDate">{selectedPost.posted_at}</h4>
           </div>
-          <div className="CommentSection" key={comments.comment_id}> 
-            <p>{comments.content}</p>
+          <div className="CommentSection">
+          {comments.map((comment, index) => (
+        <div key={index} className="CommentHolder">              
+              <p key={index}>{comment.commented_at}</p>
+              <p key={index}>{comment.PostContent}</p>
+              <p key={index}>{comment.user_id}</p>
+              <hr></hr>
         </div>
+      ))}
+      </div>
+
+          
           <button className="AddCommentButton "onClick={() => setIsCommentModalOpen(true)} >Add Comment</button>
         </div>
       )}
@@ -132,9 +141,9 @@ function Post() {
               <form>
              
                   <label>Comment</label>
-                  <textarea required />
+                  <textarea value={newComment.content} onChange={(e) => setNewComment({ ...newComment, content: e.target.value })} required />
        
-                <button className="submitButton " type="submit" onClick={() => handleAddComment(selectedPost)}>Submit</button>
+                  <button className="submitButton" type="submit" onClick={(e) => handleAddComment(e, selectedPost.post_id)}>Submit</button>
                 
               </form>
               </div>

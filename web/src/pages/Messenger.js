@@ -129,6 +129,9 @@ function Messenger() {
         </div>
         {selectedChatId && (
           <div className='chat-interface'>
+          <div className="postsWrapper">
+          <div className="topWrapper"> </div>
+            <div className="bodyWrapper">
             <div className='messages-scroll-box'>
               {messages.map((message, index) => (
                 <div key={index} className={`message-container ${message.sender === user_id ? 'sent' : 'received'}`}>
@@ -137,6 +140,7 @@ function Messenger() {
                 </div>
               ))}
               <div ref={messagesEndRef} />
+            </div>
             </div>
             <div className="message-input-container">
               <input
@@ -148,6 +152,7 @@ function Messenger() {
                 onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               />
               <button className="send-message-button" onClick={sendMessage}>Send</button>
+            </div>
             </div>
           </div>
         )}
