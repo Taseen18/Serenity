@@ -16,8 +16,8 @@
 }
 .forms { 
     position: absolute;
-    top: 20vh;
-    left: 80vw;
+    top: 30vh;
+    left: 85vw;
 }
 .forms form { /* form tag inside forms div */
     display: flex;
