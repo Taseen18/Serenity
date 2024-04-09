@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../lib/helper/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../css/Messenger.css';
+import Navbar from '../components/Navbar';
 
 function Messenger() {
   const { token } = useAuth();
@@ -111,8 +112,9 @@ function Messenger() {
 
   return (
     <div className='chats-page'>
-      <h1>Your Chats</h1>
-      <button onClick={() => navigate('/homepage')}>Back to homepage</button>
+      <Navbar />
+      <h1 className="title">  Your Chats</h1>
+      
       <div className='chats-container'>
         <div className='chats-box'>
           {chats.map((chat, index) => (
@@ -129,6 +131,9 @@ function Messenger() {
         </div>
         {selectedChatId && (
           <div className='chat-interface'>
+          <div className="postsWrapper">
+          <div className="topWrapper"> </div>
+            <div className="bodyWrapper">
             <div className='messages-scroll-box'>
               {messages.map((message, index) => (
                 <div key={index} className={`message-container ${message.sender === user_id ? 'sent' : 'received'}`}>
@@ -137,6 +142,7 @@ function Messenger() {
                 </div>
               ))}
               <div ref={messagesEndRef} />
+            </div>
             </div>
             <div className="message-input-container">
               <input
@@ -148,6 +154,7 @@ function Messenger() {
                 onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               />
               <button className="send-message-button" onClick={sendMessage}>Send</button>
+            </div>
             </div>
           </div>
         )}
