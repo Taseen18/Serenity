@@ -1479,3 +1479,4 @@ venv/lib/site-packages/setuptools-65.5.0.dist-info/top_level.txt
 venv/lib/site-packages/setuptools-65.5.0.dist-info/WHEEL
 .DS_Store
 node_modules/
+dump.rdb
