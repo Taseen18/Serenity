@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
-import {TouchableOpacity} from 'react-native';
-import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
+import { TouchableOpacity } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
 
-import Login from './pages/Login';
-import Homepage from './pages/Homepage';
-import SignUp from './pages/SignUp';
-import Profile from './pages/Profile';
-import ChatsList from './pages/ChatsList';
-import MessengerScreen from './pages/MessengerScreen';
-import MakeAppointmentScreen from './pages/MakeAppointment';
-import MHPSelection from './pages/MakeAppointmentMhpSelection';
-import AccountSettings from './pages/profilePages/Account';
-import ChangeName from './pages/profilePages/accountPages/ChangeName';
-import ChangeEmail from './pages/profilePages/accountPages/ChangeEmail';
-import ChangePassword from './pages/profilePages/accountPages/ChangePassword'
-import Community from './pages/Community';
-import Resources from './pages/Resources';
-import ExerciseArticle from './pages/ExerciseArticle'
-import Diet from './pages/Diet'
-import MentalHealth from './pages/MentalHealth'
+import Login from "./pages/Login";
+import Homepage from "./pages/Homepage";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import ChatsList from "./pages/ChatsList";
+import MessengerScreen from "./pages/MessengerScreen";
+import MakeAppointmentScreen from "./pages/MakeAppointment";
+import MHPSelection from "./pages/MakeAppointmentMhpSelection";
+import AccountSettings from "./pages/profilePages/Account";
+import ChangeName from "./pages/profilePages/accountPages/ChangeName";
+import ChangeEmail from "./pages/profilePages/accountPages/ChangeEmail";
+import ChangePassword from "./pages/profilePages/accountPages/ChangePassword";
+import Community from "./pages/Community";
+import Resources from "./pages/Resources";
+import ExerciseArticle from "./pages/ExerciseArticle";
+import Diet from "./pages/Diet";
+import MentalHealth from "./pages/MentalHealth";
+import Journal from "./pages/journal/Journal";
+import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
+import EditJournalEntry from "./pages/journal/EditJournalEntry";
 
 //Placeholders:
 const Trackers = () => null;
@@ -33,8 +36,8 @@ const Tab = createBottomTabNavigator();
 
 function MainTabScreen() {
   return (
-    <Tab.Navigator 
-      initialRouteName="Homepage" 
+    <Tab.Navigator
+      initialRouteName="Homepage"
       screenOptions={() => ({
         headerShown: false,
         tabBarShowLabel: false,
@@ -51,47 +54,58 @@ function MainTabScreen() {
         }}
       />
       <Tab.Screen
-  name="Community"
-  component={Community}
-  options={{
-    // Add any options here if needed
-  }}
-/>
-      <Tab.Screen 
-        name="Messages" 
+        name="Community"
+        component={Community}
+        options={
+          {
+            // Add any options here if needed
+          }
+        }
+      />
+      <Tab.Screen
+        name="Journal"
+        component={Journal}
+        options={
+          {
+            // Add any options here if needed
+          }
+        }
+      />
+      <Tab.Screen
+        name="Messages"
         component={ChatsList}
         options={{
-          tabBarLabel: 'Messages',
+          tabBarLabel: "Messages",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubbles" color={color} size={size} />
           ),
         }}
       />
-      <Tab.Screen 
-        name="Resources" 
+      <Tab.Screen
+        name="Resources"
         component={Resources}
         options={{
-          tabBarLabel: 'Resources',
+          tabBarLabel: "Resources",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="article" color={color} size={size} />
           ),
         }}
       />
-      <Tab.Screen 
-        name="Trackers" 
+      <Tab.Screen
+        name="Trackers"
         component={Trackers}
         options={{
-          tabBarLabel: 'Trackers',
+          tabBarLabel: "Trackers",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="checkbox" color={color} size={size} />
           ),
         }}
       />
-      <Tab.Screen 
-        name="Profile" 
+      <Tab.Screen
+        name="Profile"
         component={Profile}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" color={color} size={size} />
           ),
@@ -105,11 +119,11 @@ function MainTabScreen() {
 const App = () => {
   SplashScreen.preventAutoHideAsync();
   let [fontsLoaded] = useFonts({
-    'Montserrat': require('./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf'),
-    'Montserrat-Medium': require('./assets/fonts/Montserrat/static/Montserrat-Medium.ttf'),
-    'Montserrat-Bold': require('./assets/fonts/Montserrat/static/Montserrat-Bold.ttf'),
-    'Montserrat-Regular': require('./assets/fonts/Montserrat/static/Montserrat-Regular.ttf'),
-    'Montserrat-SemiBold': require('./assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf'),
+    Montserrat: require("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf"),
+    "Montserrat-Medium": require("./assets/fonts/Montserrat/static/Montserrat-Medium.ttf"),
+    "Montserrat-Bold": require("./assets/fonts/Montserrat/static/Montserrat-Bold.ttf"),
+    "Montserrat-Regular": require("./assets/fonts/Montserrat/static/Montserrat-Regular.ttf"),
+    "Montserrat-SemiBold": require("./assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf"),
   });
   useEffect(() => {
     async function handleSplashScreen() {
@@ -127,92 +141,104 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen 
-          name="Login" 
+        <Stack.Screen
+          name="Login"
           component={Login}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="Main"
           component={MainTabScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
-          name="Sign Up" 
+        <Stack.Screen
+          name="Sign Up"
           component={SignUp}
           options={{ headerShown: true }}
         />
-        <Stack.Screen 
-          name="Messenger" 
+        <Stack.Screen
+          name="Messenger"
           component={MessengerScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="ExerciseArticle"
           component={ExerciseArticle}
-          options={({ navigation }) => ({ 
-            title: 'Articles',
+          options={({ navigation }) => ({
+            title: "Articles",
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Resources")}
+              >
                 <Ionicons name="arrow-back" size={24} color="black" />
               </TouchableOpacity>
             ),
           })}
         />
-        <Stack.Screen name="Diet"
-        component={Diet}
-        options={({ navigation }) => ({ 
-          title: 'Articles',
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
-        })}
+        <Stack.Screen
+          name="Diet"
+          component={Diet}
+          options={({ navigation }) => ({
+            title: "Articles",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Resources")}
+              >
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
         />
-        <Stack.Screen name="MentalHealth"
-        component={MentalHealth}
-        options={({ navigation }) => ({ 
-          title: 'Articles',
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
-        })}
+        <Stack.Screen
+          name="MentalHealth"
+          component={MentalHealth}
+          options={({ navigation }) => ({
+            title: "Articles",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Resources")}
+              >
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
         />
-        <Stack.Screen 
-          name="Make Appointment" 
+        <Stack.Screen
+          name="Make Appointment"
           component={MakeAppointmentScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
-          name="Select MHP" 
+        <Stack.Screen
+          name="Select MHP"
           component={MHPSelection}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
-          name="Account Settings" 
+        <Stack.Screen
+          name="Account Settings"
           component={AccountSettings}
           options={{ headerShown: true }}
         />
-        <Stack.Screen 
-          name="Change Name" 
+        <Stack.Screen
+          name="Change Name"
           component={ChangeName}
           options={{ headerShown: true }}
         />
-        <Stack.Screen 
-          name="Change Email" 
+        <Stack.Screen
+          name="Change Email"
           component={ChangeEmail}
           options={{ headerShown: true }}
         />
-        <Stack.Screen 
-          name="Change Password" 
+        <Stack.Screen
+          name="Change Password"
           component={ChangePassword}
           options={{ headerShown: true }}
         />
+        <Stack.Screen
+          name="CreateJournalEntry"
+          component={CreateJournalEntry}
+        />
+        <Stack.Screen name="EditJournalEntry" component={EditJournalEntry} />
       </Stack.Navigator>
-
     </NavigationContainer>
   );
 };
