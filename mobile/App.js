@@ -25,10 +25,11 @@ import Resources from './pages/Resources';
 import ExerciseArticle from './pages/ExerciseArticle'
 import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
+import Trackers from './pages/Trackers';
+import TrackDiet from './pages/TrackDiet';
+import TrackExercise from './pages/TrackExercise';
 
 //Placeholders:
-const Trackers = () => null;
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -180,6 +181,31 @@ const App = () => {
           ),
         })}
         />
+
+        <Stack.Screen name="TrackDiet"
+        component={TrackDiet}
+        options={({ navigation }) => ({ 
+          title: 'Diet Tracker',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Trackers')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+
+        <Stack.Screen name="TrackExercise"
+        component={TrackExercise}
+        options={({ navigation }) => ({ 
+          title: 'Exercise Tracker',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Trackers')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+
         <Stack.Screen 
           name="Community" 
           component={Community}
