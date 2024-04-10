@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Post = ({ navigation }) => {
   const [postList, setPosts] = useState([]);
- 
+  
   const [isPostModalOpen, setIsPostModalOpen] = useState(false); // For modal visibility
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false); // For modal visibility
   const [selectedPost, setSelectedPost] = useState(null); // For storing the selected post
@@ -56,6 +56,7 @@ const Post = ({ navigation }) => {
   const handlePostClick = (post) => {
     setSelectedPost(post);
     setIsPostModalOpen(true);
+    fetchComments(post.post_id);
     
   };
   
@@ -91,17 +92,24 @@ const Post = ({ navigation }) => {
   }, []);
   */
 
-  const handleAddComment = async (newPostComment) => {
-    newPostComment.preventDefault(selectedPost);
+  const handleAddComment = async (newPostComment,postId) => {
+   
+    const tokenString = await AsyncStorage.getItem('userToken');
+    if (!tokenString) {
+      console.warn('Token not available');
+      return;
+    }
+    const token = JSON.parse(tokenString);
+    const access_token = token.access_token;
     const commenturl = Platform.select({
-        ios: `http://localhost:8000/community/comment/create`,
-        android: `http://10.0.2.2:8000/community/comment/create/`,
+        ios: `http://localhost:8000/community/comment/create/${postId}/`,
+        android: `http://10.0.2.2:8000/community/comment/create/${postId}/`,
     });
       const response = await fetch( commenturl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        //  'Authorization': `Bearer ${token.session.access_token}`,
+          'Authorization': `Bearer ${access_token}`,
         },
         body: JSON.stringify({ 
           postId: selectedPost.post_id,
@@ -109,8 +117,10 @@ const Post = ({ navigation }) => {
         }),
       });
       if (response.ok) {
+        setIsCommentModalOpen(false);
         // Refresh comments after successful addition
-        setNewComment('');
+        setnewPostComment('');
+        fetchComments(postId)
       } else {
         console.error('Failed to add comment');
       }
@@ -147,18 +157,30 @@ const Post = ({ navigation }) => {
       <Button title="Close" onPress={() => setIsPostModalOpen(false)} />
       {selectedPost && (
         <TouchableOpacity onPress={() => fetchComments(selectedPost.post_id)}>
-          <View style={styles.PostHolder} key={selectedPost.post_id}>
+          <View style={styles.PostHolder2} key={selectedPost.post_id}>
               <Text style={styles.postTitle}>{selectedPost.post_title}</Text>
               <Text style={styles.postContent}>{selectedPost.post_content}</Text>
-              <Text style={styles.postedBy}>Posted by - {selectedPost.poster_name}</Text>
-              <Text style={styles.PostDate}>Posted at - {selectedPost.posted_at}</Text>
+              <View style={styles.postInfo}>
+                <Text style={styles.postedBy}>Posted by - {selectedPost.poster_name}</Text>
+                <Text style={styles.PostDate}>Posted at - {selectedPost.posted_at}</Text>
+              </View>
           </View>
         </TouchableOpacity>
       )}
       <View style={styles.CommentSection} key={comments.comment_id}>
-          <Text>{comments.content}</Text>
+            {comments.map((comment, index) => (
+            <View key={index}  style={styles.Comment}>      
+              <View style={styles.CommentInfo}>
+                <Text key={index}>Commented at: {new Date(comment.commented_at).toLocaleString()}</Text>
+                <Text key={index}> By :{comment.user_id}</Text>
+              </View>
+              <Text key={index}>{comment.PostContent}</Text>
+              
+          </View>
+      ))}
       </View>
-      <Button title="Add comment" style={styles.AddCommentButton} onPress={() => setIsCommentModalOpen(true)} />
+
+      <Button title="Write a Comment" style={styles.AddCommentButton} onPress={() => setIsCommentModalOpen(true)} />
     </View>
   </Modal>
 
@@ -175,13 +197,13 @@ const Post = ({ navigation }) => {
           <View style={styles.addCommmentWrapper}>
               <Button title="Close" onPress={() =>  setIsCommentModalOpen(false)} />
               <TextInput
-                placeholder="..."
+                placeholder="Write comment here  ..."
                 value={newPostComment}
                 onChangeText={setnewPostComment}
                 style={styles.modalText}
                 multiline
               />
-              <Button title="Add Comment" onPress={() => handleAddComment(newPostComment)} />
+              <Button title="Add Comment" onPress={() => handleAddComment(newPostComment,selectedPost.post_id)} />
           </View>
         )}
       </Modal>

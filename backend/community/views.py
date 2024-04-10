@@ -72,11 +72,12 @@ class CommentListCreate(APIView):
                 comments = []
                 if response.data:
                     for comment in response.data:
+                        user, _ = User.objects.get_or_create(username=comment['user_id'])
                         comments.append({
                             'comment_id': comment['comment_id'],
                             'commented_at': comment['commented_at'],
                             'post_id': comment['post_id'],
-                            'user_id': comment['user_id'],
+                            'user_id': user.first_name,
                             'PostContent': comment['PostContent']
                         })
                         print(len(comments), "comments found")
