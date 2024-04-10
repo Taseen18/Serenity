@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         color: 'black',
     },
+
     communityTitle : {
         margin: 'auto',
         fontSize: 20,
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-
     post:{
         
     },
@@ -53,15 +53,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent:'space-between',
-        marginLeft: 20,
-        
+        marginLeft: 20,       
     },
+
     frontPostTitle:{
         fontSize: 35,
         fontFamily: 'Montserrat-Medium',
-        marginLeft:50,
-        
+        marginLeft:50,   
     },
+
     frontPostedBy:{
         marginRight:50,
         fontSize: 15,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         height: '67%',
         backgroundColor: '#D9D9D9',
         top: '25%',
-       },
+    },
 
     postTitle:{
         

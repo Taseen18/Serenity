@@ -33,7 +33,7 @@ const Post = ({ navigation }) => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${access_token}`, 
-        },
+        }
       });
       const data = await response.json();
       if (data && data.posts) {
