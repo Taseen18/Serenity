@@ -51,9 +51,15 @@ const Community = ({ navigation }) => {
   return (
     <View style={styles.community}>
         <Text style={styles.communityTitle}>Community📝</Text>
-        <Button title="A D D   P O S T" onPress={() => setIsAddPostModalOpen(true)} />
-        <ScrollView style={styles.postsWrapper}>
+        <TouchableOpacity onPress={() => setIsAddPostModalOpen(true)}>
+          <View style={styles.addPostButton}>
+            <Text stlye={styles.addPostButtonText}>ADD POST</Text>
+          </View>
+        </TouchableOpacity>
+        <ScrollView>
+          <View styles={styles.postsWrapper}>
             <Post />
+          </View>
         </ScrollView>
 
 

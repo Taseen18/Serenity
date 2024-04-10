@@ -28,6 +28,7 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-video": "^5.2.1",
+    "start": "^5.1.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

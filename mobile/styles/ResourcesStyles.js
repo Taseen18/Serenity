@@ -5,14 +5,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5', // A light background color
-    marginTop:50,
+    marginTop:10,
   },
   headerText: {
     fontSize: 50,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
     paddingLeft: 20,
-    paddingTop: 20,
   },
   grid: {
     marginTop: 30,
