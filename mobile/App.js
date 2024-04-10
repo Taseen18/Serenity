@@ -25,12 +25,12 @@ import Resources from "./pages/Resources";
 import ExerciseArticle from "./pages/ExerciseArticle";
 import Diet from "./pages/Diet";
 import MentalHealth from "./pages/MentalHealth";
-import Journal from "./pages/journal/Journal";
-import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
-import EditJournalEntry from "./pages/journal/EditJournalEntry";
 import Trackers from "./pages/Trackers";
 import TrackDiet from "./pages/TrackDiet";
 import TrackExercise from "./pages/TrackExercise";
+import Journal from "./pages/journal/Journal";
+import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
+import EditJournalEntry from "./pages/journal/EditJournalEntry";
 
 //Placeholders:
 const Trackers = () => null;
