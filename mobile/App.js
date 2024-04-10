@@ -27,6 +27,9 @@ import MentalHealth from "./pages/MentalHealth";
 import Journal from "./pages/journal/Journal";
 import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
 import EditJournalEntry from "./pages/journal/EditJournalEntry";
+import Trackers from "./pages/Trackers";
+import TrackDiet from "./pages/TrackDiet";
+import TrackExercise from "./pages/TrackExercise";
 
 //Placeholders:
 const Trackers = () => null;
@@ -207,6 +210,31 @@ const App = () => {
           name="Make Appointment"
           component={MakeAppointmentScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TrackDiet"
+          component={TrackDiet}
+          options={({ navigation }) => ({
+            title: "Diet Tracker",
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate("Trackers")}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+        <Stack.Screen
+          name="TrackExercise"
+          component={TrackExercise}
+          options={({ navigation }) => ({
+            title: "Exercise Tracker",
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate("Trackers")}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
         />
         <Stack.Screen
           name="Select MHP"
