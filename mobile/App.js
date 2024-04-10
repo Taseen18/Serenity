@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 
 import Login from "./pages/Login";
@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import ChatsList from "./pages/ChatsList";
 import MessengerScreen from "./pages/MessengerScreen";
 import MakeAppointmentScreen from "./pages/MakeAppointment";
+import ViewAppointments from "./pages/ViewAppointment";
 import MHPSelection from "./pages/MakeAppointmentMhpSelection";
 import AccountSettings from "./pages/profilePages/Account";
 import ChangeName from "./pages/profilePages/accountPages/ChangeName";
