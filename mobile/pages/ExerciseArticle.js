@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
     borderTopColor: '#eaeaea',
   },
   creditLogo: {
-    width: 150, // or another size that fits your design
-    height: 50, // maintain aspect ratio
+    width: 150,
+    height: 50, 
   },
   creditText: {
     fontSize: 12,
