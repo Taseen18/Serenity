@@ -28,13 +28,8 @@ import MentalHealth from "./pages/MentalHealth";
 import Trackers from "./pages/Trackers";
 import TrackDiet from "./pages/TrackDiet";
 import TrackExercise from "./pages/TrackExercise";
-import Journal from "./pages/journal/Journal";
-import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
-import EditJournalEntry from "./pages/journal/EditJournalEntry";
 
 //Placeholders:
-const Trackers = () => null;
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -58,13 +53,14 @@ function MainTabScreen() {
         }}
       />
       <Tab.Screen
-        name="Community"
-        component={Community}
-        options={
-          {
-            // Add any options here if needed
-          }
-        }
+        name="Resources"
+        component={Resources}
+        options={{
+          tabBarLabel: "Resources",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="article" color={color} size={size} />
+          ),
+        }}
       />
       <Tab.Screen
         name="Journal"
@@ -86,12 +82,12 @@ function MainTabScreen() {
         }}
       />
       <Tab.Screen
-        name="Resources"
-        component={Resources}
+        name="Community"
+        component={Community}
         options={{
-          tabBarLabel: "Resources",
+          tabBarLabel: "Community",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="article" color={color} size={size} />
+            <FontAwesome name="users" color={color} size={size} />
           ),
         }}
       />
