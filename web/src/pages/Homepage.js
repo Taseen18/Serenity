@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 
 function Homepage() {  
   const { token } = useAuth();
+  const [appointments, setAppointments] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
   const [newTask, setNewTask] = useState({ title: '', description: '' });
@@ -15,7 +16,6 @@ function Homepage() {
       console.error('Token not available');
       return;
     }
-    console.log(token.session.access_token);
     const response = await fetch('/to_do_list/tasks/', {
       method: 'GET',
       headers: {
@@ -34,6 +34,7 @@ function Homepage() {
 
   useEffect(() => {
     fetchTasks();
+    fetchAppointments();
   }, [fetchTasks]);
 
   const markTaskAsComplete = async (taskId) => {
@@ -74,6 +75,31 @@ function Homepage() {
       console.error('Error: failed to add new task');
     }
   };
+
+  const fetchAppointments = async () => {
+    try {
+      if (!token || !token.session.access_token) {
+        console.error('Token not available');
+        return;
+      }
+      const response = await fetch(`/appointment/getAppointments/`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token.session.access_token}`,
+            'Content-Type': 'application/json',
+          },
+      });
+      const data = await response.json();
+      if (data) {
+        setAppointments(data.appointments);  
+      } else {
+        // Handle any errors or empty responses
+        console.error('Failed to fetch appointments or no appointments available');
+      }
+    } catch (error) {
+        console.error('Error loading appointments', error)
+    }
+}
 
 
   return (
@@ -116,11 +142,10 @@ function Homepage() {
           <h1>Upcoming Appointments</h1>
           <div className='section-container'>
             <div className='box'>
-                {tasks.map((task, index) => (
+                {appointments.map((appointment, index) => (
                     <div key={index} className='item'>
-                        <h3>{task.title}</h3>
-                        <p>{task.description}</p>
-                        <button onClick={() => markTaskAsComplete(task.task_id)}>Mark As Done</button>
+                        <h3>{appointment.date_time}</h3>
+                        <p>With: {appointment.with.name}</p>
                     </div>
                 ))}
             </div>
