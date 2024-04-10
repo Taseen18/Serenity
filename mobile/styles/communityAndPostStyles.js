@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: 'black',
     },
+
     communityTitle : {
         margin: 'auto',
         fontSize: 35,
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-
     post:{
         
     },
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         overflow: 'hidden',
     },
+
     frontPostTitle:{
         fontSize: 35,
         fontFamily: 'Montserrat-Medium',
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
         width:'50%',
         overflow: 'hidden',
     },
+
     frontPostedBy:{
         width:'50%',
         overflow: 'hidden',
