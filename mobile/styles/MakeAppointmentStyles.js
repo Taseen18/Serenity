@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
   heading: {
     marginBottom: 50,
   },
@@ -20,6 +24,12 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'left',
   },
+  date: {
+    marginBottom: 30,
+  },
+  reason: {
+    marginBottom: 30,
+  },
   input: {
     width: '100%',
     height: 40,
@@ -27,12 +37,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  mhp: {
+    alignItems: 'center',
+  },
   mhpItem: {
     padding: 15,
     marginVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  makeAppointmentSubmit: {
+
   }
 })
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, TextInput, FlatList, Platform, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApiUrl } from '../lib/helper/djangoURL';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from '../styles/MakeAppointmentStyles';
@@ -10,13 +11,10 @@ const MakeAppointmentScreen = ({ route }) => {
     const navigation = useNavigation();
     const [date, setDate] = useState(new Date());
     const [reason, setReason] = useState('');
-    const [showDatePicker, setShowDatePicker] = useState(false);
-    const [selectedMhp, setSelectedMhp] = useState(null);
+    const [showDatePicker, setShowDatePicker] = useState(true);
+    const [selectedMhp, setSelectedMhp] = useState({ mhp_id: 'any', name: 'Any' });
     const [searchText, setSearchText] = useState('');
-    const apiUrl = Platform.select({
-        ios: 'http://localhost:8000/',
-        android: 'http://10.0.2.2:8000/',
-      });
+    const apiUrl = getApiUrl();
 
     useEffect(() => {
         if (route.params?.selectMhp) {
@@ -73,34 +71,41 @@ const MakeAppointmentScreen = ({ route }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
+                <View style={styles.contentContainer}>
+                    <View style={styles.heading}>
+                        <Text style={styles.title}>Make Appointment</Text>
+                        <Text style={styles.subtitle}>We're here to help</Text>
+                    </View>
 
-                <View style={styles.heading}>
-                    <Text style={styles.title}>Make Appointment</Text>
-                    <Text style={styles.subtitle}>We're here to help</Text>
+                    <View style={styles.date}>
+                        <DateTimePicker
+                            value={date}
+                            mode="datetime"
+                            is24Hour={true}
+                            display='default'
+                            onChange={onChangeDate}
+                        />
+                    </View>
+
+                    <View style={styles.reason}>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={setReason}
+                            value={reason}
+                            placeholder='Reason for appointment'
+                        />
+                    </View>
+
+                    <View style={styles.mhp}>
+                        <Button title="Select Mental Health Professional" onPress={() => navigation.navigate('Select MHP')}/>
+                        <Text>Selected MHP: {selectedMhp?.name || 'Any'}</Text>
+                    </View>
+                    
                 </View>
 
-                <Button title="Choose Date and Time" onPress={() => setShowDatePicker(true)} />
-                {showDatePicker && (
-                    <DateTimePicker
-                        value={date}
-                        mode="datetime"
-                        is24Hour={true}
-                        display='default'
-                        onChange={onChangeDate}
-                    />
-                )}
-
-                <TextInput 
-                    style={styles.input}
-                    onChangeText={setReason}
-                    value={reason}
-                    placeholder='Reason for appointment'
-                />
-
-                <Button title="Select Mental Health Professional" onPress={() => navigation.navigate('Select MHP')}/>
-                <Text>Selected MHP: {selectedMhp?.name || 'Any'}</Text>
-
-                <Button title="Submit" onPress={submitAppointment} />
+                <View style={styles.MmakeAppointmentSubmit}>
+                    <Button title="Submit" onPress={submitAppointment} />
+                </View>
             </View>
         </SafeAreaView>
     );

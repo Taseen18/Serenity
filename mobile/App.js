@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 
 import Login from './pages/Login';
@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import ChatsList from './pages/ChatsList';
 import MessengerScreen from './pages/MessengerScreen';
 import MakeAppointmentScreen from './pages/MakeAppointment';
+import ViewAppointments from './pages/ViewAppointment';
 import MHPSelection from './pages/MakeAppointmentMhpSelection';
 import AccountSettings from './pages/profilePages/Account';
 import ChangeName from './pages/profilePages/accountPages/ChangeName';
@@ -50,13 +51,6 @@ function MainTabScreen() {
           ),
         }}
       />
-      <Tab.Screen
-  name="Community"
-  component={Community}
-  options={{
-    // Add any options here if needed
-  }}
-/>
       <Tab.Screen 
         name="Messages" 
         component={ChatsList}
@@ -68,12 +62,12 @@ function MainTabScreen() {
         }}
       />
       <Tab.Screen 
-        name="Resources" 
-        component={Resources}
+        name="Community" 
+        component={Community}
         options={{
-          tabBarLabel: 'Resources',
+          tabBarLabel: 'Community',
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="article" color={color} size={size} />
+            <FontAwesome name="users" color={color} size={size} />
           ),
         }}
       />
@@ -148,6 +142,11 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen 
+          name="Resources" 
+          component={Resources}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
           name="ExerciseArticle"
           component={ExerciseArticle}
           options={({ navigation }) => ({ 
@@ -182,8 +181,18 @@ const App = () => {
         })}
         />
         <Stack.Screen 
+          name="Community" 
+          component={Community}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
           name="Make Appointment" 
           component={MakeAppointmentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="View Appointments" 
+          component={ViewAppointments}
           options={{ headerShown: false }}
         />
         <Stack.Screen 
