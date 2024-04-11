@@ -159,3 +159,10 @@
     resize: none; /* Prevent resizing */
     margin-top: 3vh;
 }
+.commentInfo{
+    display: flex;
+    flex-direction: row;
+}
+.commentdisplaytitle{
+    margin-left: 2vw;
+}

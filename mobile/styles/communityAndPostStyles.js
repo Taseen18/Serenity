@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
         borderRadius: 23,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-        height: '78%',
+        height: '75%',
         backgroundColor: '#D9D9D9',
-        top: '17%',
+        top: '18%',
        },
 
     PostHolder2:{
