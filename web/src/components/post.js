@@ -37,7 +37,7 @@ function Post() {
     fetchPosts();
   }, [fetchPosts]);
 
-  const [liked, setLike] = useState(false);
+
 
   const handlePostClick = (post) => {
     setSelectedPost(post);
@@ -45,9 +45,7 @@ function Post() {
     fetchComments(post.post_id);
   };
   
-  const handleLike = () => {
-    setLike(!liked);
-  };  
+
 
 
 
@@ -100,7 +98,7 @@ function Post() {
             <div className="infoContent"><p>{post.post_content}</p></div>
           </div>
           <h3 className="Name">Posted by - {post.poster_name}</h3>
-          <button className={`likeButton ${liked ? 'clicked' : ''}`} onClick={handleLike}></button>    
+  
           <h4 className="PostDate">{post.posted_at}</h4>
         </div>
       ))}
@@ -113,7 +111,7 @@ function Post() {
                 <div className="infoContent"><p>{selectedPost.post_content}</p></div>
               </div>
             <h3 className="Name">Posted By -{selectedPost.poster_name}</h3>
-            <button className={`likeButton ${liked ? 'clicked' : ''}`} onClick={handleLike}></button>    
+  
             <h4 className="PostDate">{selectedPost.posted_at}</h4>
           </div>
           <div className="CommentSection">

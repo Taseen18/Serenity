@@ -3,7 +3,7 @@ import { useAuth } from "../lib/helper/AuthContext";
 //import { supabase } from '../lib/helper/supabaseClient';
 import '../css/Homepage.css'
 import Navbar from "../components/Navbar";
-
+import Post from "../components/post"
 function Homepage() {  
   const { token } = useAuth();
   const [appointments, setAppointments] = useState([]);
@@ -107,6 +107,9 @@ function Homepage() {
       <Navbar />
       <div className='welcome-message'>
           <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
+          <div className="homepagePostHolder">
+            <Post />
+          </div>
       </div>
 
       <div className="homepage-flex-container">
