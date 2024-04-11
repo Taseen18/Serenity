@@ -3,8 +3,10 @@ import { supabase } from "../../lib/helper/supabaseClient";
 import { useAuth } from "../../lib/helper/AuthContext";
 import Navbar from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function EditJournalEntry() {
+  const navigate = useNavigate();
   const location = useLocation();
   const [entry, setEntry] = useState(
     location.state.entry ? location.state.entry : false
@@ -28,6 +30,8 @@ function EditJournalEntry() {
     if (error) {
       console.log(error);
     }
+
+    navigate("Journal");
   };
 
   const handleSubmit = async (e) => {
@@ -51,6 +55,8 @@ function EditJournalEntry() {
     if (data) {
       console.log(data);
     }
+
+    navigate(-1);
   };
   return (
     <div className="Journal">
