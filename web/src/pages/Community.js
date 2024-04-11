@@ -13,7 +13,7 @@ function Community() {
 
 
   const handleAddPost = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     if (!newPost.title) {
       alert("Title is required.");
       return;
