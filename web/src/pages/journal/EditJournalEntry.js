@@ -4,6 +4,7 @@ import { useAuth } from "../../lib/helper/AuthContext";
 import Navbar from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../../css/journal.css";
 
 function EditJournalEntry() {
   const navigate = useNavigate();
@@ -62,8 +63,8 @@ function EditJournalEntry() {
     <div className="Journal">
       <Navbar />
 
-      <div>
-        <h2>Create an entry</h2>
+      <div className="createJournalEntry">
+        <h2 className="title">Create an entry</h2>
 
         <form onSubmit={handleSubmit}>
           <input

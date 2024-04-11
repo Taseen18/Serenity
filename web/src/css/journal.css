@@ -1,4 +1,4 @@
-.Journal .title{
+.Journal .createJournalEntry .title{
     margin-top: 2vh;
     font-size: 3vw;
     text-align: center;
@@ -15,7 +15,35 @@ ul {
     list-style-type: none;
 }
 
-.JournalSection {
+input {
+    min-height: 5vmin;
+}
+
+textarea {
+    min-height: 40vmin;
+}
+
+.createJournalEntry {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 15vmin;
+    min-height: 50vmin;
+    max-width: 50vmin;
+    padding: 5vmin;
+    font-size: 50vmin;
+}
+
+.JournalSection{
     display: flex;
     flex-direction: column;
     align-items: center;
