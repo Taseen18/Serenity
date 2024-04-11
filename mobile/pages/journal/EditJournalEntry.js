@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, TextInput, Button } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
-const CreateJournalEntry = ({ navigation }) => {
+const EditJournalEntry = ({ navigation }) => {
   const route = useRoute();
   const [title, setTitle] = useState(
     route.params?.title ? route.params?.title : false
@@ -73,4 +73,4 @@ const CreateJournalEntry = ({ navigation }) => {
   );
 };
 
-export default CreateJournalEntry;
+export default EditJournalEntry;
