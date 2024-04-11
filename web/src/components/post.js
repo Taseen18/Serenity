@@ -116,10 +116,15 @@ function Post() {
           </div>
           <div className="CommentSection">
           {comments.map((comment, index) => (
-        <div key={index} className="CommentHolder">              
-              <p key={index}>{comment.commented_at}</p>
+          <div key={index} className="CommentHolder">
+            <div className="commentInfo">            
+              <p key={index}>commented at : {new Date(comment.commented_at).toLocaleString()}</p>
+              <p className="commentdisplaytitle"key={index}> By {comment.user_id}</p>
+            </div>
+              
+
               <p key={index}>{comment.PostContent}</p>
-              <p key={index}>{comment.user_id}</p>
+              
               <hr></hr>
         </div>
       ))}

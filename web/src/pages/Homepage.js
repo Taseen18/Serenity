@@ -108,21 +108,20 @@ function Homepage() {
       <div className='welcome-message'>
           <h1>Welcome back, <span>{token.user.user_metadata.first_name}</span></h1>
           <div className="homepagePostHolder">
-            <Post />
           </div>
       </div>
 
       <div className="homepage-flex-container">
         <div className="Section">
           <h1>To Do</h1> 
-          <button onClick={() => setIsModalOpen(true)}>Add Task</button> 
+          <button className="TaskButtons" onClick={() => setIsModalOpen(true)}>Add Task</button> 
           <div className='section-container'>
             <div className='box'>
                 {tasks.map((task, index) => (
                     <div key={index} className='item'>
                         <h3>{task.title}</h3>
                         <p>{task.description}</p>
-                        <button onClick={() => markTaskAsComplete(task.task_id)}>Mark As Done</button>
+                        <button className="TaskButtons" onClick={() => markTaskAsComplete(task.task_id)}>Mark As Done</button>
                     </div>
                 ))}
             </div>
@@ -140,17 +139,26 @@ function Homepage() {
               </form>
             </div>
           )}
-        </div>
+        </div>    
         <div className="Section">
           <h1>Upcoming Appointments</h1>
           <div className='section-container'>
             <div className='box'>
                 {appointments.map((appointment, index) => (
                     <div key={index} className='item'>
-                        <h3>{appointment.date_time}</h3>
+                        <h3>{new Date(appointment.date_time).toLocaleString()}</h3>
+                        {/* {appointment.date_time}*/}
                         <p>With: {appointment.with.name}</p>
                     </div>
                 ))}
+            </div>
+          </div>
+        </div>
+        <div className="Section">
+          <h1>Todays posts</h1>
+          <div className='section-container'>
+            <div className="homepagePostHolder">
+              <Post />
             </div>
           </div>
         </div>
