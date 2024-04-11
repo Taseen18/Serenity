@@ -12,6 +12,9 @@ import Diet from './pages/Diet'
 import MentalHealth from './pages/MentalHealth'
 import Messenger from './pages/Messenger';
 import Post from './components/post';
+import Journal from './pages/journal/Journal'
+import CreateJournalEntry from './pages/journal/CreateJournalEntry'
+import EditJournalEntry from './pages/journal/EditJournalEntry'
 
 const App = () => {
     const [token, setToken] = useState(null);
@@ -48,6 +51,9 @@ const App = () => {
                         <Route path='/MentalHealth' element={<MentalHealth />} />
                         <Route path='/Messenger' element={<Messenger />} />
                         <Route path='/Post' element={<Post />} />
+                        <Route path='/Journal' element={<Journal />} />
+                        <Route path='/CreateJournalEntry' element={<CreateJournalEntry />} />
+                        <Route path='/EditJournalEntry' element={<EditJournalEntry />} />
                     </Routes>
             </AuthProvider>
         </div>
