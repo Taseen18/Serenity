@@ -41,7 +41,7 @@ function Navbar() {
           {" "}
           Journal{" "}
         </Link>
-        <Link to="/Chat" className="linker">
+        <Link to="/Messenger" className="linker">
           {" "}
           Chat{" "}
         </Link>

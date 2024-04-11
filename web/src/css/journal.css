@@ -30,7 +30,7 @@ textarea {
     flex-wrap: wrap;
 }
 
-form {
+.journal-form {
     display: flex;
     flex-wrap: nowrap;
     align-content: flex-start;

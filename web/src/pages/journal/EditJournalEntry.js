@@ -66,7 +66,7 @@ function EditJournalEntry() {
       <div className="createJournalEntry">
         <h2 className="title">Create an entry</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form className="journal-form" onSubmit={handleSubmit}>
           <input
             type="text"
             id="title"
