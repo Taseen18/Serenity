@@ -76,7 +76,6 @@ function Community() {
 
 
       <div className="topSection">
-        <img className="filter" src={filter} />
         <div className="titleSection">
           <h1 className="title">Community</h1>
           <img className="underline" src={Line} />
