@@ -21,6 +21,8 @@ const MHPSelection = ({ route }) => {
                 }
                 const token = JSON.parse(tokenString);
                 const access_token = token.access_token;
+                console.log(apiUrl);
+                console.log(access_token);
 
                 const response = await fetch(`${apiUrl}appointment/getMhps/`, {
                     method: 'GET',

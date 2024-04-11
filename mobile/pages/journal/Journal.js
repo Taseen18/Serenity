@@ -6,24 +6,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Journal = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-    <ScrollView> 
-      <View style={styles.JournalHeader}>
-        <Text style={styles.JournalTitle}>Journal📖</Text>
-      </View>
+      <ScrollView> 
+        <View style={styles.JournalHeader}>
+          <Text style={styles.JournalTitle}>Journal📖</Text>
+        </View>
 
-      <View>
-        <Pressable
-          onPress={() => navigation.navigate("CreateJournalEntry")}
-          style={styles.AddEntryButton}
-        >
-          <Text>Add Entry</Text>
-        </Pressable>
-      </View>
+          <View>
+            <Pressable
+              onPress={() => navigation.navigate("CreateJournalEntry")}
+            >
+              <Text>Add Entry</Text>
+            </Pressable>
+          </View>
 
-      <View>
-        <JournalEntry />
-      </View>
-    </ScrollView>
+        <View>
+          <JournalEntry />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
