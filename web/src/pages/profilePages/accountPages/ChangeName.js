@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { supabase } from "../../../lib/helper/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../lib/helper/AuthContext";
-
+import '../../../css/Account.css'
+import Navbar from "../../../components/Navbar";
 const ChangeName = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -38,7 +39,10 @@ const ChangeName = () => {
   };
 
   return (
-    <div>
+    <div className="changeProfileSettings">
+      <Navbar />
+      <h1>Update Name</h1>
+      <div className="profileUpdater">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -47,7 +51,6 @@ const ChangeName = () => {
           placeholder="firstName"
           onChange={(e) => setFirstName(e.target.value)}
         />
-
         <input
           type="text"
           id="LastName"
@@ -55,8 +58,9 @@ const ChangeName = () => {
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
-        <button type="submit">Save</button>
+        <button className="profileSubmitButton"type="submit">Save</button>
       </form>
+      </div>
     </div>
   );
 };

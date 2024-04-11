@@ -155,7 +155,7 @@ function Homepage() {
           </div>
         </div>
         <div className="Section">
-          <h1>Todays posts</h1>
+          <h1>Latest posts</h1>
           <div className='section-container'>
             <div className="homepagePostHolder">
               <Post />
