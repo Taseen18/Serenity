@@ -34,18 +34,21 @@ function JournalEntry() {
       {entries &&
         entries.map((entry) => (
           <div className="IndividualEntry">
-            <li className="EntryTitle">{entry.title}</li>
-            <Link
-              to="/EditJournalEntry"
-              state={{
-                title: entry.title,
-                entry: entry.entry,
-                entry_id: entry.entry_id,
-              }}
-            >
-              Edit Entry
-            </Link>
-            <li className="Entry">{entry.entry}</li>
+            <div className="entryBackground">
+              <li className="entryTitle">{entry.title}</li>
+              <Link
+                className="editEntryButton"
+                to="/EditJournalEntry"
+                state={{
+                  title: entry.title,
+                  entry: entry.entry,
+                  entry_id: entry.entry_id,
+                }}
+              >
+                Edit Entry
+              </Link>
+              <li className="entry">{entry.entry}</li>
+            </div>
           </div>
         ))}
     </ul>

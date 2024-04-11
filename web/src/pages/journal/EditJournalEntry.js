@@ -31,7 +31,7 @@ function EditJournalEntry() {
       console.log(error);
     }
 
-    navigate("Journal");
+    navigate(-1);
   };
 
   const handleSubmit = async (e) => {
