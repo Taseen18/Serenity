@@ -75,6 +75,7 @@ function EditJournalEntry() {
           />
 
           <textarea
+            className="journal-textarea"
             id="entry"
             value={entry}
             onChange={(e) => setEntry(e.target.value)}

@@ -19,7 +19,7 @@ input {
     min-height: 5vmin;
 }
 
-textarea {
+.journal-textarea {
     min-height: 40vmin;
 }
 
