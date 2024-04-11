@@ -56,7 +56,7 @@ function EditJournalEntry() {
       console.log(data);
     }
 
-    navigate("Journal");
+    navigate(-1);
   };
   return (
     <div className="Journal">

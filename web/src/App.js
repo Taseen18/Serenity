@@ -17,6 +17,7 @@ import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
 import EditJournalEntry from "./pages/journal/EditJournalEntry";
 import Account from "./pages/profilePages/Account";
 import ChangePassword from "./pages/profilePages/accountPages/ChangePassword";
+import ChangeName from "./pages/profilePages/accountPages/ChangeName";
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/EditJournalEntry" element={<EditJournalEntry />} />
           <Route path="/Account" element={<Account />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
+          <Route path="/ChangeName" element={<ChangeName />} />
         </Routes>
       </AuthProvider>
     </div>

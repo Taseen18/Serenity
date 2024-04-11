@@ -1,56 +1,45 @@
 import React, { useState } from "react";
 import { supabase } from "../../../lib/helper/supabaseClient";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../lib/helper/AuthContext";
 
 const ChangeName = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const navigation = useNavigation();
+  const [formError, setFormError] = useState(null);
+  const navigate = useNavigate();
 
-  const updateName = async () => {
-    let updates = {};
+  const { token } = useAuth();
+  const user_id = token.user.id;
 
-    if (firstName) {
-      updates.first_name = firstName;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (lastName) {
-      updates.last_name = lastName;
-    }
-
-    const { data: updateData, error: updateError } =
-      await supabase.auth.updateUser({
-        data: updates,
-      });
-
-    if (updateError) {
-      Alert.alert("Error", updateError.message);
-      console.error("Error updating name(s)", error);
+    if (!firstName || !lastName) {
+      setFormError("Please fill in all the fields correctly");
       return;
     }
 
-    const { data: refreshData, error: refreshError } =
-      await supabase.auth.refreshSession();
+    console.log(user_id);
 
-    if (refreshError) {
-      Alert.alert("Error", refreshError.message);
-      console.error("Error refreshing token", refreshError);
-      return;
+    const { data, error } = await supabase
+      .from("auth_user")
+      .update({ first_name: firstName, last_name: lastName })
+      .eq("username", user_id);
+
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      console.log(data);
     }
 
-    await AsyncStorage.setItem(
-      "userToken",
-      JSON.stringify(refreshData.session)
-    );
-
-    console.log("Name updated successfully");
-    alert("Success", "Name updated", [
-      { text: "OK", onPress: () => navigation.goBack() },
-    ]);
+    navigate(-1);
   };
 
   return (
     <div>
-      <form onSubmit={updatePassword}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           id="firstName"

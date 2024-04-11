@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import { supabase } from "../../../lib/helper/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../lib/helper/AuthContext";
 
 const ChangePassword = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [nonce, setNonce] = useState("");
-  const updatePassword = async () => {
-    const { data, error } = await supabase.auth.updateUser({
-      password: newPassword,
-      nonce: nonce,
-    });
+  const [formError, setFormError] = useState(null);
+
+  const { token } = useAuth();
+  const user_id = token.user.id;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!newPassword) {
+      setFormError("Please fill in all the fields correctly");
+      return;
+    }
+
+    console.log(user_id);
+
+    const { data, error } = await supabase
+      .from("auth_user")
+      .update({ password: newPassword })
+      .eq("username", user_id);
 
     if (error) {
-      alert("Error", error.message);
-      console.error("Error changing password", error);
-    } else {
-      alert("Success", "Password changed successfully");
-      console.log("Password changed successfully");
-      navigate("Account");
+      console.log(error);
     }
+    if (data) {
+      console.log(data);
+    }
+
+    navigate(-1);
   };
 
   return (
     <div>
-      <form onSubmit={updatePassword}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           id="newPassword"
