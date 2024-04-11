@@ -74,8 +74,6 @@ function MainTabScreen() {
           }
         }
       />
-      <Tab.Screen
-        name="Messages"
       <Tab.Screen 
         name="Messages" 
         component={ChatsList}
