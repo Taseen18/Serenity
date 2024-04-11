@@ -199,7 +199,7 @@ const Homepage = ({ navigation }) => {
             
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Screen4')}
+              onPress={() => navigateToScreen('Journal')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/woods.png')}

@@ -28,6 +28,9 @@ import MentalHealth from "./pages/MentalHealth";
 import Trackers from "./pages/Trackers";
 import TrackDiet from "./pages/TrackDiet";
 import TrackExercise from "./pages/TrackExercise";
+import Journal from "./pages/journal/Journal";
+import CreateJournalEntry from "./pages/journal/CreateJournalEntry";
+import EditJournalEntry from "./pages/journal/EditJournalEntry";
 
 //Placeholders:
 const Stack = createNativeStackNavigator();
@@ -263,6 +266,7 @@ const App = () => {
           component={CreateJournalEntry}
         />
         <Stack.Screen name="EditJournalEntry" component={EditJournalEntry} />
+        <Stack.Screen name="Journal" component={Journal} />
       </Stack.Navigator>
     </NavigationContainer>
   );
