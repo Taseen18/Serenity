@@ -3,6 +3,7 @@ import { supabase } from "../../lib/helper/supabaseClient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, TextInput, Button } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import styles from "../../styles/JournalStyles";
 
 const EditJournalEntry = ({ navigation }) => {
   const route = useRoute();

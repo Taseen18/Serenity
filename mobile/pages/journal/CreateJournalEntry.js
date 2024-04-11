@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/helper/supabaseClient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, TextInput, Button } from "react-native";
+import styles from "../../styles/JournalStyles";
 
 const CreateJournalEntry = ({ navigation }) => {
   const [entry, setEntry] = useState("");
@@ -44,10 +45,10 @@ const CreateJournalEntry = ({ navigation }) => {
   };
   return (
     <View>
-      <Text>Create an entry</Text>
+      <Text style={styles.entryTitleStyle}>Create an entry</Text>
       <View>
-        <TextInput value={title} onChangeText={setTitle} />
-        <TextInput value={entry} onChangeText={setEntry} />
+        <TextInput placeholder="entry title ..." value={title} onChangeText={setTitle} />
+        <TextInput placeholder="entry content ..."value={entry} onChangeText={setEntry} />
         <Button title="Submit" onPress={handleSubmit} />
       </View>
     </View>

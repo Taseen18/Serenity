@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/helper/supabaseClient";
 import { View, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import styles from "../../styles/JournalStyles";
 
 function JournalEntry() {
   const navigation = useNavigation();
@@ -36,8 +37,8 @@ function JournalEntry() {
       {fecthError && <Text>{fecthError}</Text>}
       {entries &&
         entries.map((entry) => (
-          <View>
-            <Text>{entry.title}</Text>
+          <View  >
+            <Text style={styles.entryStyling}>{entry.title}</Text>
             <Button
               title="Edit Entry"
               onPress={() =>
@@ -48,7 +49,7 @@ function JournalEntry() {
                 })
               }
             />
-            <Text>{entry.entry}</Text>
+            <Text style={styles.entryTitleStyle}>{entry.entry}</Text>
           </View>
         ))}
     </View>

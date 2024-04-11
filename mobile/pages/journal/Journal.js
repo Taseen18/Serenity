@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import JournalEntry from "./journalEntry";
-//import styles from "../../styles/JournalStyles";
-
+import styles from "../../styles/JournalStyles";
+import { SafeAreaView } from 'react-native-safe-area-context';
 const Journal = ({ navigation }) => {
   return (
-    <ScrollView>
+    <SafeAreaView style={{ flex: 1 }}>
+    <ScrollView> 
       <View style={styles.JournalHeader}>
         <Text style={styles.JournalTitle}>Journal📖</Text>
       </View>
@@ -23,6 +24,7 @@ const Journal = ({ navigation }) => {
         <JournalEntry />
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
