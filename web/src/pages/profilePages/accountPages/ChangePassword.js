@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { supabase } from "../../../lib/helper/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../lib/helper/AuthContext";
+import '../../../css/Account.css'
+import Navbar from "../../../components/Navbar";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -38,7 +40,10 @@ const ChangePassword = () => {
   };
 
   return (
-    <div>
+    <div className="changeProfileSettings">
+      <Navbar />
+      <h1>Update Password</h1>
+      <div className="profileUpdater">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -55,8 +60,9 @@ const ChangePassword = () => {
           placeholder="Confirmation Code (optional)"
           onChange={(e) => setNonce(e.target.value)}
         />
-        <button type="submit">Save</button>
+        <button className="profileSubmitButton" type="submit">Save</button>
       </form>
+      </div>
     </div>
   );
 };

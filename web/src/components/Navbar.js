@@ -25,7 +25,7 @@ function Navbar() {
         </Link>
       </div>
       <div className="middle">
-        <Link to="/resources" className="linker">
+        <Link to="/Exercise" className="linker">
           {" "}
           Resources{" "}
         </Link>
@@ -49,9 +49,9 @@ function Navbar() {
           {" "}
           About{" "}
         </Link>
-        <Link to="/Account" className="linker">
+        <Link to="/Account" className="navbar-button">
           {" "}
-          Account Settings
+          Account
         </Link>
         {/*}  <button className="navbar-button" >Fetch Tasks</button> */}
       </div>
