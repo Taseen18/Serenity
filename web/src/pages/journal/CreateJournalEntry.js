@@ -58,6 +58,7 @@ function CreateJournalEntry() {
           />
 
           <textarea
+            className="journal-textarea"
             id="entry"
             value={entry}
             placeholder="New Entry"
