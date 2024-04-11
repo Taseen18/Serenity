@@ -49,6 +49,10 @@ function Navbar() {
           {" "}
           About{" "}
         </Link>
+        <Link to="/Account" className="linker">
+          {" "}
+          Account Settings
+        </Link>
         {/*}  <button className="navbar-button" >Fetch Tasks</button> */}
       </div>
       <div className="rightSide">

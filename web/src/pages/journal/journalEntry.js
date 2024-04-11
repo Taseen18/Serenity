@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/helper/supabaseClient";
 import { Link } from "react-router-dom";
-import "../../css/journal.css";
 
 function JournalEntry() {
   const [fecthError, setFetchError] = useState(null);

@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar";
 import JournalEntry from "./journalEntry";
 import Line from "../../assets/images/Line.png";
 import { Link } from "react-router-dom";
-import "../../css/journal.css";
 
 function JournalPage() {
   return (
