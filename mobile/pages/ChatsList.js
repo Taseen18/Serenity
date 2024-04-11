@@ -2,16 +2,14 @@ import React, {useEffect, useState, useRef} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import styles from '../styles/ChatsListStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getWsUrl } from '../lib/helper/djangoURL';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChatsList = ({ navigation }) => {
     const [chats, setChats] = useState([]);
     const webSocket = useRef(null);
     //const chatsWsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-    const apiUrl = Platform.select({
-        ios: '://localhost:8000/',
-        android: '://10.0.2.2:8000/',
-      });
+    const apiUrl = getWsUrl();
 
     useEffect(() => {
         const initialiseWebSocket = async () => {
@@ -23,7 +21,7 @@ const ChatsList = ({ navigation }) => {
 
             const token = JSON.parse(tokenString);
             const access_token = token.access_token;
-            const chatsUrl = `ws${apiUrl}ws/chat/?token=${access_token}`;
+            const chatsUrl = `${apiUrl}ws/chat/?token=${access_token}`;
 
             webSocket.current = new WebSocket(chatsUrl);
 

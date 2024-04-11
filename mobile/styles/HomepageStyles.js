@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'left',
   },
-  squareIconWrapperCommunity: {
+  squareIconWrapperResources: {
     width: 40,
     height: 40,
     justifyContent: 'center',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { GiftedChat, Send } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getWsUrl } from '../lib/helper/djangoURL';
 import { Platform, TouchableOpacity, View, Button, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -11,10 +12,7 @@ const MessengerScreen = ({ route, navigation }) => {
     const { chatWith } = route.params;
     const [messages, setMessages] = useState([]);
     const webSocket = useRef(null);
-    const apiUrl = Platform.select({
-        ios: 'ws://localhost:8000/',
-        android: 'ws://10.0.2.2:8000/',
-    });
+    const apiUrl = getWsUrl();
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {

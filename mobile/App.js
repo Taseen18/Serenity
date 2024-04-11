@@ -55,13 +55,13 @@ function MainTabScreen() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Resources"
-        component={Resources}
+      <Tab.Screen 
+        name="Community" 
+        component={Community}
         options={{
-          tabBarLabel: "Resources",
+          tabBarLabel: 'Community',
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="article" color={color} size={size} />
+            <FontAwesome name="users" color={color} size={size} />
           ),
         }}
       />
@@ -76,21 +76,13 @@ function MainTabScreen() {
       />
       <Tab.Screen
         name="Messages"
+      <Tab.Screen 
+        name="Messages" 
         component={ChatsList}
         options={{
           tabBarLabel: "Messages",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubbles" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Community"
-        component={Community}
-        options={{
-          tabBarLabel: "Community",
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="users" color={color} size={size} />
           ),
         }}
       />
@@ -159,20 +151,23 @@ const App = () => {
           component={SignUp}
           options={{ headerShown: true }}
         />
-        <Stack.Screen
-          name="Messenger"
+        <Stack.Screen 
+          name="Messenger" 
           component={MessengerScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        <Stack.Screen 
+          name="Resources" 
+          component={Resources}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
           name="ExerciseArticle"
           component={ExerciseArticle}
-          options={({ navigation }) => ({
-            title: "Articles",
+          options={({ navigation }) => ({ 
+            title: 'Articles',
             headerLeft: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Resources")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
                 <Ionicons name="arrow-back" size={24} color="black" />
               </TouchableOpacity>
             ),
@@ -192,52 +187,59 @@ const App = () => {
             ),
           })}
         />
-        <Stack.Screen
-          name="MentalHealth"
-          component={MentalHealth}
-          options={({ navigation }) => ({
-            title: "Articles",
-            headerLeft: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Resources")}
-              >
-                <Ionicons name="arrow-back" size={24} color="black" />
-              </TouchableOpacity>
-            ),
-          })}
+        <Stack.Screen name="MentalHealth"
+        component={MentalHealth}
+        options={({ navigation }) => ({ 
+          title: 'Articles',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Resources')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
         />
-        <Stack.Screen
-          name="Make Appointment"
+
+        <Stack.Screen name="TrackDiet"
+        component={TrackDiet}
+        options={({ navigation }) => ({ 
+          title: 'Diet Tracker',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Trackers')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+
+        <Stack.Screen name="TrackExercise"
+        component={TrackExercise}
+        options={({ navigation }) => ({ 
+          title: 'Exercise Tracker',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Trackers')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        />
+
+        <Stack.Screen 
+          name="Community" 
+          component={Community}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Make Appointment" 
           component={MakeAppointmentScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="TrackDiet"
-          component={TrackDiet}
-          options={({ navigation }) => ({
-            title: "Diet Tracker",
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.navigate("Trackers")}>
-                <Ionicons name="arrow-back" size={24} color="black" />
-              </TouchableOpacity>
-            ),
-          })}
+        <Stack.Screen 
+          name="View Appointments" 
+          component={ViewAppointments}
+          options={{ headerShown: false }}
         />
-
-        <Stack.Screen
-          name="TrackExercise"
-          component={TrackExercise}
-          options={({ navigation }) => ({
-            title: "Exercise Tracker",
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.navigate("Trackers")}>
-                <Ionicons name="arrow-back" size={24} color="black" />
-              </TouchableOpacity>
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Select MHP"
+        <Stack.Screen 
+          name="Select MHP" 
           component={MHPSelection}
           options={{ headerShown: false }}
         />

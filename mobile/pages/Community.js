@@ -8,7 +8,7 @@ import {
    
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import Post from '../components/post';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from '../styles/communityAndPostStyles';
 
 const Community = ({ navigation }) => {
@@ -49,6 +49,7 @@ const Community = ({ navigation }) => {
     }
 };
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.community}>
         <Text style={styles.communityTitle}>Community📝</Text>
         <TouchableOpacity onPress={() => setIsAddPostModalOpen(true)}>
@@ -71,27 +72,27 @@ const Community = ({ navigation }) => {
           setIsAddPostModalOpen(false);
         }}
         >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={styles.addPostWrapper}>
+            <Button title="Close" onPress={() =>  setIsAddPostModalOpen(false)} />
             <TextInput
-              placeholder="..."
+              placeholder="Post title ..."
               value={newPostTitle}
               onChangeText={setnewPostTitle}
               style={styles.modalText}
             />
             <TextInput
-              placeholder="..."
+              placeholder="Post content ..."
               value={newPostContent}
               onChangeText={setnewPostContent}
               style={styles.modalText}
               multiline
             />
-            <Button title="Add Task" onPress={() => handleAddPost(newPostTitle, newPostContent)} />
-            <Button title="Close" onPress={() =>  setIsAddPostModalOpen(false)} />
-          </View>
+            <Button title="Add Post" onPress={() => handleAddPost(newPostTitle, newPostContent)} />
+            
         </View>
       </Modal>
     </View>
+    </SafeAreaView>
 
 
   );

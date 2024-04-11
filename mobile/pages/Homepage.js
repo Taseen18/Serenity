@@ -1,4 +1,3 @@
-// pages/Homepage.js
 import React, {useState, useEffect, useCallback} from 'react';
 import { 
   View, 
@@ -6,8 +5,9 @@ import {
   StyleSheet,
   TextInput, 
   Button, TouchableOpacity, ScrollView, Platform, ImageBackground, Modal } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
-import { supabase } from '../lib/helper/supabaseClient'; // Adjust the path as necessary
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { supabase } from '../lib/helper/supabaseClient';
+import { getApiUrl } from '../lib/helper/djangoURL';
 import styles from '../styles/HomepageStyles';
 import { MaterialIcons, FontAwesome, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,10 +20,7 @@ const Homepage = ({ navigation }) => {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
 
-  const apiUrl = Platform.select({
-    ios: 'http://localhost:8000/',
-    android: 'http://10.0.2.2:8000/',
-  });
+  const apiUrl = getApiUrl();
 
   useEffect(() => {
     const loadUser = async () => {
@@ -117,12 +114,7 @@ const Homepage = ({ navigation }) => {
       const token = JSON.parse(tokenString);
       const access_token = token.access_token;
 
-      const url = Platform.select({
-        ios: `http://localhost:8000/to_do_list/tasks/update/${taskId}/`,
-        android: `http://10.0.2.2:8000/to_do_list/tasks/update/${taskId}/`,
-      });
-
-      const response = await fetch(url, {
+      const response = await fetch(`${apiUrl}to_do_list/tasks/update/${taskId}/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${access_token}`,
@@ -181,7 +173,7 @@ const Homepage = ({ navigation }) => {
           <View style={styles.grid}>
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Community')}
+              onPress={() => navigateToScreen('Resources')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/tropical.png')}
@@ -189,9 +181,9 @@ const Homepage = ({ navigation }) => {
                 style={{ flex: 1 }}
               >
                 <View style={{flex: 1, justifyContent: 'space-between'}}>
-                  <Text style={styles.squareText}>Community</Text>
-                  <View style={styles.squareIconWrapperCommunity}>
-                    <FontAwesome name="users" size={24} color="black" style={styles.squareIcon} />
+                  <Text style={styles.squareText}>Resources</Text>
+                  <View style={styles.squareIconWrapperResources}>
+                    <MaterialIcons name="article" size={24} color="black" style={styles.squareIcon} />
                   </View>
                 </View>
               </ImageBackground>
@@ -235,7 +227,7 @@ const Homepage = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.square}
-              onPress={() => navigateToScreen('Screen3')}
+              onPress={() => navigateToScreen('View Appointments')}
             >
               <ImageBackground
                 source={require('../assets/images/squares/mountain.png')}
@@ -243,7 +235,7 @@ const Homepage = ({ navigation }) => {
                 style={{ flex: 1 }}
               >
                 <View style={{flex: 1, justifyContent: 'space-between'}}>
-                  <Text style={styles.squareText}>Other</Text>
+                  <Text style={styles.squareText}>View Appointments</Text>
                   <View style={styles.squareIconWrapperOther1}>
                     <FontAwesome name="heart" size={24} color="black" style={styles.squareIcon} />
                   </View>

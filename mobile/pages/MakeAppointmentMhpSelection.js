@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, TextInput, Button, Platform } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApiUrl } from '../lib/helper/djangoURL';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,10 +9,7 @@ const MHPSelection = ({ route }) => {
     const navigation = useNavigation();
     const [mhpList, setMhpList] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const apiUrl = Platform.select({
-        ios: 'http://localhost:8000/',
-        android: 'http://10.0.2.2:8000/',
-      });
+    const apiUrl = getApiUrl();
 
     useEffect(() => {
         const fetchMhps = async () => {
