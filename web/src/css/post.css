@@ -64,32 +64,12 @@
     flex-direction: row;
 }
 
-.PostHolder .likeButton {
-    background-color: grey; /* Change to your desired color */
-    width: 3vh; /* Make width and height equal for square shape */
-    height: 3vh;
-    border-radius: 50px;
-    margin-top: 8vh;
-}
-  
-.PostHolder .likeButton.clicked {
-    background-color: red; /* Change to your desired color */
-}
 
 .PostHolder .Name{
     width:10vw;
     font-size: 22px;
 }
-.PostHolder .flag{
-    margin-top: 3.5vh;
-    background-color: rgb(212, 212, 212); /* Change to your desired color */
-    width: 3vh; /* Make width and height equal for square shape */
-    height: 3vh;
-    border-radius: 50px;
-}
-.PostHolder .flag.clicked {
-    background-color: rgb(2, 81, 110); /* Change to your desired color */
-}
+
 .PostDisplay{
     position: fixed;
     top: 50%;

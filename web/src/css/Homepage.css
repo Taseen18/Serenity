@@ -120,3 +120,9 @@ body{
     background-color: greenyellow; /* Slightly darker on hover for feedback */
 }
 
+.homepagePostHolder{
+    pointer-events: none;
+    height:46vh;
+    overflow: hidden;
+    transform: scale(0.5);
+}
